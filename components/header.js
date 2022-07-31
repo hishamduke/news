@@ -1,0 +1,41 @@
+import { useState } from "react";
+export default function Header() {
+  const d = new Date();
+  const monthlist = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const day = d.getDay();
+  const year = d.getFullYear();
+  const month = monthlist[d.getMonth()];
+  return (
+    <>
+      <link
+        href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <title>Newspaper Style Design Experiment</title>
+      <meta name="viewport" content="width=device-width" />
+      <div className="head">
+        <div className="headerobjectswrapper">
+          <header>Newspaper Subscription</header>
+        </div>
+
+        <div className="subhead">
+          Calicut,Kerala - {day} {month} {year}- Seven Pages
+        </div>
+      </div>
+    </>
+  );
+}
