@@ -8,6 +8,7 @@ export default function Message(arg) {
   if (init) {
     setAxres(arg.children);
     console.log(axres);
+    //
     setInit(0);
   }
   return (
