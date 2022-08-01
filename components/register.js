@@ -1,37 +1,43 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function Register() {
+  const listRef = useAutoAnimate();
   const [email, setEmail] = useState("");
+  const [emailmsg, setEmailmsg] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  function handlelogin(e) {
+  const [num, setNum] = useState("");
+  const [house, setHouse] = useState("");
+  const [street, setStreet] = useState("");
+  const [pin, setPin] = useState("");
+  function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .post("/api/user", {
-        email,
-        password,
-      })
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    if (!email) {
+      setEmailmsg("Enter email");
+    }
   }
   return (
     <>
       <div className="collumns">
         <div className="collumn">
           <br />
-
-          <form>
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
             <h2 className="formhead">Create a new user account</h2>
             <div>Name </div>
             <div>
               {" "}
               <input className="forminp" type="text"></input>
             </div>
-            <div>E-mail </div>
+
+            <div>
+              E-mail<div ref={listRef}>{emailmsg}</div>
+            </div>
             <div>
               {" "}
               <input
@@ -42,6 +48,7 @@ export default function Register() {
                 }}
               ></input>
             </div>
+
             <div> Password</div>
             <div>
               {" "}
@@ -70,29 +77,50 @@ export default function Register() {
               <input
                 className="forminp"
                 type="number"
-                minLength={10}
+                minLength={5}
                 onChange={(e) => {
-                  SVGAnimatedNumber(e.target.value);
+                  setNum(e.target.value);
                 }}
               ></input>
             </div>
-            <div>
+
+            {/* <div>
               <h4>Address</h4>
-            </div>
+            </div> */}
             <div>Housename </div>
             <div>
               {" "}
-              <input className="forminp" type="text"></input>
+              <input
+                className="forminp"
+                type="text"
+                onChange={(e) => {
+                  setHouse(e.target.value);
+                }}
+              ></input>
             </div>
             <div>Streetname </div>
             <div>
               {" "}
-              <input className="forminp" type="text"></input>
+              <input
+                className="forminp"
+                type="text"
+                onChange={(e) => {
+                  setStreet(e.target.value);
+                }}
+              ></input>
             </div>
             <div>Pin </div>
             <div>
               {" "}
-              <input className="forminp" type="text"></input>
+              <input
+                className="forminp"
+                type="number"
+                minLength={6}
+                maxLength={6}
+                onChange={(e) => {
+                  setPin(e.target.value);
+                }}
+              ></input>
             </div>
 
             <div className="but">

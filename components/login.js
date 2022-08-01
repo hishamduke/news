@@ -1,14 +1,25 @@
 import Link from "next/link";
 import Router from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function Login() {
   const listRef = useAutoAnimate();
+  const [axres, setAxres] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [axres, setAxres] = useState("");
+
+  axios
+    .get("/api/auth/cook")
+    .then(function (response) {
+      if (response.data.Message !== true) {
+        axios.get("/api/auth/logout");
+      }
+    })
+    .catch(function (error) {});
+
   function handlelogin(e) {
+    setTimeout(() => setAxres(""), 4000);
     e.preventDefault();
     axios
       .post("/api/auth/login", {
@@ -60,7 +71,7 @@ export default function Login() {
             </div>
             <br />
             <div ref={listRef}>{axres}</div>
-            <Link href={"/dashboard"}>
+            <Link href={"/register"}>
               <div className="Link">Create an User account</div>
             </Link>
             <br />

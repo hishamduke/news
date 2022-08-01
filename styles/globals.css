@@ -81,6 +81,7 @@ button {
   position: fixed;
   /* padding: 1%; */
   top: 0;
+  left: 0;
   width: 100%;
 }
 input::-webkit-outer-spin-button,
@@ -333,7 +334,7 @@ input::-webkit-inner-spin-button {
 @media only all and (max-width: 1200px) {
   .collumn {
     width: 75%;
-    background-color: blue;
+    /* background-color: blue; */
   }
   .collumns {
     padding-top: 200px;
@@ -342,7 +343,7 @@ input::-webkit-inner-spin-button {
 @media only all and (max-width: 900px) {
   .collumn {
     width: 100%;
-    background-color: red;
+    /* background-color: red; */
   }
   .collumns {
     padding-top: 200px;
@@ -351,7 +352,7 @@ input::-webkit-inner-spin-button {
 @media only all and (max-width: 600px) {
   .collumn {
     width: 100%;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
   }
   .collumns {
     padding-top: 155px;

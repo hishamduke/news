@@ -15,7 +15,7 @@ export default function Header() {
     "November",
     "December",
   ];
-  const day = d.getDay();
+  const day = d.getDate();
   const year = d.getFullYear();
   const month = monthlist[d.getMonth()];
   return (
