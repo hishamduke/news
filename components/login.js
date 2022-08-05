@@ -3,6 +3,7 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import Message from "./message";
 export default function Login() {
   const listRef = useAutoAnimate();
   const [axres, setAxres] = useState("");
@@ -17,7 +18,6 @@ export default function Login() {
       }
     })
     .catch(function (error) {});
-
   function handlelogin(e) {
     setTimeout(() => setAxres(""), 4000);
     e.preventDefault();
@@ -40,7 +40,6 @@ export default function Login() {
       <div className="collumns">
         <div className="collumn">
           <br />
-
           <form onSubmit={(e) => handlelogin(e)}>
             <h2 className="formhead">Login to account</h2>
             <div>E-mail </div>
@@ -70,6 +69,7 @@ export default function Login() {
               <button>Login</button>
             </div>
             <br />
+
             <div ref={listRef}>{axres}</div>
             <Link href={"/register"}>
               <div className="Link">Create an User account</div>

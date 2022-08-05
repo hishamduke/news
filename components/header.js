@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 export default function Header() {
   const d = new Date();
   const monthlist = [
@@ -26,12 +27,14 @@ export default function Header() {
         type="text/css"
       />
       <title>Newspaper Style Design Experiment</title>
+
       <meta name="viewport" content="width=device-width" />
       <div className="head">
         <div className="headerobjectswrapper">
-          <header>Newspaper Subscription</header>
+          <Link href={"/"}>
+            <header>Newspaper Subscription</header>
+          </Link>
         </div>
-
         <div className="subhead">
           Calicut,Kerala - {day} {month} {year}- Seven Pages
         </div>

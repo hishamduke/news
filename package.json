@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.2",
     "@prisma/client": "^4.1.1",
     "axios": "^0.27.2",
     "cookie": "^0.5.0",
@@ -16,7 +17,7 @@
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "@formkit/auto-animate": "^1.0.0-beta.2"
+    "react-hook-form": "^7.34.0"
   },
   "devDependencies": {
     "eslint": "8.20.0",

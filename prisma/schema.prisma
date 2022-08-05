@@ -17,6 +17,23 @@ model User {
   role     Role   @default(USER)
 }
 
+model User2 {
+  id       Int    @id @default(autoincrement())
+  email    String @unique @db.VarChar(255)
+  name     String @db.VarChar(255)
+  password String @db.VarChar(255)
+  num      Int    @unique
+  role     Role   @default(USER)
+}
+
+name: "",
+email: "",
+password: "",
+password2: "",
+num: "",
+house: "",
+street: "",
+pin: "",
 enum Role {
   USER
   ADMIN

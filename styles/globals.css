@@ -44,8 +44,7 @@ button {
   cursor: pointer;
   transition: all 0.7s;
 }
-.but {
-}
+
 .forminp {
   background-color: #f9f7f1;
   border-radius: 0%;
@@ -66,6 +65,7 @@ button {
   box-sizing: border-box;
   font-size: smaller;
 }
+
 .formhead {
   text-align: left;
   line-height: normal;
@@ -89,28 +89,32 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.headerobjectswrapper {
-  background-color: #f9f7f1;
-}
 
+.main {
+  position: inherit;
+}
 .subhead {
   text-transform: uppercase;
-  border-bottom: 2px solid #2f2f2f;
-  border-top: 2px solid #2f2f2f;
+  border-bottom: 2px solid #000000;
+  border-top: 2px solid #000000;
   padding: 12px 0 12px 0;
   transition: all 0.7s;
   background-color: #f9f7f1b2;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
+}
+.headerobjectswrapper {
+  background-color: #f9f7f1b2;
+  backdrop-filter: blur(3.5px);
 }
 .anim {
   transition: all 0.7s;
 }
 .foot {
   background-color: rgba(217, 255, 0, 0.3);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(3px);
 
   /* padding-top: 1%; */
-  position: stat;
+
   text-align: center;
   position: fixed;
   left: 0;
@@ -119,12 +123,34 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   text-align: center;
 }
+.hey {
+  background-color: rgba(207, 207, 207, 0.288);
+  backdrop-filter: blur(5px);
+  text-align: center;
+  position: fixed;
+  bottom: 6%;
+  /* width: 90%; */
+  left: 5%;
+  right: 5%;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.7s;
+}
+.messtext {
+  padding: 1%;
+  border-bottom: 1px solid #0a0000;
+  border-top: 1px solid #000000;
+  font-size: small;
+}
+.messtext2 {
+  font-size: smaller;
+}
 .subfoot {
   /* text-align: center; */
 
   text-transform: uppercase;
   border-bottom: 2px solid #0a0000;
-  border-top: 2px solid #2f2f2f;
+  border-top: 2px solid #000000;
   padding: 1%;
   transition: all 0.7s;
   /* background-color: yellowgreen; */

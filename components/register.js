@@ -1,134 +1,171 @@
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
+import valida from "../lib/validate";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 export default function Register() {
+  const [msg, setmsg] = useState("");
+  const [inp, setInp] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+    num: "",
+    house: "",
+    street: "",
+    pin: "",
+  });
   const listRef = useAutoAnimate();
-  const [email, setEmail] = useState("");
-  const [emailmsg, setEmailmsg] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [num, setNum] = useState("");
-  const [house, setHouse] = useState("");
-  const [street, setStreet] = useState("");
-  const [pin, setPin] = useState("");
+  const after = () => {
+    setmsg();
+  };
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (!email) {
-      setEmailmsg("Enter email");
-    }
+    valida();
   }
+  function valida() {
+    axios
+      .post("/api/reg", {
+        inp,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <div className="collumns">
         <div className="collumn">
           <br />
+          <div onClick={() => after()} ref={listRef} className="hey">
+            {msg ? (
+              <>
+                <div className="messtext">
+                  <b>{msg}</b> <br />
+                  <i className="messtext2">click to close the message</i>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
           <form
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
             <h2 className="formhead">Create a new user account</h2>
+
             <div>Name </div>
             <div>
-              {" "}
-              <input className="forminp" type="text"></input>
-            </div>
-
-            <div>
-              E-mail<div ref={listRef}>{emailmsg}</div>
-            </div>
-            <div>
-              {" "}
               <input
+                required
                 className="forminp"
-                type="email"
+                type="text"
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setInp({ ...inp, name: e.target.value });
                 }}
               ></input>
             </div>
-
+            <div>E-mail</div>
+            <div>
+              <input
+                required
+                className="forminp"
+                type="email"
+                onChange={(e) => {
+                  setInp({ ...inp, email: e.target.value });
+                }}
+              ></input>
+            </div>
             <div> Password</div>
             <div>
-              {" "}
               <input
                 className="forminp"
+                required
                 type="password"
+                minLength="6"
                 onChange={(e) => {
-                  setPassword(e.target.value);
+                  setInp({ ...inp, password: e.target.value });
                 }}
               ></input>
             </div>
             <div> Re-enter password</div>
             <div>
-              {" "}
               <input
+                required
                 className="forminp"
                 type="password"
+                minLength="6"
                 onChange={(e) => {
-                  setPassword2(e.target.value);
+                  setInp({ ...inp, password2: e.target.value });
                 }}
               ></input>
             </div>
-            <div> Phone number</div>
+            <div>Phone number</div>
             <div>
-              {" "}
               <input
                 className="forminp"
-                type="number"
-                minLength={5}
+                type="text"
+                title="Please enter 10 digit numbers"
+                pattern="\d*"
+                minLength="10"
+                required
                 onChange={(e) => {
-                  setNum(e.target.value);
+                  setInp({ ...inp, num: e.target.value });
                 }}
               ></input>
             </div>
-
             {/* <div>
               <h4>Address</h4>
             </div> */}
             <div>Housename </div>
             <div>
-              {" "}
               <input
+                required
                 className="forminp"
                 type="text"
                 onChange={(e) => {
-                  setHouse(e.target.value);
+                  setInp({ ...inp, house: e.target.value });
                 }}
               ></input>
             </div>
             <div>Streetname </div>
             <div>
-              {" "}
               <input
+                required
                 className="forminp"
                 type="text"
                 onChange={(e) => {
-                  setStreet(e.target.value);
+                  setInp({ ...inp, street: e.target.value });
                 }}
               ></input>
             </div>
             <div>Pin </div>
             <div>
-              {" "}
               <input
+                required
                 className="forminp"
-                type="number"
-                minLength={6}
-                maxLength={6}
+                title="Please enter 6 digit numbers"
+                pattern="\d*"
+                minLength="6"
+                maxLength="6"
                 onChange={(e) => {
-                  setPin(e.target.value);
+                  setInp({ ...inp, pin: e.target.value });
                 }}
               ></input>
             </div>
-
             <div className="but">
               <button>Submit</button>{" "}
             </div>
             <br />
             <Link href={"/login"}>
-              <div className="Link">Create an User account</div>
+              <div className="Link">Login to User account</div>
             </Link>
           </form>
         </div>

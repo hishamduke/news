@@ -1,36 +1,48 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Index from "../components/index";
-import Link from "next/link";
-import Message from "../components/message";
+import * as React from "react";
+import { useForm } from "react-hook-form";
 
-export default function Home() {
+export default function App() {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      category: "",
+      checkbox: [],
+      radio: "",
+    },
+  });
+
   return (
-    <div>
-      <Message>hi</Message>
-      {/* Hello world
-      <p>scoped!</p>
-      <style jsx>{`
-        p {
-          color: blue;
-        }
-        div {
-          background: red;
-        }
-        @media (max-width: 600px) {
-          div {
-            background: blue;
-          }
-        }
-      `}</style>
-      <style global jsx>{`
-        body {
-          background: black;
-        }
-      `}</style> */}
-    </div>
+    <form onSubmit={handleSubmit(console.log)}>
+      <input
+        {...register("firstName", { required: true })}
+        placeholder="First name"
+      />
+
+      <input
+        {...register("lastName", { minLength: 2 })}
+        placeholder="Last name"
+      />
+
+      <select {...register("category")}>
+        <option value="">Select...</option>
+        <option value="A">Category A</option>
+        <option value="B">Category B</option>
+      </select>
+
+      <input {...register("checkbox")} type="checkbox" value="A" />
+      <input {...register("checkbox")} type="checkbox" value="B" />
+      <input {...register("checkbox")} type="checkbox" value="C" />
+
+      <input {...register("radio")} type="radio" value="A" />
+      <input {...register("radio")} type="radio" value="B" />
+      <input {...register("radio")} type="radio" value="C" />
+
+      <input type="submit" />
+    </form>
   );
 }
+
+App.getLayout = function getLayout(page) {
+  return <App />;
+};
