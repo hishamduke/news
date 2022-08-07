@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="collumns">
+      <div className="collumns" style={{ "background-color": "red" }}>
         <div className="collumn">
           <br />
           <form onSubmit={(e) => handlelogin(e)}>

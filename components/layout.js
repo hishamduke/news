@@ -7,6 +7,7 @@ export default function Layout({ children }) {
 
   return (
     <>
+      <div className="empty"></div>
       <main ref={listRef} className="main">
         {children}
       </main>

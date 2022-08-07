@@ -1,5 +1,7 @@
 import Link from "next/link";
 export default function Footer() {
+  console.log("footer mounted");
+
   return (
     <>
       <div className="foot">

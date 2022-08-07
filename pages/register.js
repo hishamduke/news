@@ -9,6 +9,8 @@ import Login from "../components/login";
 import Footer from "../components/footer";
 import Message from "../components/message";
 export default function Home() {
+  console.log(" register mounted");
+
   return (
     <>
       <Register />

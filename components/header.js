@@ -19,6 +19,8 @@ export default function Header() {
   const day = d.getDate();
   const year = d.getFullYear();
   const month = monthlist[d.getMonth()];
+  console.log(" header mounted");
+
   return (
     <>
       <link
@@ -29,6 +31,7 @@ export default function Header() {
       <title>Newspaper Style Design Experiment</title>
 
       <meta name="viewport" content="width=device-width" />
+
       <div className="head">
         <div className="headerobjectswrapper">
           <Link href={"/"}>

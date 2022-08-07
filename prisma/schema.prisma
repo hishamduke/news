@@ -23,17 +23,12 @@ model User2 {
   name     String @db.VarChar(255)
   password String @db.VarChar(255)
   num      Int    @unique
+  house    String @db.VarChar(255)
+  street   String @db.VarChar(255)
+  pin      String @db.VarChar(255)
   role     Role   @default(USER)
 }
 
-name: "",
-email: "",
-password: "",
-password2: "",
-num: "",
-house: "",
-street: "",
-pin: "",
 enum Role {
   USER
   ADMIN

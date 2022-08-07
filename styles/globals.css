@@ -44,7 +44,11 @@ button {
   cursor: pointer;
   transition: all 0.7s;
 }
-
+.empty {
+  border: #000000;
+  background-color: #000000;
+  height: 27vh;
+}
 .forminp {
   background-color: #f9f7f1;
   border-radius: 0%;
@@ -54,6 +58,11 @@ button {
   margin: 8px 0;
   box-sizing: border-box;
   font-size: smaller;
+  transition: all 0.7s;
+}
+.forminp:focus {
+  outline: none;
+  background-color: rgba(217, 255, 0, 0.3);
 }
 .formtext {
   background-color: #f9f7f1;
@@ -143,6 +152,7 @@ input::-webkit-inner-spin-button {
   font-size: small;
 }
 .messtext2 {
+  justify-content: left;
   font-size: smaller;
 }
 .subfoot {
@@ -167,9 +177,9 @@ input::-webkit-inner-spin-button {
   margin: 30px 2% 0 2%;
 }
 .collumns {
-  padding-top: 170px;
-  align-items: center;
-  padding-bottom: 20px;
+  /* padding-top: 170px; */
+  /* align-items: center; */
+  /* padding-bottom: 20px; */
 }
 
 .collumn {
@@ -363,7 +373,7 @@ input::-webkit-inner-spin-button {
     /* background-color: blue; */
   }
   .collumns {
-    padding-top: 200px;
+    /* padding-top: 200px; */
   }
 }
 @media only all and (max-width: 900px) {
@@ -372,7 +382,7 @@ input::-webkit-inner-spin-button {
     /* background-color: red; */
   }
   .collumns {
-    padding-top: 200px;
+    /* padding-top: 200px; */
   }
 }
 @media only all and (max-width: 600px) {
@@ -381,7 +391,7 @@ input::-webkit-inner-spin-button {
     /* background-color: yellowgreen; */
   }
   .collumns {
-    padding-top: 155px;
+    /* padding-top: 155px; */
   }
   .collumn + .collumn {
     border-left: none;

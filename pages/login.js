@@ -12,6 +12,8 @@ import { useState } from "react";
 import Dashboard from "../components/dashboard";
 import Router from "next/router";
 export default function Home() {
+  console.log(" login mounted");
+
   return (
     <>
       <Login />

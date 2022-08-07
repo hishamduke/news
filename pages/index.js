@@ -7,6 +7,8 @@ import Index from "../components/index";
 import Link from "next/link";
 
 export default function Home() {
+  console.log(" index mounted");
+
   return (
     <>
       <Index />

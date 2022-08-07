@@ -2,27 +2,40 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import valida from "../lib/validate";
+import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Register() {
   const [msg, setmsg] = useState("");
+  const [vis, setvis] = useState(false);
   const [inp, setInp] = useState({
     name: "",
     email: "",
     password: "",
-    password2: "",
     num: "",
     house: "",
     street: "",
     pin: "",
   });
+  const [pwd2, setPwd2] = useState("");
   const listRef = useAutoAnimate();
   const after = () => {
     setmsg();
   };
+  function message(message) {
+    setmsg(message);
+    setTimeout(() => {
+      setmsg("");
+    }, 2000);
+  }
   function handleSubmit(e) {
+    console.log(inp.password);
+    if (inp.password !== pwd2) {
+      message("Passwords do not match");
+    } else {
+      valida();
+    }
     e.preventDefault();
-    valida();
   }
   function valida() {
     axios
@@ -46,8 +59,14 @@ export default function Register() {
             {msg ? (
               <>
                 <div className="messtext">
+                  <Image
+                    className="messtext2"
+                    src="/close.png"
+                    height={15}
+                    width={15}
+                  ></Image>
                   <b>{msg}</b> <br />
-                  <i className="messtext2">click to close the message</i>
+                  <i className="messtext2"></i>
                 </div>
               </>
             ) : (
@@ -103,7 +122,7 @@ export default function Register() {
                 type="password"
                 minLength="6"
                 onChange={(e) => {
-                  setInp({ ...inp, password2: e.target.value });
+                  setPwd2(e.target.value);
                 }}
               ></input>
             </div>
