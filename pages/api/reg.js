@@ -11,28 +11,35 @@ import { z } from "zod";
 //   }
 
 export default async function handler(req, res) {
-  const User = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string(),
-    num: z
-      .number()
-      .gt(999999999, { message: "Must be 10 digits" })
-      .lt(10000000000, { message: "Must be 10 digits" }),
-    house: z.string(),
-    street: z.string(),
-    pin: z
-      .number()
-      .gt(99999, { message: "Must be 6 digits" })
-      .lt(1000000, { message: "Must be 6 digits" }),
-  });
+  const User = z
+    .object({
+      name: z.string(),
+      email: z.string().email(),
+      password: z.string().min(6),
+      password2: z.string().min(6),
+
+      num: z
+        .number()
+        .gt(999999999, { message: "Must be 10 digits" })
+        .lt(10000000000, { message: "Must be 10 digits" }),
+      house: z.string(),
+      street: z.string(),
+      pin: z
+        .number()
+        .gt(99999, { message: "Must be 6 digits" })
+        .lt(1000000, { message: "Must be 6 digits" }),
+    })
+    .refine((data) => data.password === data.password2, {
+      message: "password confirmation error",
+      path: ["password"],
+    });
 
   try {
     console.log(req.body);
     let a = User.parse(req.body.inp);
     res.status(200).json({ ...a });
   } catch (e) {
-    console.log(e);
-    res.status(200).json({ ...e });
+    console.log(e.flatten());
+    res.status(200).json(e.flatten());
   }
 }

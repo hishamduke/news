@@ -12,12 +12,12 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    password2: "",
     num: 0,
     house: "",
     street: "",
     pin: 0,
   });
-  const [pwd2, setPwd2] = useState("");
   const listRef = useAutoAnimate();
   const after = () => {
     setmsg();
@@ -30,7 +30,7 @@ export default function Register() {
   }
   function handleSubmit(e) {
     console.log(inp.password);
-    if (inp.password !== pwd2) {
+    if (inp.password !== inp.password2) {
       message("Passwords do not match");
     } else {
       valida();
@@ -123,7 +123,7 @@ export default function Register() {
                 type="password"
                 minLength="6"
                 onChange={(e) => {
-                  setPwd2(e.target.value);
+                  setInp({ ...inp, password2: e.target.value });
                 }}
               ></input>
             </div>
