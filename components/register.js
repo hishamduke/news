@@ -12,10 +12,10 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
-    num: "",
+    num: 0,
     house: "",
     street: "",
-    pin: "",
+    pin: 0,
   });
   const [pwd2, setPwd2] = useState("");
   const listRef = useAutoAnimate();
@@ -40,7 +40,7 @@ export default function Register() {
   function valida() {
     axios
       .post("/api/reg", {
-        inp,
+        ...inp,
       })
       .then(function (response) {
         console.log(response);
@@ -134,6 +134,7 @@ export default function Register() {
                 title="Please enter 10 digit numbers"
                 pattern="\d*"
                 minLength="10"
+                maxLength="10"
                 required
                 onChange={(e) => {
                   setInp({ ...inp, num: e.target.value });
