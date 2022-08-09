@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import valida from "../lib/validate";
 import Image from "next/image";
+import Router from "next/router";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Register() {
@@ -45,12 +46,22 @@ export default function Register() {
       })
       .then(function (response) {
         console.log(response);
+        login();
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-
+  function login() {
+    axios
+      .post("/api/auth/login", {
+        email: inp.email,
+        password: inp.password,
+      })
+      .then(function (response) {
+        Router.push("/dashboard");
+      });
+  }
   return (
     <>
       <div className="collumns">

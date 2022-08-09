@@ -46,6 +46,6 @@ export default async function handler(req, res) {
     res.status(200).json({ ...a });
   } catch (e) {
     console.log(e);
-    res.status(200).json(e);
+    res.status(401).json(e);
   }
 }
