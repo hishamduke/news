@@ -7,7 +7,7 @@ const secret = process.env.SECRET;
 export default async function handler(req, res) {
   if (!!req.body) {
     const { email, password } = req.body;
-    const user = await prisma.user.findMany({
+    const user = await prisma.user2.findMany({
       where: {
         email,
         password,
