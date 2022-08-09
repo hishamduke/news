@@ -38,9 +38,10 @@ export default function Register() {
     e.preventDefault();
   }
   function valida() {
+    console.log(inp);
     axios
       .post("/api/reg", {
-        ...inp,
+        inp,
       })
       .then(function (response) {
         console.log(response);
@@ -137,7 +138,7 @@ export default function Register() {
                 maxLength="10"
                 required
                 onChange={(e) => {
-                  setInp({ ...inp, num: e.target.value });
+                  setInp({ ...inp, num: parseInt(e.target.value) });
                 }}
               ></input>
             </div>
@@ -176,7 +177,7 @@ export default function Register() {
                 minLength="6"
                 maxLength="6"
                 onChange={(e) => {
-                  setInp({ ...inp, pin: e.target.value });
+                  setInp({ ...inp, pin: parseInt(e.target.value) });
                 }}
               ></input>
             </div>
