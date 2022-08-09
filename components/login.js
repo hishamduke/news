@@ -9,15 +9,17 @@ export default function Login() {
   const [axres, setAxres] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    axios
+      .get("/api/auth/cook")
+      .then(function (response) {
+        if (response.data.Message !== true) {
+          axios.get("/api/auth/logout");
+        }
+      })
+      .catch(function (error) {});
+  }, []);
 
-  axios
-    .get("/api/auth/cook")
-    .then(function (response) {
-      if (response.data.Message !== true) {
-        axios.get("/api/auth/logout");
-      }
-    })
-    .catch(function (error) {});
   function handlelogin(e) {
     setTimeout(() => setAxres(""), 4000);
     e.preventDefault();
