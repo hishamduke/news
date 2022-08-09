@@ -10,8 +10,6 @@ import { z } from "zod";
 //     pin: '111111'
 //   }
 
-// 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
-
 export default async function handler(req, res) {
   const User = z.object({
     name: z.string(),
