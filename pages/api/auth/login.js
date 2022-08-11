@@ -13,12 +13,14 @@ export default async function handler(req, res) {
         password,
       },
     });
+    console.log(user);
     if (!!user.length) {
       const token = sign(
         {
           exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
           email: email,
           name: user[0].name,
+          id: user[0].id,
           role: user[0].role,
         },
         secret

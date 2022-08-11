@@ -15,6 +15,9 @@ export default function Index() {
                 Create a new user account?
               </h2>
             </Link>
+            <Link href={"/test"}>
+              <h2 className={("formhead", "Link")}>Go to test field</h2>
+            </Link>
           </form>
         </div>
       </div>
