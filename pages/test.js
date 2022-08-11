@@ -35,12 +35,11 @@ export default function Profile() {
   }
 
   return (
-    <div>
+    <form>
       <h1>{data.name}</h1>
-      <p>{data.description}</p>
-      <strong>👀 {data.subscribers_count}</strong>{" "}
-      <strong>✨ {data.stargazers_count}</strong>{" "}
-      <strong>🍴 {data.forks_count}</strong>
-    </div>
+      <p>{data.email}</p>
+      <strong>👀 {data.num}</strong> <strong>✨ {data.house}</strong>{" "}
+      <strong>🍴 {data.pin}</strong>
+    </form>
   );
 }
