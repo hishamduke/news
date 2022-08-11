@@ -23,9 +23,7 @@ export default function Profile() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                console.log("boiss");
                 logout();
-                // Router.push("/login");
               }}
             >
               logout
