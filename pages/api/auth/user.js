@@ -8,5 +8,5 @@ export default async function handler(req, res) {
   try {
     var decoded = verify(JWT, secret);
   } catch {}
-  res.status(200).json({ Message: decoded });
+  res.status(200).json({ ...decoded });
 }
