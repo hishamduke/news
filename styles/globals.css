@@ -55,7 +55,7 @@ button {
   transition: all 0.7s;
 }
 .empty {
-  height: 27vh;
+  height: 24vh;
 }
 .forminp {
   background-color: #f9f7f1;
@@ -383,17 +383,26 @@ input::-webkit-inner-spin-button {
   .collumns {
     /* padding-top: 200px; */
   }
+  .empty {
+    height: 31vh;
+  }
 }
 @media only all and (max-width: 900px) {
   .collumn {
     width: 100%;
     /* background-color: red; */
   }
+  .empty {
+    height: 30vh;
+  }
   .collumns {
     /* padding-top: 200px; */
   }
 }
 @media only all and (max-width: 600px) {
+  .empty {
+    height: 25vh;
+  }
   .collumn {
     width: 100%;
     /* background-color: yellowgreen; */

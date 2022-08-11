@@ -1,7 +1,7 @@
 import Router from "next/router";
 import axios from "axios";
 import { useEffect, useState } from "react";
-export default function Dashboard() {
+export default function Dashboard(yea) {
   const logout = async () => {
     let val = await axios.get("/api/auth/logout");
     Router.push("/login");
@@ -37,9 +37,8 @@ export default function Dashboard() {
       <div className="collumns">
         <div className="collumn">
           <br />
-
           <form>
-            {name}
+            {name} {yea.children}
             <h2 className={("formhead", "Link")}>loggined user only</h2>
             <button
               onClick={(e) => {
