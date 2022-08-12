@@ -1,6 +1,8 @@
 import useSWR from "swr";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Footer from "../components/footer";
+import Header from "../components/header";
 import login from "../components/login";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 import { logout } from "../lib/logout";
@@ -29,19 +31,18 @@ import Login from "../components/login";
 export default function Profile() {
   return (
     <div className="body">
-      <div class="content">
-        <div class="collumns">
-          {" "}
-          <div class="collumn">
-            <Login />
-          </div>
-          <div class="collumn">
-            <div class="head">
-              <span class="headline hl3">
+      <div className="content">
+        <div className="collumns">
+          <Login />
+          <div className="collumn">
+            <div className="head">
+              <span className="headline hl3">
                 When darkness overspreads my eyes
               </span>
               <p>
-                <span class="headline hl4">by JOHANN WOLFGANG VON GOETHE</span>
+                <span className="headline hl4">
+                  by JOHANN WOLFGANG VON GOETHE
+                </span>
               </p>
             </div>
             When, while the lovely valley teems with vapour around me, and the
@@ -65,11 +66,11 @@ export default function Profile() {
               soul is the mirror of the infinite God!
             </p>
           </div>
-          <div class="collumn">
-            <div class="head">
-              <span class="headline hl5">Give people courage</span>
+          <div className="collumn">
+            <div className="head">
+              <span className="headline hl5">Give people courage</span>
               <p>
-                <span class="headline hl6">The crowd seemed to grow</span>
+                <span className="headline hl6">The crowd seemed to grow</span>
               </p>
             </div>
             <p>
@@ -80,8 +81,8 @@ export default function Profile() {
               towards Chobham dispersed. There was scarcely an intimation of
               movement from the pit.
             </p>
-            <figure class="figure">
-              <figcaption class="figcaption">
+            <figure className="figure">
+              <figcaption className="figcaption">
                 Hermine hoping for courage.
               </figcaption>
             </figure>
@@ -97,104 +98,6 @@ export default function Profile() {
               so in a thin irregular crescent that promised to enclose the pit
               in its attenuated horns. I, too, on my side began to move towards
               the pit.
-            </p>
-
-            <p>
-              Then I saw some cabmen and others had walked boldly into the sand
-              pits, and heard the clatter of hoofs and the gride of wheels. I
-              saw a lad trundling off the barrow of apples. And then, within
-              thirty yards of the pit, advancing from the direction of Horsell,
-              I noted a little black knot of men, the foremost of whom was
-              waving a white flag.
-            </p>
-          </div>
-          <div class="collumn">
-            <div class="head">
-              <span class="headline hl1">May the Force be with you</span>
-              <p>
-                <span class="headline hl2">
-                  Let go your conscious self and act on instinct
-                </span>
-              </p>
-            </div>
-            <p>
-              Partially, but it also obeys your commands. Hey, Luke! May the
-              Force be with you. I have traced the Rebel spies to her. Now she
-              is my only link to finding their secret base.
-            </p>
-            <figure class="figure">
-              <figcaption class="figcaption">
-                "This time, let go your conscious self and act on instinct."
-              </figcaption>
-            </figure>
-            <p>
-              Leave that to me. Send a distress signal, and inform the Senate
-              that all on board were killed.{" "}
-              <span class="citation">
-                "Don't under&shy;estimate the Force. I suggest you try it again,
-                Luke."
-              </span>{" "}
-              This time, let go your conscious self and act on instinct. In my
-              experience, there is no such thing as luck. You're all clear, kid.
-              Let's blow this thing and go home!
-            </p>
-            <p>
-              You don't believe in the Force, do you? Partially, but it also
-              obeys your commands. The plans you refer to will soon be back in
-              our hands. As you wish.
-            </p>
-          </div>
-          <div class="collumn">
-            <div class="head">
-              <span class="headline hl3">The buzz of the little world </span>
-              <p>
-                <span class="headline hl4">A thousand unknown plants</span>
-              </p>
-            </div>
-            <p>
-              I should be incapable of drawing a single stroke at the present
-              moment; and yet I feel that I never was a greater artist than now.
-              When, while the lovely valley teems with vapour around me, and the
-              meridian sun strikes the upper surface of the impenetrable foliage
-              of my trees, and but a few stray gleams steal into the inner
-              sanctuary, I throw myself down among the tall grass by the
-              trickling stream; and, as I lie close to the earth, a thousand
-              unknown plants are noticed by me: when I hear the buzz of the
-              little world among the stalks, and grow familiar with the
-              countless indescribable forms of the insects and flies, then I
-              feel the presence of the Almighty, who formed us in his own image,
-              and the breath
-            </p>
-          </div>
-          <div class="collumn">
-            <div class="head">
-              <span class="headline hl1">It wasn't a dream </span>
-              <p>
-                <span class="headline hl4">by FRANZ KAFKA</span>
-              </p>
-            </div>
-            <p>
-              One morning, when Gregor Samsa woke from troubled dreams, he found
-              himself transformed in his bed into a horrible vermin. He lay on
-              his armour-like back, and if he lifted his head a little he could
-              see his brown belly, slightly domed and divided by arches into
-              stiff sections. The bedding was hardly able to cover it and seemed
-              ready to slide off any moment.{" "}
-            </p>
-
-            <p>
-              His many legs, pitifully thin compared with the size of the rest
-              of him, waved about helplessly as he looked. "What's happened to
-              me?" he thought. It wasn't a dream. His room, a proper human room
-              although a little too small, lay peacefully between its four
-              familiar walls. A collection of textile samples lay spread out on
-              the table - Samsa was a travelling salesman - and above it there
-              hung a picture that he had recently cut out of an illustrated
-              magazine and housed in a nice, gilded frame. It showed a lady
-              fitted out with a fur hat and fur boa who sat upright, raising a
-              heavy fur muff that covered the whole of her lower arm towards the
-              viewer. Gregor then turned to look out the window at the dull
-              weather.{" "}
             </p>
           </div>
         </div>

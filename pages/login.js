@@ -5,7 +5,9 @@ export default function Home() {
 
   return (
     <>
-      <Login />
+      <div className="collumns">
+        <Login />
+      </div>
     </>
   );
 }

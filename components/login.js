@@ -39,46 +39,44 @@ export default function Login() {
 
   return (
     <>
-      <div className="collumns">
-        <div className="collumn">
+      <div className="collumn">
+        <br />
+        <form onSubmit={(e) => handlelogin(e)}>
+          <h2 className="formhead">Login to account</h2>
+          <div>E-mail </div>
+          <div>
+            {" "}
+            <input
+              className="forminp"
+              type="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div> Password</div>
+          <div>
+            {" "}
+            <input
+              className="forminp"
+              type="password"
+              minLength={5}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div className="but">
+            <button>Login</button>
+          </div>
           <br />
-          <form onSubmit={(e) => handlelogin(e)}>
-            <h2 className="formhead">Login to account</h2>
-            <div>E-mail </div>
-            <div>
-              {" "}
-              <input
-                className="forminp"
-                type="email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              ></input>
-            </div>
-            <div> Password</div>
-            <div>
-              {" "}
-              <input
-                className="forminp"
-                type="password"
-                minLength={5}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              ></input>
-            </div>
-            <div className="but">
-              <button>Login</button>
-            </div>
-            <br />
 
-            <div ref={listRef}>{axres}</div>
-            <Link href={"/register"}>
-              <div className="Link">Create an User account</div>
-            </Link>
-            <br />
-          </form>
-        </div>
+          <div ref={listRef}>{axres}</div>
+          <Link href={"/register"}>
+            <div className="Link">Create an User account</div>
+          </Link>
+          <br />
+        </form>
       </div>
     </>
   );

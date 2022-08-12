@@ -11,7 +11,6 @@ export default function Layout({ children }) {
       <main ref={listRef} className="main">
         {children}
       </main>
-      <div className="empty"></div>
 
       <Header />
       <Footer />
