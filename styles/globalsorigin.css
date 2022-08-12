@@ -1,193 +1,37 @@
 body {
   font-family: "Droid Serif", serif;
   font-size: 14px;
-  color: black;
+  color: #2f2f2f;
   background-color: #f9f7f1;
-  transition: all 0.7s;
-}
-.body {
-  font-family: "Droid Serif", serif;
-  font-size: 14px;
-  color: black;
-  background-color: #f9f7f1;
-  transition: all 0.7s;
-}
-/* Hide scrollbar for Chrome, Safari and Opera */
-.example::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.example {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }
 header {
   font-family: "Playfair Display", serif;
   font-weight: 900;
-  font-size: 10vh;
+  font-size: 80px;
   text-transform: uppercase;
   display: inline-block;
   line-height: 72px;
   margin-bottom: 20px;
-  transition: all 0.7s;
 }
-
 p {
   margin-top: 0;
   margin-bottom: 20px;
-  transition: all 0.7s;
-}
-form {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5vh;
-  /* padding-left: 5%;
-  padding-right: 5%; */
-  /* align-items: */
-  /* background-color:yellowgreen; */
-  /* display: flexbox; */
-}
-button {
-  font-size: 2vh;
-  padding: 2%;
-  font-family: "Playfair Display", serif;
-  background-color: #f9f7f1;
-  border-color: black;
-  border-radius: 0%;
-  margin-right: 1vh;
-  cursor: pointer;
-}
-.Link {
-  cursor: pointer;
-  transition: all 0.7s;
-}
-.empty {
-  height: 24vh;
-  background-color: #000000;
-}
-.forminp {
-  background-color: #f9f7f1;
-  border-radius: 0%;
-  width: 270px;
-  height: 30px;
-  padding: 2px 6px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  font-size: smaller;
-  transition: all 0.7s;
-}
-.forminp:focus {
-  outline: none;
-  background-color: rgba(217, 255, 0, 0.3);
-}
-.formtext {
-  background-color: #f9f7f1;
-  border-radius: 0%;
-  width: 270px;
-  height: 300px;
-  padding: 2px 6px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  font-size: smaller;
-}
-
-.formhead {
-  text-align: left;
-  line-height: normal;
-  font-family: "Playfair Display", serif;
-  font-size: 4vh;
-  display: block;
-  margin: 10 auto;
-  /* background-color: yellowgreen; */
 }
 .head {
   text-align: center;
   position: relative;
 }
-.head1 {
-  text-align: center;
-  position: fixed;
-  /* padding: 1%; */
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+.headerobjectswrapper {
 }
 
-.main {
-  position: inherit;
-}
 .subhead {
   text-transform: uppercase;
-  border-bottom: 2px solid #000000;
-  border-top: 2px solid #000000;
+  border-bottom: 2px solid #2f2f2f;
+  border-top: 2px solid #2f2f2f;
   padding: 12px 0 12px 0;
-  transition: all 0.7s;
-  background-color: #f9f7f1b2;
-  backdrop-filter: blur(2px);
 }
-.headerobjectswrapper {
-  background-color: #f9f7f1b2;
-  backdrop-filter: blur(3.5px);
-}
-.anim {
-  transition: all 0.7s;
-}
-.foot {
-  background-color: rgba(217, 255, 0, 0.3);
-  backdrop-filter: blur(3px);
 
-  /* padding-top: 1%; */
-
-  text-align: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-}
-.hey {
-  background-color: rgba(207, 207, 207, 0.288);
-  backdrop-filter: blur(5px);
-  text-align: center;
-  position: fixed;
-  bottom: 6%;
-  /* width: 90%; */
-  left: 5%;
-  right: 5%;
-  justify-content: center;
-  text-align: center;
-  transition: all 0.7s;
-}
-.messtext {
-  padding: 1%;
-  border-bottom: 1px solid #0a0000;
-  border-top: 1px solid #000000;
-  font-size: small;
-}
-.messtext2 {
-  justify-content: left;
-  font-size: smaller;
-}
-.subfoot {
-  /* text-align: center; */
-
-  text-transform: uppercase;
-  border-bottom: 2px solid #0a0000;
-  border-top: 2px solid #000000;
-  padding: 1%;
-  transition: all 0.7s;
-  /* background-color: yellowgreen; */
-}
-.het {
-  background-color: yellow;
-  display: flexbox;
-}
 .content {
   font-size: 0;
   line-height: 0;
@@ -199,18 +43,9 @@ input::-webkit-inner-spin-button {
 }
 
 .collumn {
-  /* font-size: 14px;
-  line-height: 20px;
-  width: 40%;
-  display: flex;
-  margin: 1%;
-  align-items: center;
-  vertical-align: top;
-  padding-bottom: 2%;
-  transition: all 0.7s; */
   font-size: 14px;
   line-height: 20px;
-  width: 30%;
+  width: 17.5%;
   display: inline-block;
   padding: 0 1% 0 1%;
   vertical-align: top;
@@ -221,12 +56,11 @@ input::-webkit-inner-spin-button {
   border-left: 1px solid #2f2f2f;
 }
 .collumn .headline {
-  text-align: left;
+  text-align: center;
   line-height: normal;
   font-family: "Playfair Display", serif;
   display: block;
-  margin: 10 auto;
-  /* background-color: yellowgreen; */
+  margin: 0 auto;
 }
 .collumn .headline.hl1 {
   font-weight: 700;
@@ -265,12 +99,11 @@ input::-webkit-inner-spin-button {
   font-style: italic;
   font-size: 36px;
   box-sizing: border-box;
-  background-color: yellow;
   padding: 10px 0 10px 0;
 }
 .collumn .headline.hl4 {
   font-weight: 700;
-  font-size: 150%;
+  font-size: 12px;
   box-sizing: border-box;
   padding: 10px 0 10px 0;
 }
@@ -388,40 +221,24 @@ input::-webkit-inner-spin-button {
 }
 /*________________________________________________________________________________________________________________________________*/
 /*MEDIAQUERIES*/
+@media only all and (max-width: 1300px) {
+  .weatherforcastbox {
+    display: none;
+  }
+}
 @media only all and (max-width: 1200px) {
   .collumn {
-    width: 75%;
-    /* background-color: blue; */
-  }
-  .collumns {
-    /* padding-top: 200px; */
-  }
-  .empty {
-    height: 25vh;
+    width: 31%;
   }
 }
 @media only all and (max-width: 900px) {
   .collumn {
-    width: 100%;
-    /* background-color: red; */
-  }
-  .empty {
-    height: 27vh;
-  }
-  .collumns {
-    /* padding-top: 200px; */
+    width: 47%;
   }
 }
 @media only all and (max-width: 600px) {
-  .empty {
-    height: 23vh;
-  }
   .collumn {
     width: 100%;
-    /* background-color: yellowgreen; */
-  }
-  .collumns {
-    /* padding-top: 155px; */
   }
   .collumn + .collumn {
     border-left: none;
@@ -429,7 +246,7 @@ input::-webkit-inner-spin-button {
   }
   header {
     max-width: 320px;
-    font-size: 5vh;
+    font-size: 60px;
     line-height: 54px;
     overflow: hidden;
   }

@@ -90,7 +90,7 @@ export default function Register() {
               handleSubmit(e);
             }}
           >
-            <h2 className="formhead">Create a new user account</h2>
+            <h2 className="formhead headline hl1">Create a new user account</h2>
 
             <div>Name </div>
             <div>

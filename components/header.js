@@ -32,7 +32,7 @@ export default function Header() {
 
       <meta name="viewport" content="width=device-width" />
 
-      <div className="head">
+      <div className="head1">
         <div className="headerobjectswrapper">
           <Link href={"/"}>
             <header>Newspaper Subscription</header>
