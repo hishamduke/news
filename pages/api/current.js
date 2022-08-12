@@ -16,9 +16,10 @@ function exclude(user, ...keys) {
 }
 
 export default async function handler(req, res) {
+  const date = new Date();
+
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
-  console.log("here bois");
   try {
     var decoded = verify(JWT, secret);
     const id = decoded.id;
@@ -30,10 +31,12 @@ export default async function handler(req, res) {
     });
     console.log(user);
     const userWithoutPassword = exclude(user, "password");
-    console.log("yo");
     console.log(userWithoutPassword);
+
     res.status(200).json(userWithoutPassword);
   } catch (e) {
     res.status(200).json({ error: e.name });
   }
+
+  console.log(date.getTime());
 }

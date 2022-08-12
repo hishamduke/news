@@ -185,23 +185,28 @@ input::-webkit-inner-spin-button {
   margin: 30px 2% 0 2%;
 }
 .collumns {
+  display: flex;
+  flex-direction: row;
   /* padding-top: 170px; */
   /* align-items: center; */
   /* padding-bottom: 20px; */
+  flex-wrap: wrap;
+  background-color: aqua;
+  justify-content: space-around;
 }
 
 .collumn {
-  /* background-color: violet; */
+  background-color: violet;
   font-size: 14px;
   line-height: 20px;
-  width: 50%;
+  width: 40%;
   display: flex;
-  justify-content: center;
-
+  /* justify-content: center; */
+  margin: 1%;
   align-items: center;
   /* padding: 0 1% 0 1%; */
   vertical-align: top;
-  margin-bottom: 50px;
+  padding-bottom: 2%;
   transition: all 0.7s;
   /* background-color: violet; */
 }
