@@ -33,7 +33,7 @@ function News(props) {
             </figure>
             <p>{news.content}</p>
             <p>
-              <Link href={news.url}>Read more....</Link>
+              <Link href={news.url}>more....</Link>
             </p>
           </>{" "}
         </div>
@@ -48,7 +48,16 @@ export default function breaking() {
     })
   );
 
-  if (isLoading) return;
+  if (isLoading)
+    return (
+      <>
+        <div className="collumn">
+          <div className="head">
+            <span className="headline hl2">Loading........</span>
+          </div>
+        </div>
+      </>
+    );
 
   if (error) return "An error has occurred: " + error.message;
 

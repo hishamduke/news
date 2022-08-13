@@ -1,5 +1,10 @@
+import Link from "next/link";
 export default function Profile() {
-  return "hi";
+  return (
+    <>
+      <Link href="/">click</Link>
+    </>
+  );
 }
 
 Profile.getLayout = function getLayout(page) {
