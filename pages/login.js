@@ -6,12 +6,10 @@ export default function Home() {
 
   return (
     <div className="body">
-      <div className="content">
-        <div className="collumns">
-          <Login />
+      <div className="collumns">
+        <Login />
 
-          <Breaking></Breaking>
-        </div>
+        <Breaking></Breaking>
       </div>
     </div>
   );

@@ -13,29 +13,31 @@ function genrandom2(val) {
   }
 }
 function News(props) {
-  console.log("here bois");
   const news = props.children;
+  console.log(news.urlToImage);
   return (
     <>
-      <div className="collumn">
-        <div className="head">
-          <span className="headline hl4">{news.title}</span>
-        </div>
-        <p>{news.description}</p>
-        <>
-          <figure className="figure">
-            <img className="media" src={news.urlToImage}></img>
+      {news ? (
+        <div className="collumn">
+          <div className="head">
+            <span className="headline hl4">{news.title}</span>
+          </div>
+          <p>{news.description}</p>
+          <>
+            <figure className="figure">
+              <img className="media" src={news.urlToImage}></img>
 
-            <figcaption className="figcaption">
-              source : {news.source.name}
-            </figcaption>
-          </figure>
-          <p>{news.content}</p>
-          <p>
-            <Link href={news.url}>Read more....</Link>
-          </p>
-        </>{" "}
-      </div>
+              <figcaption className="figcaption">
+                source : {news.source.name}
+              </figcaption>
+            </figure>
+            <p>{news.content}</p>
+            <p>
+              <Link href={news.url}>Read more....</Link>
+            </p>
+          </>{" "}
+        </div>
+      ) : null}
     </>
   );
 }
@@ -46,7 +48,7 @@ export default function breaking() {
     })
   );
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return;
 
   if (error) return "An error has occurred: " + error.message;
 
@@ -54,7 +56,6 @@ export default function breaking() {
   const num2 = genrandom2(num);
   const news = data.articles[num];
   const news2 = data.articles[num2];
-  console.log(num + " " + num2);
   return (
     <>
       <News>{news}</News>

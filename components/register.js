@@ -64,143 +64,141 @@ export default function Register() {
   }
   return (
     <>
-      <div className="collumns">
-        <div className="collumn">
-          <br />
-          <div onClick={() => after()} ref={listRef} className="hey">
-            {msg ? (
-              <>
-                <div className="messtext">
-                  <Image
-                    className="messtext2"
-                    src="/close.png"
-                    height={15}
-                    width={15}
-                  ></Image>
-                  <b>{msg}</b> <br />
-                  <i className="messtext2"></i>
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-          <form
-            onSubmit={(e) => {
-              handleSubmit(e);
-            }}
-          >
-            <h2 className="formhead headline hl1">Create a new user account</h2>
+      <div className="collumn">
+        <br />
+        <div onClick={() => after()} ref={listRef} className="hey">
+          {msg ? (
+            <>
+              <div className="messtext">
+                <Image
+                  className="messtext2"
+                  src="/close.png"
+                  height={15}
+                  width={15}
+                ></Image>
+                <b>{msg}</b> <br />
+                <i className="messtext2"></i>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          <h2 className="formhead headline hl1">Create a new user account</h2>
 
-            <div>Name </div>
-            <div>
-              <input
-                required
-                className="forminp"
-                type="text"
-                onChange={(e) => {
-                  setInp({ ...inp, name: e.target.value });
-                }}
-              ></input>
-            </div>
-            <div>E-mail</div>
-            <div>
-              <input
-                required
-                className="forminp"
-                type="email"
-                onChange={(e) => {
-                  setInp({ ...inp, email: e.target.value });
-                }}
-              ></input>
-            </div>
-            <div> Password</div>
-            <div>
-              <input
-                className="forminp"
-                required
-                type="password"
-                minLength="6"
-                onChange={(e) => {
-                  setInp({ ...inp, password: e.target.value });
-                }}
-              ></input>
-            </div>
-            <div> Re-enter password</div>
-            <div>
-              <input
-                required
-                className="forminp"
-                type="password"
-                minLength="6"
-                onChange={(e) => {
-                  setInp({ ...inp, password2: e.target.value });
-                }}
-              ></input>
-            </div>
-            <div>Phone number</div>
-            <div>
-              <input
-                className="forminp"
-                type="text"
-                title="Please enter 10 digit numbers"
-                pattern="\d*"
-                minLength="10"
-                maxLength="10"
-                required
-                onChange={(e) => {
-                  setInp({ ...inp, num: parseInt(e.target.value) });
-                }}
-              ></input>
-            </div>
-            {/* <div>
+          <div>Name </div>
+          <div>
+            <input
+              required
+              className="forminp"
+              type="text"
+              onChange={(e) => {
+                setInp({ ...inp, name: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div>E-mail</div>
+          <div>
+            <input
+              required
+              className="forminp"
+              type="email"
+              onChange={(e) => {
+                setInp({ ...inp, email: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div> Password</div>
+          <div>
+            <input
+              className="forminp"
+              required
+              type="password"
+              minLength="6"
+              onChange={(e) => {
+                setInp({ ...inp, password: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div> Re-enter password</div>
+          <div>
+            <input
+              required
+              className="forminp"
+              type="password"
+              minLength="6"
+              onChange={(e) => {
+                setInp({ ...inp, password2: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div>Phone number</div>
+          <div>
+            <input
+              className="forminp"
+              type="text"
+              title="Please enter 10 digit numbers"
+              pattern="\d*"
+              minLength="10"
+              maxLength="10"
+              required
+              onChange={(e) => {
+                setInp({ ...inp, num: parseInt(e.target.value) });
+              }}
+            ></input>
+          </div>
+          {/* <div>
               <h4>Address</h4>
             </div> */}
-            <div>Housename </div>
-            <div>
-              <input
-                required
-                className="forminp"
-                type="text"
-                onChange={(e) => {
-                  setInp({ ...inp, house: e.target.value });
-                }}
-              ></input>
-            </div>
-            <div>Streetname </div>
-            <div>
-              <input
-                required
-                className="forminp"
-                type="text"
-                onChange={(e) => {
-                  setInp({ ...inp, street: e.target.value });
-                }}
-              ></input>
-            </div>
-            <div>Pin </div>
-            <div>
-              <input
-                required
-                className="forminp"
-                title="Please enter 6 digit numbers"
-                pattern="\d*"
-                minLength="6"
-                maxLength="6"
-                onChange={(e) => {
-                  setInp({ ...inp, pin: parseInt(e.target.value) });
-                }}
-              ></input>
-            </div>
-            <div className="but">
-              <button>Submit</button>{" "}
-            </div>
-            <br />
-            <Link href={"/login"}>
-              <div className="Link">Login to User account</div>
-            </Link>
-          </form>
-        </div>
+          <div>Housename </div>
+          <div>
+            <input
+              required
+              className="forminp"
+              type="text"
+              onChange={(e) => {
+                setInp({ ...inp, house: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div>Streetname </div>
+          <div>
+            <input
+              required
+              className="forminp"
+              type="text"
+              onChange={(e) => {
+                setInp({ ...inp, street: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div>Pin </div>
+          <div>
+            <input
+              required
+              className="forminp"
+              title="Please enter 6 digit numbers"
+              pattern="\d*"
+              minLength="6"
+              maxLength="6"
+              onChange={(e) => {
+                setInp({ ...inp, pin: parseInt(e.target.value) });
+              }}
+            ></input>
+          </div>
+          <div className="but">
+            <button>Submit</button>{" "}
+          </div>
+          <br />
+          <Link href={"/login"}>
+            <div className="Link">Login to User account</div>
+          </Link>
+        </form>
       </div>
     </>
   );

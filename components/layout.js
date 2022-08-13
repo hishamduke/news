@@ -7,13 +7,14 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <div className="empty"></div>
-      <main ref={listRef} className="main">
-        {children}
-      </main>
+      <div className="body">
+        <main ref={listRef} className="main">
+          {children}
+        </main>
 
-      <Header />
-      <Footer />
+        <Header />
+        <Footer />
+      </div>
     </>
   );
 }
