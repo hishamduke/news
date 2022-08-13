@@ -390,7 +390,8 @@ input::-webkit-inner-spin-button {
 /*MEDIAQUERIES*/
 @media only all and (max-width: 1200px) {
   .collumn {
-    width: 75%;
+    width: 45%;
+    margin: 1%;
     /* background-color: blue; */
   }
   .collumns {
