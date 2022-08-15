@@ -3,7 +3,6 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Message from "./message";
 export default function Login() {
   const listRef = useAutoAnimate();
   const [axres, setAxres] = useState("");
@@ -70,11 +69,14 @@ export default function Login() {
             <button>Login</button>
           </div>
           <br />
-
           <div ref={listRef}>{axres}</div>
-          <Link href={"/register"}>
-            <div className="Link">Create an User account</div>
-          </Link>
+
+          <div className="Link">
+            Create an
+            <Link href={"/register"}> User account </Link>/
+            <Link href={"/agentRegister"}> Agent account </Link>
+          </div>
+
           <br />
         </form>
       </div>

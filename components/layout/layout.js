@@ -1,5 +1,5 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "./header";
+import Footer from "./footer";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Layout({ children }) {

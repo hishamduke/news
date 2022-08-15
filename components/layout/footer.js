@@ -6,7 +6,7 @@ export default function Footer() {
     <>
       <div className="foot">
         <div className="subfoot">
-          <Link href={"/a"}>
+          <Link href={"/agentRegister"}>
             <div className="Link"> Create an Agent account instead?</div>
           </Link>
         </div>
