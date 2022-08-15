@@ -25,9 +25,9 @@ export default async function handler(req, res) {
     let a = User.parse(req.body.inp);
     delete a.password2;
     console.log(a);
-    // const user = await prisma.user2.create({
-    //   data: a,
-    // });
+    const user = await prisma.agent.create({
+      data: a,
+    });
     res.status(200).json({ ...a });
   } catch (e) {
     console.log(e);

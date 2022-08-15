@@ -22,14 +22,25 @@ model User2 {
   email    String @unique @db.VarChar(255)
   name     String @db.VarChar(255)
   password String @db.VarChar(255)
-  num      BigInt    @unique
+  num      BigInt @unique
   house    String @db.VarChar(255)
   street   String @db.VarChar(255)
   pin      BigInt
   role     Role   @default(USER)
 }
 
+model Agent {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique @db.VarChar(255)
+  name     String  @db.VarChar(255)
+  password String  @db.VarChar(255)
+  num      BigInt  @unique
+  loc      String  @db.VarChar(255)
+  approved Boolean @default(false)
+}
+
 enum Role {
   USER
   ADMIN
+  AGENT
 }

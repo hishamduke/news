@@ -9,6 +9,9 @@ export default function Index() {
           <form>
             <Link href={"/login"}>
               <h2 className={("formhead", "Link")}>Login?</h2>
+            </Link>{" "}
+            <Link href={"/loginAgent"}>
+              <h2 className={("formhead", "Link")}>agent Login?</h2>
             </Link>
             <Link href={"/register"}>
               <h2 className={("formhead", "Link")}>
