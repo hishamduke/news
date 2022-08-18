@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     var decoded = verify(JWT, secret);
     const id = decoded.id;
 
-    const user = await prisma.user2.findUnique({
+    const user = await prisma.accounts.findUnique({
       where: {
         id,
       },

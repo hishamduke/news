@@ -46,7 +46,6 @@ export default async function handler(req, res) {
     let userdata = User.parse(req.body.inp);
     delete accountdata.password2;
     // a = { ...a, pin: "fuckyou" };
-
     const account = await prisma.accounts.create({
       data: accountdata,
     });

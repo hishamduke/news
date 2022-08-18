@@ -27,7 +27,7 @@ model User {
 }
 
 model Agent {
-  accountid Int     @unique
+  accountid Int
   id        Int     @id @default(autoincrement())
   num       BigInt  @unique
   loc       String  @db.VarChar(255)
