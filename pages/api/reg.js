@@ -11,13 +11,19 @@ import { z } from "zod";
 //   }
 
 export default async function handler(req, res) {
-  const User = z
+  const Account = z
     .object({
       name: z.string(),
       email: z.string().email(),
       password: z.string().min(6),
       password2: z.string().min(6),
-
+    })
+    .refine((data) => data.password === data.password2, {
+      message: "password confirmation error",
+      path: ["password"],
+    });
+  const User = z
+    .object({
       num: z
         .number()
         .gt(999999999, { message: "Must be 10 digits" })
@@ -36,14 +42,19 @@ export default async function handler(req, res) {
 
   try {
     console.log(req.body);
-    let a = User.parse(req.body.inp);
-    delete a.password2;
+    let accountdata = Account.parse(req.body.inp);
+    let userdata = User.parse(req.body.inp);
+    delete accountdata.password2;
     // a = { ...a, pin: "fuckyou" };
-    console.log(a);
-    const user = await prisma.user2.create({
-      data: a,
+
+    const account = await prisma.accounts.create({
+      data: accountdata,
     });
-    res.status(200).json({ ...a });
+    userdata.accountid = account.id;
+    const user = await prisma.user.create({
+      data: userdata,
+    });
+    res.status(200).json({ ...account });
   } catch (e) {
     console.log(e);
     res.status(401).json(e);

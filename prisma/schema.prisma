@@ -9,7 +9,7 @@ generator client {
   previewFeatures = ["referentialIntegrity"]
 }
 
-model User {
+model Accounts {
   id       Int    @id @default(autoincrement())
   email    String @unique @db.VarChar(255)
   name     String @db.VarChar(255)
@@ -17,26 +17,21 @@ model User {
   role     Role   @default(USER)
 }
 
-model User2 {
-  id       Int    @id @default(autoincrement())
-  email    String @unique @db.VarChar(255)
-  name     String @db.VarChar(255)
-  password String @db.VarChar(255)
-  num      BigInt @unique
-  house    String @db.VarChar(255)
-  street   String @db.VarChar(255)
-  pin      BigInt
-  role     Role   @default(USER)
+model User {
+  id        Int    @id @default(autoincrement())
+  accountid Int    @unique
+  num       BigInt @unique
+  house     String @db.VarChar(255)
+  street    String @db.VarChar(255)
+  pin       BigInt
 }
 
 model Agent {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique @db.VarChar(255)
-  name     String  @db.VarChar(255)
-  password String  @db.VarChar(255)
-  num      BigInt  @unique
-  loc      String  @db.VarChar(255)
-  approved Boolean @default(false)
+  accountid Int     @unique
+  id        Int     @id @default(autoincrement())
+  num       BigInt  @unique
+  loc       String  @db.VarChar(255)
+  approved  Boolean @default(false)
 }
 
 enum Role {
