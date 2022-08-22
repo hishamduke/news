@@ -41,7 +41,7 @@ export default function Login() {
       <div className="collumn">
         <br />
         <form onSubmit={(e) => handlelogin(e)}>
-          <h2 className="formhead">Login to account</h2>
+          <h2 className="headline hl4">Login to account</h2>
           <div>E-mail </div>
           <div>
             {" "}

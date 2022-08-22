@@ -20,20 +20,26 @@ export default async function handler(req, res) {
 
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
+  let result = {};
   try {
     var decoded = verify(JWT, secret);
     const id = decoded.id;
 
-    const user = await prisma.accounts.findUnique({
+    if (decoded.role == "ADMIN") {
+      res.status(200).json("decoded");
+      return;
+    }
+
+    const userac = await prisma.user.findUnique({
       where: {
-        id,
+        accountid: id,
       },
     });
-    console.log(user);
-    const userWithoutPassword = exclude(user, "password");
-    console.log(userWithoutPassword);
 
-    res.status(200).json(userWithoutPassword);
+    // const userWithoutPassword = exclude(userac, "password");
+    console.log(userac);
+
+    res.status(200).json(decoded);
   } catch (e) {
     res.status(200).json({ error: e.name });
   }

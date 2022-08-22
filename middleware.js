@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-"hi"
+
 export const config = {
   matcher: ["/dashboard/:path*", "/login/:path*", "/register"],
 };

@@ -52,7 +52,7 @@ export default function AgentRegister() {
   }
   function login() {
     axios
-      .post("/api/auth/agentlogin", {
+      .post("/api/auth/login", {
         email: inp.email,
         password: inp.password,
       })

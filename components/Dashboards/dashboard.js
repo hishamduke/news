@@ -1,5 +1,6 @@
 import Router from "next/router";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 export default function Dashboard(yea) {
   const logout = async () => {
@@ -8,7 +9,6 @@ export default function Dashboard(yea) {
   };
 
   const [userflag, setUserflag] = useState(1);
-  const [name, setName] = useState("");
   axios
     .get("/api/auth/cook")
     .then(function (response) {
@@ -20,25 +20,27 @@ export default function Dashboard(yea) {
       }
     })
     .catch(function (error) {});
-  useEffect(() => {
-    axios
-      .get("/api/auth/user")
-      .then(function (response) {
-        setName(response.data.Message.name);
-      })
-      .catch(function (error) {});
-  }, []);
+
   if (userflag === 0) {
     console.log("Logging out");
     Router.push("/login");
   }
+
+  const { isLoading, error, data } = useQuery(["repoData"], () =>
+    fetch("/api/current").then((res) => res.json())
+  );
+
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     <>
       <div className="collumns">
         <div className="collumn">
           <br />
           <form>
-            {name} {yea.children}
+            {JSON.stringify(data)}
             <h2 className={("formhead", "Link")}>loggined user only</h2>
             <button
               onClick={(e) => {

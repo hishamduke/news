@@ -7,7 +7,6 @@ export default function Home() {
     <div className="body">
       <div className="collumns">
         <AgentRegister />
-
         <Breaking></Breaking>
       </div>
     </div>
