@@ -1,9 +1,11 @@
 import Logout from "../buttons/logoutbutton";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
 import { queryClient } from "../../pages/_app";
 import Link from "next/link";
 export default function Admin() {
+  const [status, setStatus] = useState();
   const { isLoading, error, data } = useQuery(["agentsDetails"], () =>
     fetch("/api/admin/agentstatus").then((res) => res.json())
   );
@@ -13,14 +15,12 @@ export default function Admin() {
     onSuccess: async () => {
       queryClient.invalidateQueries();
     },
-    onSettled: async () => {
-      console.log("I'm second!");
-    },
   });
 
   const addTodo2 = (id) => axios.post("/api/admin/approve", id);
 
   const approve = useMutation(addTodo2, {
+    onMutate: async () => {},
     onSuccess: async () => {
       queryClient.invalidateQueries(["agentsDetails"]);
     },
@@ -67,6 +67,7 @@ export default function Admin() {
                         <a
                           className="Link"
                           onClick={() => {
+                            setStatus("Loading....");
                             approve.mutate({ id: val.id });
                           }}
                         >
@@ -76,7 +77,10 @@ export default function Admin() {
                     ) : (
                       <a
                         className="Link"
-                        onClick={() => disapprove.mutate({ id: val.id })}
+                        onClick={() => {
+                          setStatus("Loading....");
+                          disapprove.mutate({ id: val.id });
+                        }}
                       >
                         dismiss
                       </a>
@@ -85,6 +89,15 @@ export default function Admin() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+                {disapprove.isLoading || approve.isLoading ? (
+                  <td colSpan={6}>Loading....</td>
+                ) : (
+                  ""
+                )}
+              </tr>
+            </tfoot>
           </table>
           <br /> <Logout />
         </div>
