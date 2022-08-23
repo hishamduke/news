@@ -8,7 +8,7 @@ BigInt.prototype.toJSON = function () {
   return this.toString();
 };
 
-function exclude(user, ...keys) {
+export function exclude(user, ...keys) {
   for (let key of keys) {
     delete user[key];
   }
@@ -36,10 +36,10 @@ export default async function handler(req, res) {
       },
     });
 
-    // const userWithoutPassword = exclude(userac, "password");
+    const userWithoutPassword = exclude(userac, "password");
     console.log(userac);
 
-    res.status(200).json(decoded);
+    res.status(200).json(userWithoutPassword);
   } catch (e) {
     res.status(200).json({ error: e.name });
   }

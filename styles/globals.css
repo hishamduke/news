@@ -223,6 +223,52 @@ input::-webkit-inner-spin-button {
   /* margin-bottom: 50px; */
   transition: all 0.7s;
 }
+.dashboard {
+  /* background-color: #ff0000; */
+  /* font-size: 14px;
+  line-height: 20px;
+  width: 40%;
+  display: flex;
+  margin: 1%;
+  align-items: center;
+  vertical-align: top;
+  padding-bottom: 2%;
+  transition: all 0.7s; */
+  /* background-color: yellowgreen; */
+  font-size: 14px;
+  line-height: 20px;
+  width: 70%;
+  display: inline-block;
+  padding: 0 1% 0 1%;
+  vertical-align: top;
+  /* margin-bottom: 50px; */
+  transition: all 0.7s;
+}
+
+
+
+
+
+/* tables theming */
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
 .collumn + .collumn {
   border-left: 1px solid #0000003f;
 }

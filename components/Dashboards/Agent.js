@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Agent() {
   const { isLoading, error, data } = useQuery(["agentStatus"], () =>
-    fetch("/api/agentstatus").then((res) => res.json())
+    fetch("/api/agent/agentstatus").then((res) => res.json())
   );
+
   return (
     <>
       <div className="collumns">

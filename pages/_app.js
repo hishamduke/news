@@ -5,7 +5,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-const queryClient = new QueryClient();
+
+export const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }) {
   console.log(" app mounted");
   const getLayout = Component.getLayout ?? ((page) => page);
