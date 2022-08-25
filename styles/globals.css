@@ -58,29 +58,54 @@ button {
   border-radius: 0%;
   margin-right: 1vh;
   cursor: pointer;
+  height: 10%;
+  width: fit-content;
 }
-.Link {
-  cursor: pointer;
-  transition: all 0.7s;
+.axres {
+  color: rgb(255, 86, 86);
+  /* background-color: #000000; */
 }
+/* .but{
+  background-color: #000000;
+  display: contents;
+} */
+
 /* .empty {
   height: 17vh;
   background-color: #000000;
 } */
 .forminp {
+  font-family: serif;
   background-color: #f9f7f1;
   border-radius: 0%;
+  /* border-color: #fff; */
+  /* padding: 4px; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #dadada;
   width: 90%;
-  height: 30px;
+  height: 35px;
   padding: 2px 6px;
   margin: 8px 0;
   box-sizing: border-box;
-  font-size: smaller;
+  font-size: 0.7em;
   transition: all 0.7s;
 }
-.forminp:focus {
+forminp:hover {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   outline: none;
-  background-color: rgba(217, 255, 0, 0.3);
+
+  border: 1px solid #dadada;
+  background-color: #dadada;
+}
+.forminp:focus {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+
+  border: 1px solid #dadada;
+  background-color: #dadada;
 }
 .formtext {
   background-color: #f9f7f1;
@@ -92,15 +117,20 @@ button {
   box-sizing: border-box;
   font-size: smaller;
 }
+.Link {
+  cursor: pointer;
+  transition: all 0.7s;
+}
 
 .formhead {
-  text-align: left;
-  line-height: normal;
+  /* color: #0000FF; */
+  /* text-align: left; */
+  line-height: 90%;
   font-family: "Playfair Display", serif;
-  font-size: 4vh;
-  display: block;
-  width: fit-content;
-  margin: 10 auto;
+  /* font-size: 4vh; */
+  /* display: block; */
+  /* width: fit-content; */
+  /* margin: 10 auto; */
 }
 .head {
   text-align: center;
@@ -245,12 +275,7 @@ input::-webkit-inner-spin-button {
   transition: all 0.7s;
 }
 
-
-
-
-
 /* tables theming */
-
 
 table {
   font-family: arial, sans-serif;
@@ -258,7 +283,8 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -267,7 +293,6 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-
 
 .collumn + .collumn {
   border-left: 1px solid #0000003f;

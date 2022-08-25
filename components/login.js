@@ -44,10 +44,10 @@ export default function Login() {
           <h2 className="headline hl4">Login to account</h2>
           <div>E-mail </div>
           <div>
-            {" "}
             <input
               className="forminp"
               type="email"
+              required
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -57,6 +57,7 @@ export default function Login() {
           <div>
             {" "}
             <input
+              required
               className="forminp"
               type="password"
               minLength={5}
@@ -69,7 +70,9 @@ export default function Login() {
             <button>Login</button>
           </div>
           <br />
-          <div ref={listRef}>{axres}</div>
+          <div ref={listRef} className="axres">
+            {axres}
+          </div>
 
           <div className="Link">
             Create an
