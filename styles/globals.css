@@ -82,7 +82,7 @@ button {
   /* padding: 4px; */
   -webkit-appearance: none;
   -moz-appearance: none;
-  border: 1px solid #dadada;
+  border: 1px solid #a1a1a1;
   width: 90%;
   height: 35px;
   padding: 2px 6px;
@@ -91,22 +91,23 @@ button {
   font-size: 0.7em;
   transition: all 0.7s;
 }
-forminp:hover {
+
+.forminp:hover {
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
-
   border: 1px solid #dadada;
   background-color: #dadada;
 }
+
 .forminp:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
-
   border: 1px solid #dadada;
   background-color: #dadada;
 }
+
 .formtext {
   background-color: #f9f7f1;
   border-radius: 0%;
@@ -285,14 +286,14 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  border: 1px solid #000;
+  text-align: center;
+  padding: 10px;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: #dddddd;
-}
+} */
 
 .collumn + .collumn {
   border-left: 1px solid #0000003f;
