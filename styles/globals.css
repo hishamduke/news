@@ -212,6 +212,7 @@ input::-webkit-inner-spin-button {
 .newa {
   color: rgb(0, 0, 0);
   text-decoration: none;
+
   box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
 }
 
@@ -221,6 +222,7 @@ input::-webkit-inner-spin-button {
 
 .newi:last-child {
   grid-column: 1 / 2;
+
   grid-row: 1 / 2;
 }
 
@@ -228,16 +230,23 @@ input::-webkit-inner-spin-button {
   animation: wave-animation 0.3s infinite;
 }
 
+.contfoot {
+  /* background-color: rgb(102, 102, 102); */
+  display: flex;
+  flex-direction: column;
+}
 /* below is just for demo styling */
 
 .newfoot {
   display: flex;
   height: 7vh;
   justify-content: center;
+  align-items: center;
   width: 100%;
   /* background-color: #141414; */
-  line-height: 1.3;
-  font-family: Menlo, monospace;
+  line-height: 2;
+  text-transform: uppercase;
+  /* font-family: "Playfair Display"; */
 }
 
 @keyframes wave-animation {
