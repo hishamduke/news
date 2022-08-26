@@ -13,8 +13,8 @@ export default function Layout({ children }) {
         </main>
 
         <Header />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }

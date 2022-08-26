@@ -10,6 +10,7 @@ body {
   font-size: 14px;
   color: black;
   margin-top: 18.5vh;
+  height: auto;
   transition: all 0.7s;
   margin-bottom: 15vh;
 }
@@ -175,16 +176,83 @@ input::-webkit-inner-spin-button {
   background-color: rgba(217, 255, 0, 0.3);
   backdrop-filter: blur(3px);
 
-  /* padding-top: 1%; */
-
-  text-align: center;
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   justify-content: center;
-  text-align: center;
 }
+
+.subfoot {
+  /* text-align: center; */
+  gap: 8%;
+
+  /* text-transform: uppercase; */
+  display: flex;
+  /* border-bottom: 2px solid #0a0000; */
+  border-top: 2px solid #000000;
+  padding: 1%;
+  transition: all 0.7s;
+  /* background-color: yellowgreen; */
+}
+
+.footcont {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.newul {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-gap: 24px;
+  list-style-type: none;
+
+  justify-items: center;
+  margin: auto;
+}
+.newa {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
+}
+
+.newa:hover {
+  box-shadow: inset 0 -1.2em 0 hsla(0, 0%, 52%, 0.4);
+}
+
+.newi:last-child {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.newli:hover ~ .newli p {
+  animation: wave-animation 0.3s infinite;
+}
+
+/* below is just for demo styling */
+
+.newfoot {
+  display: flex;
+  height: 7vh;
+  justify-content: center;
+  width: 100%;
+  /* background-color: #141414; */
+  line-height: 1.3;
+  font-family: Menlo, monospace;
+}
+
+@keyframes wave-animation {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
 .hey {
   background-color: rgba(207, 207, 207, 0.288);
   backdrop-filter: blur(5px);
@@ -208,16 +276,7 @@ input::-webkit-inner-spin-button {
   justify-content: left;
   font-size: smaller;
 }
-.subfoot {
-  /* text-align: center; */
 
-  text-transform: uppercase;
-  border-bottom: 2px solid #0a0000;
-  border-top: 2px solid #000000;
-  padding: 1%;
-  transition: all 0.7s;
-  /* background-color: yellowgreen; */
-}
 .het {
   background-color: yellow;
   display: flexbox;
