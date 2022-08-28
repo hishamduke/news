@@ -11,10 +11,9 @@ export default function Layout({ children }) {
         <main ref={listRef} className="main">
           {children}
         </main>
-
         <Header />
+        <Footer />{" "}
       </div>
-      <Footer />
     </>
   );
 }
