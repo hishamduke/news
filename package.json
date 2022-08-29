@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.2",
-    "@googlemaps/react-wrapper": "^1.1.35",
     "@prisma/client": "^4.1.1",
+    "@react-google-maps/api": "^2.12.2",
     "@tanstack/react-query": "^4.0.10",
     "axios": "^0.27.2",
     "cookie": "^0.5.0",
@@ -19,9 +19,7 @@
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-geolocated": "^4.0.3",
     "react-google-map-picker": "^1.2.3",
-    "react-google-maps": "^9.4.5",
     "zod": "^3.17.10"
   },
   "devDependencies": {

@@ -5,6 +5,19 @@ body {
   background-color: #f9f7f1;
   transition: all 0.7s;
 }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.__next {
+  height: 100%;
+}
+.map {
+  height: 100%;
+  width: 100%;
+}
 .body {
   font-family: "Droid Serif", serif;
   font-size: 14px;
@@ -50,9 +63,14 @@ form {
   /* background-color:yellowgreen; */
   /* display: flexbox; */
 }
+.gm-control-active,
+.gmnoprint {
+  visibility: hidden;
+}
+
 button {
   font-size: 2vh;
-  padding: 2%;
+  /* padding: 2%; */
   font-family: "Playfair Display", serif;
   background-color: #f9f7f1;
   border-color: black;
@@ -62,6 +80,7 @@ button {
   /* height: 10%;
   width: ; */
   width: fit-content;
+  height: 40px;
 }
 .axres {
   color: rgb(255, 86, 86);
