@@ -250,8 +250,11 @@ input::-webkit-inner-spin-button {
 
   grid-row: 1 / 2;
 }
-
+.newli p {
+  z-index: -10;
+}
 .newli:hover ~ .newli p {
+  z-index: -10;
   animation: wave-animation 0.3s infinite;
 }
 

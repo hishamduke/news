@@ -5,6 +5,7 @@
   top: 23%;
   /* background-color: yellowgreen; */
   transition: all 0.7s;
+  z-index: 3;
 }
 
 .filler {
@@ -30,10 +31,9 @@
 .head {
   transition: all 0.3s;
 }
-.profileCont:hover .born {
+/* .profileCont:hover .born {
   /* top: 110%; */
-  visibility: visible;
-}
+/* visibility: visible; */
 
 .dropMenu {
   display: flex;
@@ -45,10 +45,18 @@
   flex-direction: column;
 }
 
-.row {
-  /* flex-grow: 1; */
+.row1 {
+  /* background-color: #000; */
+  align-self: center;
 }
-
+.row {
+  transition: all 0.4s;
+}
+.row:hover {
+  color: rgb(5, 1, 209);
+  text-decoration: underline;
+  cursor: pointer;
+}
 .born::after {
   content: "";
   position: absolute;

@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     userWithoutPassword.role = "AGENT";
     res.status(200).json(userWithoutPassword);
 
-    res.status(200).json(userWithoutPassword);
+    // res.status(200).json(userWithoutPassword);
 
     console.log(userac);
   } catch (e) {

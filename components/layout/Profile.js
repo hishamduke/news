@@ -4,11 +4,17 @@ import styles from "../../styles/Profile.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useState } from "react";
 import { logout } from "../../lib/logout";
+import Router from "next/router";
+
 export default function Profile() {
   const listRef = useAutoAnimate();
   const [show, setShow] = useState(false);
   function handleclick() {
     setShow(!show);
+  }
+  function go(val) {
+    setShow(!show);
+    Router.push("/" + val);
   }
 
   const { isLoading, error, data } = useQuery(["account"], () =>
@@ -38,13 +44,30 @@ export default function Profile() {
                 ></div>
                 <div className={styles.born}>
                   <div className={styles.dropMenu}>
-                    <div className={styles.row}>
+                    <div className={styles.row1}>
                       <b style={{ fontSize: 17 }}>Hey {data.name}.</b>
                       <br />
                     </div>
-                    <div className={styles.row}>Profile</div>
+                    <div
+                      className={styles.row}
+                      onClick={() => {
+                        handleclick();
+                        go("dashboard");
+                      }}
+                    >
+                      🏠 Home
+                    </div>
+                    <div className={styles.row}>👤 Profile</div>
 
-                    <div className={styles.row}>Write to support</div>
+                    <div
+                      className={styles.row}
+                      onClick={() => {
+                        handleclick();
+                        go("support");
+                      }}
+                    >
+                      ✉️ Write to support
+                    </div>
                     <div
                       className={styles.row}
                       onClick={() => {
@@ -52,7 +75,7 @@ export default function Profile() {
                         logout();
                       }}
                     >
-                      Logout
+                      🚶 Logout
                     </div>
                   </div>
                 </div>
