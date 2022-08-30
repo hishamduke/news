@@ -1,0 +1,57 @@
+/* Dropdown Button */
+.profileCont {
+  position: fixed;
+  right: 0%;
+  top: 0%;
+  /* background-color: yellowgreen; */
+  transition: all 0.7s;
+}
+.filler {
+  border: 20px solid rgba(255, 255, 255, 0);
+}
+
+.born {
+  position: absolute;
+  /* width: 200%; */
+  /* top: -600%; */
+  left: -797%;
+  /* height: 0; */
+  width: 350px;
+  /* visibility: hidden; */
+  color: black;
+  background-color: white;
+  filter: drop-shadow(-0.2rem 0.2rem 1em rgba(0, 0, 0, 0.5));
+  transition: all 0.7s;
+  border: 2px solid rgba(0, 0, 0, 1);
+  transition: all 0.7s;
+}
+
+.profileCont:hover .born {
+  /* top: 110%; */
+  visibility: visible;
+}
+
+.dropMenu {
+  display: flex;
+  padding: 7%;
+  gap: 6px;
+  text-transform: none;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.row {
+  /* flex-grow: 1; */
+}
+
+.born::after {
+  content: "";
+  position: absolute;
+  top: -4%;
+  margin-top: -15px;
+  left: 328px;
+  border: solid 9px transparent;
+  border-bottom-color: #000;
+  z-index: 3;
+}

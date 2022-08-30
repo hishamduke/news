@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Profile from "./Profile";
 export default function Header() {
   const d = new Date();
   const monthlist = [
@@ -39,7 +40,10 @@ export default function Header() {
           </Link>
         </div>
         <div className="subhead">
-          Calicut,Kerala - {day} {month} {year}- Seven Pages
+          <div style={{ flexGrow: 1 }}>
+            Calicut,Kerala - {day} {month} {year}- Seven Pages
+          </div>
+          <Profile />
         </div>
       </div>
     </>

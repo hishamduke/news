@@ -176,6 +176,9 @@ input::-webkit-inner-spin-button {
   position: inherit;
 }
 .subhead {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   text-transform: uppercase;
   border-bottom: 2px solid #000000;
   border-top: 2px solid #000000;
