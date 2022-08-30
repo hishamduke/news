@@ -26,8 +26,14 @@ model User {
   pin       BigInt
 }
 
+model Feedback {
+  id      Int    @id @default(autoincrement())
+  account Int
+  content String @db.VarChar(255)
+}
+
 model Agent {
-  accountid Int @unique
+  accountid Int     @unique
   id        Int     @id @default(autoincrement())
   num       BigInt  @unique
   loc       String  @db.VarChar(255)
