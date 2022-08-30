@@ -2,12 +2,14 @@ import Link from "next/link";
 import Router from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { queryClient } from "../pages/_app";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function Login() {
   const listRef = useAutoAnimate();
   const [axres, setAxres] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  queryClient.invalidateQueries("account");
   useEffect(() => {
     axios
       .get("/api/auth/cook")

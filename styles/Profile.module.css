@@ -2,10 +2,11 @@
 .profileCont {
   position: fixed;
   right: 0%;
-  top: 0%;
+  top: 23%;
   /* background-color: yellowgreen; */
   transition: all 0.7s;
 }
+
 .filler {
   border: 20px solid rgba(255, 255, 255, 0);
 }
@@ -17,15 +18,18 @@
   left: -797%;
   /* height: 0; */
   width: 350px;
-  /* visibility: hidden; */
+  visibility: show;
   color: black;
-  background-color: white;
   filter: drop-shadow(-0.2rem 0.2rem 1em rgba(0, 0, 0, 0.5));
   transition: all 0.7s;
   border: 2px solid rgba(0, 0, 0, 1);
   transition: all 0.7s;
+  background-color: #f7f7f7;
 }
 
+.head {
+  transition: all 0.3s;
+}
 .profileCont:hover .born {
   /* top: 110%; */
   visibility: visible;
@@ -34,7 +38,7 @@
 .dropMenu {
   display: flex;
   padding: 7%;
-  gap: 6px;
+  gap: 8px;
   text-transform: none;
   justify-content: flex-start;
   align-items: flex-start;
@@ -48,7 +52,7 @@
 .born::after {
   content: "";
   position: absolute;
-  top: -4%;
+  top: -3%;
   margin-top: -15px;
   left: 328px;
   border: solid 9px transparent;

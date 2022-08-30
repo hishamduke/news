@@ -1,9 +1,6 @@
 import Router from "next/router";
+import { logout } from "../../lib/logout";
 export default function Logout() {
-  const logout = async () => {
-    let val = await fetch("/api/auth/logout");
-    Router.push("/login");
-  };
   return (
     <>
       <button

@@ -29,17 +29,28 @@ export default async function handler(req, res) {
       res.status(200).json("decoded");
       return;
     }
+    if (decoded.role == "AGENT") {
+      const userac = await prisma.agent.findUnique({
+        where: {
+          accountid: id,
+        },
+      });
+      let userWithoutPassword = exclude(userac, "password");
+      userWithoutPassword.role = "AGENT";
+      res.status(200).json(userWithoutPassword);
+    }
+    if (decoded.role == "USER") {
+      const userac = await prisma.user.findUnique({
+        where: {
+          accountid: id,
+        },
+      });
+      let userWithoutPassword = exclude(userac, "password");
+      userWithoutPassword.role = "USER";
+      res.status(200).json(userWithoutPassword);
+    }
 
-    const userac = await prisma.user.findUnique({
-      where: {
-        accountid: id,
-      },
-    });
-
-    const userWithoutPassword = exclude(userac, "password");
     console.log(userac);
-
-    res.status(200).json(userWithoutPassword);
   } catch (e) {
     res.status(200).json({ error: e.name });
   }

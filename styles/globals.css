@@ -141,9 +141,11 @@ button {
 }
 .Link {
   cursor: pointer;
-  transition: all 0.7s;
+  transition: all 0.2s;
 }
-
+.Link:hover {
+  transform: scale(1.01);
+}
 .formhead {
   /* color: #0000FF; */
   /* text-align: left; */

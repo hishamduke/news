@@ -105,6 +105,7 @@ export default function Admin() {
           </div>
         </div>
       </div>
+      <Logout />
     </>
   );
 }

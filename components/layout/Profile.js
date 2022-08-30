@@ -1,32 +1,65 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import styles from "../../styles/Profile.module.css";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useState } from "react";
+import { logout } from "../../lib/logout";
 export default function Profile() {
-  const { isLoading, error, data } = useQuery(["roleData"], () =>
-    fetch("/api/userrole").then((res) => res.json())
+  const listRef = useAutoAnimate();
+  const [show, setShow] = useState(false);
+  function handleclick() {
+    setShow(!show);
+  }
+
+  const { isLoading, error, data } = useQuery(["account"], () =>
+    fetch("/api/account").then((res) => res.json())
   );
-  if (data)
-    if (data == "AGENT")
+
+  if (data) console.log(data);
+  if (data) {
+    if (data.role == "AGENT")
       return (
         <>
-          <div className={styles.head} style={{ marginRight: 10 }}>
-            <Image src={"/user.png"} height={"20%"} width={"20%"}></Image>
-          </div>
-          <div className={styles.profileCont}>
-            <div className={styles.filler}></div>
-            <div className={styles.born}>
-              <div className={styles.dropMenu}>
-                <div className={styles.row}>
-                  <b>Hey Hisham.</b>
-                  <br />
-                  <br />
-                </div>
-                <div className={styles.row}>Profile</div>
-
-                <div className={styles.row}>Logout</div>
-              </div>
+          <div ref={listRef}>
+            <div
+              className={styles.head}
+              style={{ marginRight: 10 }}
+              onClick={() => handleclick()}
+            >
+              <Image src={"/user.png"} height={"16%"} width={"16%"}></Image>
             </div>
+
+            {console.log(show)}
+            {show && (
+              <div className={styles.profileCont}>
+                <div
+                  className={styles.filler}
+                  onClick={() => handleclick()}
+                ></div>
+                <div className={styles.born}>
+                  <div className={styles.dropMenu}>
+                    <div className={styles.row}>
+                      <b style={{ fontSize: 17 }}>Hey {data.name}.</b>
+                      <br />
+                    </div>
+                    <div className={styles.row}>Profile</div>
+
+                    <div className={styles.row}>Write to support</div>
+                    <div
+                      className={styles.row}
+                      onClick={() => {
+                        handleclick();
+                        logout();
+                      }}
+                    >
+                      Logout
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </>
       );
+  }
 }
