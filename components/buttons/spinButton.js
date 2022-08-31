@@ -1,24 +1,21 @@
-import Router from "next/router";
-import { useState } from "react";
-import { logout } from "../../lib/logout";
 import Image from "next/image";
-export default function Logout() {
+import { useState } from "react";
+
+export function SpinButton(child) {
+  console.log(child.children);
   const [butload, setButload] = useState(false);
   return (
     <>
       <button
-        style={{ margin: "10px" }}
-        onClick={(e) => {
-          e.preventDefault();
-          setButload(true);
-          logout();
+        onClick={() => {
+          setButload(!butload);
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           {butload && (
             <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
           )}{" "}
-          Logout
+          {child.children}
         </div>
       </button>
     </>

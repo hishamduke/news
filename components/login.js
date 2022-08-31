@@ -3,12 +3,15 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { queryClient } from "../pages/_app";
+import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function Login() {
   const listRef = useAutoAnimate();
   const [axres, setAxres] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [butload, setButload] = useState(false);
   queryClient.invalidateQueries("account");
   useEffect(() => {
     axios
@@ -24,6 +27,7 @@ export default function Login() {
   function handlelogin(e) {
     setTimeout(() => setAxres(""), 4000);
     e.preventDefault();
+    setButload(true);
     axios
       .post("/api/auth/login", {
         email,
@@ -34,6 +38,7 @@ export default function Login() {
         Router.push("/dashboard");
       })
       .catch(function (error) {
+        setButload(false);
         setAxres("Invalid credentials");
       });
   }
@@ -69,7 +74,14 @@ export default function Login() {
             ></input>
           </div>
           <div className="but">
-            <button>Login</button>
+            <button>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {butload && (
+                  <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
+                )}
+                Login
+              </div>
+            </button>
           </div>
           <br />
           <div ref={listRef} className="axres">
