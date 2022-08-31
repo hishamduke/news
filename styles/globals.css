@@ -98,7 +98,7 @@ button {
 } */
 .forminp {
   font-family: serif;
-  background-color: #f9f7f1;
+  background-color: #ffffff;
   border-radius: 0%;
   /* border-color: #fff; */
   /* padding: 4px; */
@@ -114,20 +114,20 @@ button {
   transition: all 0.7s;
 }
 
-.forminp:hover {
+/* .forminp:hover {
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
-  border: 1px solid #dadada;
+  border: 1px solid #eceaea;
   background-color: #dadada;
-}
+} */
 
 .forminp:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
-  border: 1px solid #dadada;
-  background-color: #dadada;
+  /* border: 1px solid #ff0000; */
+  background-color: #f7f7f7;
 }
 
 .formtext {
@@ -365,9 +365,12 @@ input::-webkit-inner-spin-button {
   /* background-color: yellowgreen; */
   font-size: 14px;
   line-height: 20px;
-  width: 70%;
-  display: inline-block;
-  padding: 0 1% 0 1%;
+  /* margin-right: 100px; */
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+
+  /* padding: 0 1% 0 1%; */
   vertical-align: top;
   /* margin-bottom: 50px; */
   transition: all 0.7s;

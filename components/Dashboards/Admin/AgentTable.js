@@ -1,10 +1,13 @@
-import Logout from "../buttons/logoutbutton";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { queryClient } from "../../pages/_app";
+import { queryClient } from "../../../pages/_app";
 import Link from "next/link";
-export default function Admin() {
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
+export default function AgentTable() {
+  console.log("tabless");
+  const listRef = useAutoAnimate();
   const [status, setStatus] = useState();
   const { isLoading, error, data } = useQuery(["agentsDetails"], () =>
     fetch("/api/admin/agentstatus").then((res) => res.json())
@@ -91,21 +94,22 @@ export default function Admin() {
                   </tr>
                 ))}
               </tbody>
-              <tfoot>
-                <tr>
-                  {disapprove.isLoading || approve.isLoading ? (
-                    <td colSpan={6}>Loading....</td>
-                  ) : (
-                    ""
-                  )}
-                </tr>
-              </tfoot>
             </table>
-            <br />
+            <div ref={listRef}>
+              {disapprove.isLoading || approve.isLoading ? (
+                <p>
+                  {" "}
+                  <br />
+                  Loading....
+                </p>
+              ) : (
+                ""
+              )}
+              <br />
+            </div>
           </div>
         </div>
       </div>
-      <Logout />
     </>
   );
 }

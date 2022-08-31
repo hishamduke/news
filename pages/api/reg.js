@@ -45,15 +45,25 @@ export default async function handler(req, res) {
     let accountdata = Account.parse(req.body.inp);
     let userdata = User.parse(req.body.inp);
     delete accountdata.password2;
-    // a = { ...a, pin: "fuckyou" };
-    const account = await prisma.accounts.create({
-      data: accountdata,
+    // console.log(userdata.num);
+
+    const guardnum = await prisma.User.findMany({
+      where: {
+        num: userdata.num,
+      },
     });
-    userdata.accountid = account.id;
-    const user = await prisma.user.create({
-      data: userdata,
-    });
-    res.status(200).json({ ...account });
+    if (guardnum.length > 0) {
+      return res.status(404).json({ code: "P2002" });
+    } else {
+      const account = await prisma.accounts.create({
+        data: accountdata,
+      });
+      userdata.accountid = account.id;
+      const user = await prisma.user.create({
+        data: userdata,
+      });
+      res.status(200).json({ ...account });
+    }
   } catch (e) {
     console.log(e);
     res.status(401).json(e);

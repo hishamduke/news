@@ -24,13 +24,24 @@ export default async function handler(req, res) {
   try {
     var decoded = verify(JWT, secret);
     const id = decoded.id;
+    console.log(id);
+    const userac = await prisma.agent.findUnique({
+      where: {
+        accountid: id,
+      },
+    });
+    const accountInfo = await prisma.accounts.findUnique({
+      where: {
+        id,
+      },
+    });
 
-    if (decoded.role == "ADMIN") {
+    if (accountInfo.role == "ADMIN") {
       res.status(200).json("decoded");
       return;
     }
-    if (decoded.role == "AGENT") {
-      const userac = await prisma.agent.findUnique({
+    if (accountInfo.role == "AGENT") {
+      const agentInfo = await prisma.agent.findUnique({
         where: {
           accountid: id,
         },
@@ -38,8 +49,10 @@ export default async function handler(req, res) {
       let userWithoutPassword = exclude(userac, "password");
       userWithoutPassword.role = "AGENT";
       res.status(200).json(userWithoutPassword);
+      return;
     }
-    if (decoded.role == "USER") {
+
+    if (accountInfo.role == "USER") {
       const userac = await prisma.user.findUnique({
         where: {
           accountid: id,
@@ -48,11 +61,13 @@ export default async function handler(req, res) {
       let userWithoutPassword = exclude(userac, "password");
       userWithoutPassword.role = "USER";
       res.status(200).json(userWithoutPassword);
+      return;
     }
 
-    console.log(userac);
+    // console.log(userac);
   } catch (e) {
     res.status(200).json({ error: e.name });
+    return;
   }
 
   console.log(date.getTime());

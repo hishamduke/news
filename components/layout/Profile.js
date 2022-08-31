@@ -23,7 +23,7 @@ export default function Profile() {
 
   if (data) console.log(data);
   if (data) {
-    if (data.role == "AGENT")
+    if (data.role == "AGENT" || data.role == "USER")
       return (
         <>
           <div ref={listRef}>

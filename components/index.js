@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Breaking from "./breaking";
+import Image from "next/image";
 export default function Index() {
   return (
     <>
       <div className="collumns">
-        <div className="dashboard">
+        <div className="dashboard" style={{ marginRight: "100px" }}>
           <br />
-
           <form>
             <Link href={"/login"}>
               <h2 className={"formhead Link"}>Login?</h2>
@@ -21,9 +21,18 @@ export default function Index() {
               <h2 className={"formhead Link"}>Go to test field</h2>
             </Link>
           </form>
+          <Image
+            className="dashboard"
+            src="/news3.png"
+            height={"300"}
+            width={"250"}
+            style={{ transform: "translateY(-40px)" }}
+          ></Image>
         </div>
-        {/* <Breaking /> */}
       </div>
+      {/* <Breaking /> */}
+
+      <br />
     </>
   );
 }

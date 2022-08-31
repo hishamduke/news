@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       },
     });
     let userWithoutPassword = exclude(userac, "password");
-    userWithoutPassword.role = "AGENT";
+    // userWithoutPassword.role = "AGENT";
     res.status(200).json(userWithoutPassword);
 
     // res.status(200).json(userWithoutPassword);

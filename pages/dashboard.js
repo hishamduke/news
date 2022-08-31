@@ -1,5 +1,5 @@
 import Dashboard from "../components/Dashboards/dashboard";
-import Admin from "../components/Dashboards/AdminDashboard";
+import Admin from "../components/Dashboards/Admin/AdminDashboard";
 import Agent from "../components/Dashboards/Agent";
 import { useQuery } from "@tanstack/react-query";
 export default function Home() {
