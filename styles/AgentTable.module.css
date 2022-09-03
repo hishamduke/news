@@ -1,0 +1,26 @@
+.Base {
+  display: flex;
+  /* background-color: yellowgreen; */
+  justify-content: space-around;
+}
+.In {
+  width: 90%;
+  /* background-color: blue; */
+}
+
+.Table {
+  border-collapse: collapse;
+
+  border: 0px solid red;
+  /* box-shadow: 1px 1px 10px 2px #888888; */
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(180, 255, 233),
+    rgb(112, 255, 112)
+  );
+}
+
+.TableHead {
+  border: 0px solid #ddd;
+  background-color: blue;
+}

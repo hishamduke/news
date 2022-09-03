@@ -7,12 +7,15 @@ import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Support() {
+  const [butload, setButload] = useState(false);
+
   const listRef = useAutoAnimate();
   const [content, setContent] = useState("");
   const [resp, setResp] = useState();
   let date = new Date();
   function handlesubmit(e) {
     e.preventDefault();
+    setButload(true);
     axios
       .post("/api/post/support", {
         content,
@@ -20,7 +23,7 @@ export default function Support() {
       .then(function (response) {
         console.log(response.status);
         setResp(response.status);
-
+        setButload(false);
         const myTimeout = setTimeout(() => {
           Router.push("/dashboard");
           setTimeout(setResp(""), 3000);
@@ -40,6 +43,7 @@ export default function Support() {
           <h2 className={"formhead"}>We are happy to help you.</h2>
           <p>Please input in the following field :</p>
           <textarea
+            required
             placeholder="type here ..."
             className={styles.textarea1}
             onChange={(e) => {
@@ -47,7 +51,15 @@ export default function Support() {
             }}
           ></textarea>
           <p></p>
-          <button> submit</button>
+          <button>
+            {" "}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {butload && (
+                <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
+              )}{" "}
+              submit
+            </div>
+          </button>
           <div ref={listRef}>
             {" "}
             {resp == 200 && (

@@ -2,7 +2,8 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { queryClient } from "../../../pages/_app";
-import Link from "next/link";
+import styles from "../../../styles/AgentTable.module.css";
+
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function AgentTable() {
@@ -33,7 +34,7 @@ export default function AgentTable() {
 
   return (
     <>
-      <div>
+      <div ref={listRef}>
         {disapprove.isError || approve.error ? (
           <div>
             An error occurred: {disapprove.error?.message}
@@ -41,72 +42,72 @@ export default function AgentTable() {
           </div>
         ) : null}
       </div>
-      <div className="collumns">
-        <div className="dashboard">
-          <div>
-            {" "}
-            <h2 className="formhead">Agents list</h2>
-            {JSON.stringify(data)}
-            <table>
-              <thead>
-                <tr key="head">
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Number</th>
-                  <th>Location</th>
-                  <th>Status</th>
-                  <th>Approve?</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((val) => (
-                  <tr key={val.id}>
-                    <td>{val.name}</td>
-                    <td>{val.email}</td>
-                    <td>{val.num}</td>
-                    <td>{val.loc}</td>
-                    <td>{!val.app ? "Not approved" : "Approved"}</td>
-                    <td>
-                      {!val.app ? (
-                        <>
-                          <a
-                            className="Link"
-                            onClick={() => {
-                              setStatus("Loading....");
-                              approve.mutate({ id: val.id });
-                            }}
-                          >
-                            approve
-                          </a>
-                        </>
-                      ) : (
+      <div className={styles.Base}>
+        <div className={styles.In}>
+          {/* {JSON.stringify(data)} */}
+
+          <table className={styles.Table}>
+            <thead className={styles.TableHead}>
+              <tr className={styles.TableHead}>
+                <th colSpan="20">Agents list</th>
+              </tr>
+              <tr key="head">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Approve?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((val) => (
+                <tr key={val.id}>
+                  <td>{val.name}</td>
+                  <td>{val.email}</td>
+                  <td>{val.num}</td>
+                  <td>{val.loc}</td>
+                  <td>{!val.app ? "Not approved" : "Approved"}</td>
+                  <td>
+                    {!val.app ? (
+                      <>
                         <a
                           className="Link"
                           onClick={() => {
                             setStatus("Loading....");
-                            disapprove.mutate({ id: val.id });
+                            approve.mutate({ id: val.id });
                           }}
                         >
-                          dismiss
+                          approve
                         </a>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div ref={listRef}>
-              {disapprove.isLoading || approve.isLoading ? (
-                <p>
-                  {" "}
-                  <br />
-                  Loading....
-                </p>
-              ) : (
-                ""
-              )}
-              <br />
-            </div>
+                      </>
+                    ) : (
+                      <a
+                        className="Link"
+                        onClick={() => {
+                          setStatus("Loading....");
+                          disapprove.mutate({ id: val.id });
+                        }}
+                      >
+                        dismiss
+                      </a>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div ref={listRef}>
+            {disapprove.isLoading || approve.isLoading ? (
+              <p>
+                {" "}
+                <br />
+                Loading....
+              </p>
+            ) : (
+              ""
+            )}
+            <br />
           </div>
         </div>
       </div>
