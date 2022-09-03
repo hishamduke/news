@@ -12,8 +12,9 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const [butload, setButload] = useState(false);
-  queryClient.invalidateQueries("account");
+
   useEffect(() => {
+    queryClient.invalidateQueries("account");
     axios
       .get("/api/auth/cook")
       .then(function (response) {
@@ -35,6 +36,7 @@ export default function Login() {
       })
       .then(function (response) {
         setAxres("");
+        queryClient.invalidateQueries("account");
         Router.push("/dashboard");
       })
       .catch(function (error) {

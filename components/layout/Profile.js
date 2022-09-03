@@ -9,14 +9,16 @@ import Router from "next/router";
 export default function Profile() {
   const listRef = useAutoAnimate();
   const [show, setShow] = useState(false);
+  const [uname, setUname] = useState();
+
   function handleclick() {
     setShow(!show);
   }
+
   function go(val) {
     setShow(!show);
     Router.push("/" + val);
   }
-
   const { isLoading, error, data } = useQuery(["account"], () =>
     fetch("/api/account").then((res) => res.json())
   );

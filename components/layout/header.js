@@ -3,6 +3,7 @@ import Link from "next/link";
 import Profile from "./Profile";
 export default function Header() {
   const d = new Date();
+
   const monthlist = [
     "January",
     "February",

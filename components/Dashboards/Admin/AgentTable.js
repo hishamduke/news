@@ -3,13 +3,15 @@ import axios from "axios";
 import { useState } from "react";
 import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
-
+import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function AgentTable() {
   console.log("tabless");
   const listRef = useAutoAnimate();
   const [status, setStatus] = useState();
+
+  const [butload, setButload] = useState(false);
   const { isLoading, error, data } = useQuery(["agentsDetails"], () =>
     fetch("/api/admin/agentstatus").then((res) => res.json())
   );
@@ -17,7 +19,12 @@ export default function AgentTable() {
   const addTodo = (id) => axios.post("/api/admin/disapprove", id);
   const disapprove = useMutation(addTodo, {
     onSuccess: async () => {
-      queryClient.invalidateQueries();
+      setTimeout(() => {
+        setButload(false);
+      }, 500);
+      setTimeout(() => {
+        queryClient.invalidateQueries(["agentsDetails"]);
+      }, 700);
     },
   });
 
@@ -26,7 +33,12 @@ export default function AgentTable() {
   const approve = useMutation(addTodo2, {
     onMutate: async () => {},
     onSuccess: async () => {
-      queryClient.invalidateQueries(["agentsDetails"]);
+      setTimeout(() => {
+        setButload(false);
+      }, 500);
+      setTimeout(() => {
+        queryClient.invalidateQueries(["agentsDetails"]);
+      }, 700);
     },
   });
 
@@ -46,51 +58,78 @@ export default function AgentTable() {
         <div className={styles.In}>
           {/* {JSON.stringify(data)} */}
 
-          <table className={styles.Table}>
+          <table className={styles.Table} cellspacing={0} cellpadding={0}>
             <thead className={styles.TableHead}>
-              <tr className={styles.TableHead}>
-                <th colSpan="20">Agents list</th>
+              <tr className={styles.Tr}>
+                <th colSpan="20" className={styles.MainHead}>
+                  Agents list
+                </th>
               </tr>
-              <tr key="head">
-                <th>Name</th>
-                <th>Email</th>
-                <th>Number</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Approve?</th>
+
+              <tr className={styles.Tr} key="head">
+                <th className={styles.Td}>Name</th>
+                <th className={styles.Td}>Email</th>
+                <th className={styles.Td}>Number</th>
+                <th className={styles.Td}>Location</th>
+                <th className={styles.Td}>Status</th>
+                <th className={styles.Td}>Approve?</th>
               </tr>
             </thead>
             <tbody>
               {data.map((val) => (
-                <tr key={val.id}>
-                  <td>{val.name}</td>
-                  <td>{val.email}</td>
-                  <td>{val.num}</td>
-                  <td>{val.loc}</td>
-                  <td>{!val.app ? "Not approved" : "Approved"}</td>
-                  <td>
+                <tr className={styles.Tr} key={val.id}>
+                  <td className={styles.Td}>{val.name}</td>
+                  <td className={styles.Td}>{val.email}</td>
+                  <td className={styles.Td}>{val.num}</td>
+                  <td className={styles.Td}>{val.loc}</td>
+                  <td className={styles.Td}>
+                    {!val.app ? "Not approved" : "Approved"}
+                  </td>
+                  <td className={styles.Td}>
                     {!val.app ? (
                       <>
-                        <a
-                          className="Link"
+                        <button
+                          className={styles.Button}
                           onClick={() => {
+                            setButload(!butload);
                             setStatus("Loading....");
                             approve.mutate({ id: val.id });
                           }}
                         >
-                          approve
-                        </a>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            {butload && (
+                              <Image
+                                src={"/spinner.svg"}
+                                height={"30px"}
+                                width={"30px"}
+                              />
+                            )}
+                            Approve
+                          </div>
+                        </button>
                       </>
                     ) : (
-                      <a
-                        className="Link"
+                      <button
+                        className={styles.Button}
                         onClick={() => {
+                          setButload(!butload);
                           setStatus("Loading....");
                           disapprove.mutate({ id: val.id });
                         }}
                       >
-                        dismiss
-                      </a>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          {butload && (
+                            <Image
+                              src={"/spinner.svg"}
+                              height={"30px"}
+                              width={"30px"}
+                            />
+                          )}
+                          Disapprove
+                        </div>
+                      </button>
                     )}
                   </td>
                 </tr>

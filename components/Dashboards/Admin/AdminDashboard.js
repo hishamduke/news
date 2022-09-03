@@ -1,4 +1,5 @@
 import AgentTable from "./AgentTable";
+import FeedbackTable from "./FeedbackTable";
 import Link from "next/link";
 import Logout from "../../buttons/logoutbutton";
 import Image from "next/image";
@@ -54,27 +55,23 @@ export default function Index() {
         <>
           <AgentTable />
           <br />
-          <button
-            onClick={() => {
-              setCurrcomp(0);
-            }}
-          >
-            Go back
-          </button>
         </>
       )}
       {currcomp == 2 && (
         <>
-          <AgentTable />
+          <FeedbackTable />
           <br />
-          <button
-            onClick={() => {
-              setCurrcomp(0);
-            }}
-          >
-            Go back
-          </button>
         </>
+      )}
+      {currcomp != 0 && (
+        <button
+          style={{ marginLeft: "5%" }}
+          onClick={() => {
+            setCurrcomp(0);
+          }}
+        >
+          Go back
+        </button>
       )}
     </div>
   );
