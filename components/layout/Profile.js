@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import styles from "../../styles/Profile.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { logout } from "../../lib/logout";
 import Router from "next/router";
 
@@ -19,11 +19,15 @@ export default function Profile() {
     setShow(!show);
     Router.push("/" + val);
   }
+  async function fetcher() {
+    return await fetch("/api/account");
+  }
+
   const { isLoading, error, data } = useQuery(["account"], () =>
-    fetch("/api/account").then((res) => res.json())
+    fetcher().then((res) => res.json())
   );
 
-  if (data) console.log(data);
+  // if (data) console.log(data);
   if (data) {
     if (data.role == "AGENT" || data.role == "USER")
       return (
@@ -37,7 +41,6 @@ export default function Profile() {
               <Image src={"/user.png"} height={"16%"} width={"16%"}></Image>
             </div>
 
-            {console.log(show)}
             {show && (
               <div className={styles.profileCont}>
                 <div

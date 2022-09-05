@@ -35,7 +35,7 @@ export default function AgentTable() {
     onSuccess: async () => {
       setTimeout(() => {
         setButload(false);
-      }, 500);
+      }, 1100);
       setTimeout(() => {
         queryClient.invalidateQueries(["agentsDetails"]);
       }, 700);
@@ -46,6 +46,13 @@ export default function AgentTable() {
 
   return (
     <>
+      {butload && (
+        <div className={styles.Loading}>
+          <div className={styles.LoadingText}>
+            <div>Loading please wait..</div>
+          </div>
+        </div>
+      )}
       <div ref={listRef}>
         {disapprove.isError || approve.error ? (
           <div>
@@ -58,7 +65,7 @@ export default function AgentTable() {
         <div className={styles.In}>
           {/* {JSON.stringify(data)} */}
 
-          <table className={styles.Table} cellspacing={0} cellpadding={0}>
+          <table className={styles.Table} cellSpacing={0} cellPadding={0}>
             <thead className={styles.TableHead}>
               <tr className={styles.Tr}>
                 <th colSpan="20" className={styles.MainHead}>
@@ -136,18 +143,6 @@ export default function AgentTable() {
               ))}
             </tbody>
           </table>
-          <div ref={listRef}>
-            {disapprove.isLoading || approve.isLoading ? (
-              <p>
-                {" "}
-                <br />
-                Loading....
-              </p>
-            ) : (
-              ""
-            )}
-            <br />
-          </div>
         </div>
       </div>
     </>

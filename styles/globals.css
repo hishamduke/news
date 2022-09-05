@@ -255,13 +255,22 @@ input::-webkit-inner-spin-button {
   z-index: -10;
 }
 .newli:hover ~ .newli p {
+  /* font-size: 72px; */
+  background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   z-index: -10;
   animation: wave-animation 0.3s infinite;
 }
 
 .contfoot {
+  /* font-size: 72px; */
+  background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   /* background-color: rgb(102, 102, 102); */
   display: flex;
+
   flex-direction: column;
 }
 /* below is just for demo styling */

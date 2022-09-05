@@ -12,7 +12,7 @@ export default function Layout({ children }) {
           {children}
         </main>
         <Header />
-        <Footer />{" "}
+        <Footer />
       </div>
     </>
   );
