@@ -2,21 +2,14 @@ import Dashboard from "../components/Dashboards/dashboard";
 import Admin from "../components/Dashboards/Admin/AdminDashboard";
 import Agent from "../components/Dashboards/Agent";
 import { useQuery } from "@tanstack/react-query";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 export default function Home() {
   const { isLoading, error, data } = useQuery(["roleData"], () =>
     fetch("/api/userrole").then((res) => res.json())
   );
-  if (isLoading)
-    return (
-      <>
-        <div className="collumns">
-          <div className="collumn">
-            <h2 className="formhead">Please wait while the page loads...</h2>
-            <br />
-          </div>
-        </div>
-      </>
-    );
+  const listRef = useAutoAnimate();
+
   if (error)
     return (
       <>
@@ -31,12 +24,15 @@ export default function Home() {
         </div>
       </>
     );
-  if (data == "ADMIN") return <Admin />;
-  if (data == "AGENT") return <Agent />;
 
   return (
     <>
-      <Dashboard />
+      {/* {JSON.stringify(data)} */}
+      <div ref={listRef}>
+        {data == "ADMIN" && <Admin />}
+        {data == "AGENT" && <Agent />}
+        {data == "USER" && <Dashboard />}
+      </div>
     </>
   );
 }
