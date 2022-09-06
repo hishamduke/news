@@ -1,5 +1,6 @@
 import AgentTable from "./AgentTable";
 import FeedbackTable from "./FeedbackTable";
+import UserTable from "./UserTable";
 import Link from "next/link";
 import Logout from "../../buttons/logoutbutton";
 import Image from "next/image";
@@ -14,77 +15,74 @@ export default function Index() {
 
   return (
     <>
-      <div ref={listRef}>
-        {currcomp == 0 && (
-          <>
-            <div className="collumns">
-              <div className="dashboard" style={{ marginRight: "100px" }}>
-                <br />
-                <form>
-                  <h2
-                    className={"formhead Link"}
-                    onClick={() => setCurrcomp(1)}
-                  >
-                    Approve or disapprove agents
-                  </h2>
+      {/* <div ref={listRef}> */}
+      {currcomp == 0 && (
+        <>
+          <div className="collumns">
+            <div className="dashboard" style={{ marginRight: "100px" }}>
+              <br />
+              <form>
+                <h2 className={"formhead Link"} onClick={() => setCurrcomp(1)}>
+                  Approve or disapprove agents
+                </h2>
 
-                  <h2
-                    className={"formhead Link"}
-                    onClick={() => setCurrcomp(2)}
-                  >
-                    View feedbacks
-                  </h2>
+                <h2 className={"formhead Link"} onClick={() => setCurrcomp(2)}>
+                  View feedbacks
+                </h2>
 
-                  <h2
-                    className={"formhead Link"}
-                    onClick={() => setCurrcomp(3)}
-                  >
-                    Manage users
-                  </h2>
+                <h2 className={"formhead Link"} onClick={() => setCurrcomp(3)}>
+                  Manage users
+                </h2>
 
-                  <Link href={"/test"}>
-                    <h2 className={"formhead Link"}>Go to test field</h2>
-                  </Link>
-                  <Logout />
-                </form>
-                <Image
-                  priority="false"
-                  // placeholder="blur"
-                  className="dashboard"
-                  src="/news1.png"
-                  height={"300"}
-                  width={"250"}
-                  style={{ transform: "translateY(-40px)" }}
-                ></Image>
-              </div>
+                <Link href={"/test"}>
+                  <h2 className={"formhead Link"}>Go to test field</h2>
+                </Link>
+                <Logout />
+              </form>
+              <Image
+                priority="false"
+                // placeholder="blur"
+                className="dashboard"
+                src="/news1.png"
+                height={"300"}
+                width={"250"}
+                style={{ transform: "translateY(-40px)" }}
+              ></Image>
             </div>
+          </div>
 
-            <br />
-          </>
-        )}
-        {currcomp == 1 && (
-          <>
-            <AgentTable />
-            <br />
-          </>
-        )}
-        {currcomp == 2 && (
-          <>
-            <FeedbackTable />
-            <br />
-          </>
-        )}
-        {currcomp != 0 && (
-          <button
-            style={{ marginLeft: "5%" }}
-            onClick={() => {
-              setCurrcomp(0);
-            }}
-          >
-            Go back
-          </button>
-        )}
-      </div>
+          <br />
+        </>
+      )}
+      {currcomp == 1 && (
+        <>
+          <AgentTable />
+          <br />
+        </>
+      )}
+      {currcomp == 2 && (
+        <>
+          <FeedbackTable />
+          <br />
+        </>
+      )}
+      {currcomp == 3 && (
+        <>
+          <UserTable />
+          <br />
+        </>
+      )}
+      {currcomp != 0 && (
+        <button
+          style={{ marginLeft: "10%" }}
+          onClick={() => {
+            setCurrcomp(0);
+          }}
+        >
+          Go back
+        </button>
+      )}
+      {/* </div> */}
     </>
   );
 }

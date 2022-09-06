@@ -30,7 +30,7 @@ export default function Header() {
         rel="stylesheet"
         type="text/css"
       />
-      <title>Newspaper Style Design Experiment</title>
+      <title>Newspaper Subscription</title>
 
       <meta name="viewport" content="width=device-width" />
 

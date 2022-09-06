@@ -18,12 +18,13 @@ model Accounts {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  accountid Int    @unique
-  num       BigInt @unique
-  house     String @db.VarChar(255)
-  street    String @db.VarChar(255)
+  id        Int     @id @default(autoincrement())
+  accountid Int     @unique
+  num       BigInt  @unique
+  house     String  @db.VarChar(255)
+  street    String  @db.VarChar(255)
   pin       BigInt
+  banned    Boolean @default(false)
 }
 
 model Feedback {

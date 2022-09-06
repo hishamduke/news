@@ -39,8 +39,8 @@ body {
 }
 header {
   font-family: "Playfair Display", serif;
-  font-weight: 900;
-  font-size: 6vw;
+  font-weight: 1000;
+  font-size: 5.5vw;
   text-transform: uppercase;
   display: inline-block;
   line-height: 60px;
@@ -256,7 +256,7 @@ input::-webkit-inner-spin-button {
 }
 .newli:hover ~ .newli p {
   /* font-size: 72px; */
-  background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%);
+  /* background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   z-index: -10;
@@ -264,13 +264,7 @@ input::-webkit-inner-spin-button {
 }
 
 .contfoot {
-  /* font-size: 72px; */
-  background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* background-color: rgb(102, 102, 102); */
   display: flex;
-
   flex-direction: column;
 }
 /* below is just for demo styling */
