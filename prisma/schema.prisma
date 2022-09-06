@@ -41,8 +41,21 @@ model Agent {
   approved  Boolean @default(false)
 }
 
+model Newspaper {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(255)
+  price    Int
+  language Language @default(English)
+  img      String
+}
+
 enum Role {
   USER
   ADMIN
   AGENT
+}
+
+enum Language {
+  English
+  Malayalam
 }
