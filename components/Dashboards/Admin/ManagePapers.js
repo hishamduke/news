@@ -79,25 +79,28 @@ function NewsTable(val) {
     <>
       {/* {JSON.stringify(newdata.length)} */}
 
-      <div className={styles.NewsCont}>
+      <div className={styles.NewsCont} ref={listRef}>
         {newdata.length ? (
           <>
-            <div className={styles.NewsBox}>
+            <div className={styles.NewsBox} ref={listRef}>
               <img
+                ref={listRef}
                 className={styles.NewsImg}
                 src={"/newspapers/manorama.jpg"}
               />
               <p className={styles.NewsName}>Malayala Manorama</p>
             </div>
-            <div className={styles.NewsBox}>
+            <div className={styles.NewsBox} ref={listRef}>
               <img
+                ref={listRef}
                 className={styles.NewsImg}
                 src={"/newspapers/manorama.jpg"}
               />
               <p className={styles.NewsName}>Malayala Manorama</p>
             </div>
-            <div className={styles.NewsBox}>
+            <div className={styles.NewsBox} ref={listRef}>
               <img
+                ref={listRef}
                 className={styles.NewsImg}
                 src={"/newspapers/manorama.jpg"}
               />
@@ -109,6 +112,7 @@ function NewsTable(val) {
             <div
               className={styles.Nofeed}
               style={{ textAlign: "center", fontSize: 30 }}
+              ref={listRef}
             >
               There are no {lang} newspapers yet!
             </div>

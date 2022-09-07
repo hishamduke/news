@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import styles from "../../../styles/AdminDashboard.module.css";
 
+import { BiArrowBack } from "react-icons/bi";
+
 export default function Index() {
   const listRef = useAutoAnimate();
   const [currcomp, setCurrcomp] = useState(4);
@@ -17,6 +19,24 @@ export default function Index() {
   return (
     <>
       {/* <div ref={listRef}> */}
+      {currcomp != 0 && (
+        <div>
+          <p
+            style={{
+              marginLeft: "10%",
+              fontSize: "medium",
+              // backgroundColor: "red",
+              width: "fit-content",
+            }}
+            className="zoom"
+            onClick={() => {
+              setCurrcomp(0);
+            }}
+          >
+            {<BiArrowBack />} back
+          </p>
+        </div>
+      )}
       {currcomp == 0 && (
         <>
           <div className="collumns">
@@ -82,16 +102,7 @@ export default function Index() {
           <br />
         </>
       )}
-      {currcomp != 0 && (
-        <button
-          style={{ marginLeft: "10%" }}
-          onClick={() => {
-            setCurrcomp(0);
-          }}
-        >
-          Go back
-        </button>
-      )}
+
       {/* </div> */}
     </>
   );

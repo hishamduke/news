@@ -40,7 +40,7 @@ export default function AgentTable() {
         </div>
       )}
       <div className={styles.Base}>
-        <div className={styles.In}>
+        <div className={styles.In} ref={listRef}>
           {/* {JSON.stringify(data)} */}
           {data.length ? (
             <table className={styles.Table} cellspacing={0} cellpadding={0}>
@@ -103,6 +103,7 @@ export default function AgentTable() {
               <div
                 className={styles.Nofeed}
                 style={{ textAlign: "center", fontSize: 30 }}
+                ref={listRef}
               >
                 There are no feedbacks yet!
               </div>
