@@ -1,0 +1,128 @@
+.Base {
+  display: flex;
+  /* background-color: yellowgreen; */
+  justify-content: space-around;
+}
+
+.In {
+  width: 80%;
+  /* background-color: yellowgreen; */
+
+  /* background-color: blue; */
+}
+
+.DivSelect {
+  font-weight: 400;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.Select {
+  font-size: 15px;
+  border: 1px solid #00000000;
+  padding: 3px;
+}
+
+.Table {
+  border: 5px solid rgb(255, 255, 255, 0);
+  /* box-shadow: 1px 1px 10px 2px #888888; */
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(180, 255, 220, 0.5),
+    rgb(112, 255, 219, 0.5)
+  );
+  box-shadow: 10px 10px 8px #88888888;
+}
+.Tr,
+.Td {
+  border: 5px solid rgb(255, 255, 255, 0);
+}
+.TableHead {
+  font-size: larger;
+  border: 0px solid #ddd;
+  /* background-color: blue; */
+}
+.MainHead {
+  font-size: 2rem;
+}
+.Button {
+  border: 0;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0);
+}
+.NewsCont {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 4%;
+  /* background-color: #8e34fc; */
+}
+.NewsImg {
+  margin: 6px;
+  border: 1px solid black;
+  /* border-radius: 50%; */
+}
+.NewsBox {
+  /* flex-basis: 33%; */
+  border: 2px solid black;
+  background: linear-gradient(to right, #5cffc0 0%, #4cfced 100%);
+  -webkit-background-clip: content-box;
+  /* -webkit-text-fill-color: transparent; */
+  width: 200px;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  /* height: %; */
+}
+.NewsName {
+  padding: 8px;
+  text-align: center;
+  /* background-color: violet; */
+  margin: auto;
+  /* font-weight: 600; */
+  font-size: 15px;
+}
+.Loading {
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(5px);
+  /* background: white; */
+  z-index: 1;
+}
+
+.LoadingText {
+  /* backdrop-filter: blur(10px); */
+  font-size: large;
+  margin: auto;
+  height: 30%;
+  width: 45%;
+  position: fixed;
+  display: flex;
+  top: 0;
+  color: beige;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: rgb(44, 44, 44, 0.7);
+}
+.Nofeed {
+  font-size: 72px;
+  background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

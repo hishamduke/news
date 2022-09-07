@@ -2,6 +2,7 @@ import AgentTable from "./AgentTable";
 import FeedbackTable from "./FeedbackTable";
 import UserTable from "./UserTable";
 import Link from "next/link";
+import ManagePapers from "./ManagePapers";
 import Logout from "../../buttons/logoutbutton";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,7 +11,7 @@ import styles from "../../../styles/AdminDashboard.module.css";
 
 export default function Index() {
   const listRef = useAutoAnimate();
-  const [currcomp, setCurrcomp] = useState(0);
+  const [currcomp, setCurrcomp] = useState(4);
   console.log(currcomp);
 
   return (
@@ -32,6 +33,9 @@ export default function Index() {
 
                 <h2 className={"formhead Link"} onClick={() => setCurrcomp(3)}>
                   Manage users
+                </h2>
+                <h2 className={"formhead Link"} onClick={() => setCurrcomp(4)}>
+                  Manage Newspapers
                 </h2>
 
                 <Link href={"/test"}>
@@ -69,6 +73,12 @@ export default function Index() {
       {currcomp == 3 && (
         <>
           <UserTable />
+          <br />
+        </>
+      )}
+      {currcomp == 4 && (
+        <>
+          <ManagePapers />
           <br />
         </>
       )}
