@@ -45,7 +45,7 @@ model Newspaper {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255)
   language    Language @default(English)
-  img         String
+  img         String   @default("")
   description String   @default("") @db.VarChar(255)
 }
 
