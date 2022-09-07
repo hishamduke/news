@@ -9,7 +9,6 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function ManagePapers() {
   console.log("tabless");
   const listRef = useAutoAnimate();
-  const [view, setView] = useState(0);
   const [lang, setLang] = useState("English");
 
   const [butload, setButload] = useState(false);
@@ -34,16 +33,6 @@ export default function ManagePapers() {
       <div className={styles.Base}>
         {/* {JSON.stringify(lang)} */}
         <div className={styles.In}>
-          <div className={styles.DivSelect}>
-            <div
-              className="Link"
-              style={{ textDecoration: "underline" }}
-              onClick={() => setView(1)}
-            >
-              {" "}
-              Add a new Newspaper"create a box for that"
-            </div>
-          </div>
           <div className={styles.DivSelect}>
             <div> Select language</div>
             <select
@@ -75,6 +64,7 @@ function NewsTable(val) {
   const lang = val.language;
   const [butload, setButload] = useState(false);
   const listRef = useAutoAnimate();
+  const [view, setView] = useState(false);
 
   const { isLoading, error, data } = useQuery(["Newspapers"], () =>
     fetch(`/api/admin/newspapers`).then((res) => res.json())
@@ -91,6 +81,7 @@ function NewsTable(val) {
       {/* {JSON.stringify(newdata.length)} */}
 
       <div className={styles.NewsCont} ref={listRef}>
+        {view && <NewPaper a={setView} />}
         {newdata.length ? (
           <>
             <div className={styles.NewsBox} ref={listRef}>
@@ -117,6 +108,20 @@ function NewsTable(val) {
               />
               <p className={styles.NewsName}>Malayala Manorama</p>
             </div>
+
+            <div
+              className={styles.NewsBox}
+              ref={listRef}
+              style={{ cursor: "pointer" }}
+              onClick={() => setView(!view)}
+            >
+              <img
+                ref={listRef}
+                className={styles.NewsImg}
+                src={"/newspapers/add.png"}
+              />
+              <p className={styles.NewsName}>Add a new newspaper</p>
+            </div>
           </>
         ) : (
           <>
@@ -131,5 +136,55 @@ function NewsTable(val) {
         )}
       </div>
     </>
+  );
+}
+function NewPaper(val) {
+  const listRef = useAutoAnimate();
+  const [lang, setLang] = useState("English");
+  const [butload, setButload] = useState(false);
+  const { isLoading, error, data } = useQuery(["Langs"], () =>
+    fetch("/api/admin/newslang").then((res) => res.json())
+  );
+  return (
+    <div className={styles.NewCont}>
+      <div className={styles.NewPaper} ref={listRef}>
+        <label>Name</label>
+        <input />
+
+        <label>language</label>
+        <select
+          className={styles.Select}
+          name="lang"
+          id="lang"
+          defaultValue={""}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setLang(e.target.value);
+            queryClient.invalidateQueries(["Newspapers"]);
+          }}
+        >
+          {data.map((val) => (
+            <option value={val} key={val}>
+              {val}
+            </option>
+          ))}
+        </select>
+        <label>Description</label>
+        <textarea />
+        <button
+          ref={listRef}
+          onClick={() => {
+            setButload(!butload);
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {butload && (
+              <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
+            )}
+            Submit
+          </div>
+        </button>
+      </div>
+    </div>
   );
 }
