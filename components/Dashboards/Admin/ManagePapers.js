@@ -9,7 +9,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function ManagePapers() {
   console.log("tabless");
   const listRef = useAutoAnimate();
-  const [status, setStatus] = useState();
+  const [view, setView] = useState(0);
   const [lang, setLang] = useState("English");
 
   const [butload, setButload] = useState(false);
@@ -35,6 +35,16 @@ export default function ManagePapers() {
         {/* {JSON.stringify(lang)} */}
         <div className={styles.In}>
           <div className={styles.DivSelect}>
+            <div
+              className="Link"
+              style={{ textDecoration: "underline" }}
+              onClick={() => setView(1)}
+            >
+              {" "}
+              Add a new Newspaper"create a box for that"
+            </div>
+          </div>
+          <div className={styles.DivSelect}>
             <div> Select language</div>
             <select
               className={styles.Select}
@@ -54,6 +64,7 @@ export default function ManagePapers() {
               ))}
             </select>
           </div>
+
           <NewsTable language={lang} />
         </div>
       </div>

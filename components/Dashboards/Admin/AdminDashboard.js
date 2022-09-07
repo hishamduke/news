@@ -20,7 +20,7 @@ export default function Index() {
     <>
       {/* <div ref={listRef}> */}
       {currcomp != 0 && (
-        <div>
+        <div style={{}}>
           <p
             style={{
               marginLeft: "10%",
@@ -33,7 +33,7 @@ export default function Index() {
               setCurrcomp(0);
             }}
           >
-            {<BiArrowBack />} back
+            {<BiArrowBack />} dashboard
           </p>
         </div>
       )}
