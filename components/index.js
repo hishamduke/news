@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Breaking from "./breaking";
 import Image from "next/image";
+import Logout from "./buttons/logoutbutton";
 export default function Index() {
   return (
     <>
@@ -20,6 +21,9 @@ export default function Index() {
             <Link href={"/test"}>
               <h2 className={"formhead Link"}>Go to test field</h2>
             </Link>
+            <h2 className={"formhead Link"}>
+              <Logout />
+            </h2>
           </form>
           <Image
             className="dashboard"

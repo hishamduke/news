@@ -5,6 +5,7 @@ import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/ManagePapers.module.css";
 import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { BiArrowBack } from "react-icons/bi";
 
 export default function ManagePapers() {
   console.log("tabless");
@@ -81,7 +82,7 @@ function NewsTable(val) {
       {/* {JSON.stringify(newdata.length)} */}
 
       <div className={styles.NewsCont} ref={listRef}>
-        {view && <NewPaper a={setView} />}
+        {view && <NewPaper a={setView} lang={lang} />}
         {newdata.length ? (
           <>
             <div className={styles.NewsBox} ref={listRef}>
@@ -125,13 +126,24 @@ function NewsTable(val) {
           </>
         ) : (
           <>
-            <div
-              className={styles.Nofeed}
-              style={{ textAlign: "center", fontSize: 30 }}
-              ref={listRef}
-            >
-              There are no {lang} newspapers yet!
-            </div>
+            {lang && (
+              <div style={{ textAlign: "center" }}>
+                <div
+                  className={styles.Nofeed}
+                  style={{
+                    textAlign: "center",
+                    marginBottom: "10px",
+                    fontSize: 30,
+                  }}
+                  ref={listRef}
+                >
+                  There are no {lang} newspapers yet!
+                </div>
+                <div onClick={() => setView(!view)}>
+                  <button className={styles.NewsName}>Add a new One</button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
@@ -145,9 +157,28 @@ function NewPaper(val) {
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
   );
+  function handleSubmit() {
+    console.log("hi");
+  }
   return (
     <div className={styles.NewCont}>
       <div className={styles.NewPaper} ref={listRef}>
+        <div>
+          <p
+            style={{
+              // marginLeft: "10%",
+              fontSize: "medium",
+              // backgroundColor: "red",
+              width: "fit-content",
+            }}
+            className="zoom"
+            onClick={() => {
+              val.a(false);
+            }}
+          >
+            {<BiArrowBack />} go back
+          </p>
+        </div>
         <label>Name</label>
         <input />
 
@@ -156,7 +187,7 @@ function NewPaper(val) {
           className={styles.Select}
           name="lang"
           id="lang"
-          defaultValue={""}
+          defaultValue={val.lang}
           onChange={(e) => {
             console.log(e.target.value);
             setLang(e.target.value);
@@ -169,21 +200,27 @@ function NewPaper(val) {
             </option>
           ))}
         </select>
+        <label>Logo</label>
+        <input id="logo" type="file" accept="image/*" capture="camera" />
         <label>Description</label>
         <textarea />
-        <button
-          ref={listRef}
-          onClick={() => {
-            setButload(!butload);
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {butload && (
-              <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
-            )}
-            Submit
-          </div>
-        </button>
+        <div>
+          <button
+            style={{ marginRight: "10px" }}
+            ref={listRef}
+            onClick={() => {
+              setButload(!butload);
+              handleSubmit();
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {butload && (
+                <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
+              )}
+              Submit
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );

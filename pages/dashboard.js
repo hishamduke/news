@@ -9,29 +9,35 @@ export default function Home() {
     fetch("/api/userrole").then((res) => res.json())
   );
   const listRef = useAutoAnimate();
-
-  if (error)
+  if (isLoading)
     return (
       <>
         <div className="collumns">
           <div className="collumn">
-            <h2 className="formhead">
-              An error occured, Please try again. If this error persists please
-              contact the support.
-            </h2>
+            <h2 className="formhead">Loading........</h2>
             <br />
           </div>
         </div>
       </>
     );
+  if (error) return <Error />;
+  if (data == "ADMIN") return <Admin />;
+  if (data == "AGENT") return <Agent />;
+  if (data == "USER") return <Dashboard />;
+  else return <Error />;
+}
 
+function Error() {
   return (
     <>
-      {/* {JSON.stringify(data)} */}
-      <div ref={listRef}>
-        {data == "ADMIN" && <Admin />}
-        {data == "AGENT" && <Agent />}
-        {data == "USER" && <Dashboard />}
+      <div className="collumns">
+        <div className="collumn">
+          <h2 className="formhead">
+            An error occured, Please try again. If this error persists please
+            contact the support.
+          </h2>
+          <br />
+        </div>
       </div>
     </>
   );

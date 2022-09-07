@@ -42,10 +42,11 @@ model Agent {
 }
 
 model Newspaper {
-  id       Int      @id @default(autoincrement())
-  name     String   @db.VarChar(255)
-  language Language @default(English)
-  img      String
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  language    Language @default(English)
+  img         String
+  description String   @default("") @db.VarChar(255)
 }
 
 enum Role {

@@ -164,6 +164,7 @@
   height: 2.5vh;
   border: 0px solid #5cffc0;
   background-color: rgb(243, 243, 243);
+  /* background-color: yellow; */
 }
 
 .NewPaper textarea {

@@ -13,8 +13,8 @@ import { BiArrowBack } from "react-icons/bi";
 
 export default function Index() {
   const listRef = useAutoAnimate();
-  const [currcomp, setCurrcomp] = useState(4);
-  console.log(currcomp);
+  const [currcomp, setCurrcomp] = useState(0);
+  console.log("here");
 
   return (
     <>
