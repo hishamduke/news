@@ -152,7 +152,24 @@ function NewsTable(val) {
 }
 function NewPaper(val) {
   const listRef = useAutoAnimate();
-  const [lang, setLang] = useState("English");
+  let reader = new FileReader();
+  const [inp, setInp] = useState({
+    name: "",
+    language: "",
+    image: [],
+    desc: "",
+  });
+  // var fReader = new FileReader();
+  async function handleImg() {
+    reader.onload = function (e) {
+      setInp({ ...inp, image: reader.result });
+    };
+    // console.log(reader.result);
+  }
+  console.log(inp);
+  if (inp.language == "") {
+    setInp({ ...inp, language: val.lang });
+  }
   const [butload, setButload] = useState(false);
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
@@ -180,8 +197,7 @@ function NewPaper(val) {
           </p>
         </div>
         <label>Name</label>
-        <input />
-
+        <input onChange={(e) => setInp({ ...inp, name: e.target.value })} />
         <label>language</label>
         <select
           className={styles.Select}
@@ -189,8 +205,7 @@ function NewPaper(val) {
           id="lang"
           defaultValue={val.lang}
           onChange={(e) => {
-            console.log(e.target.value);
-            setLang(e.target.value);
+            setInp({ ...inp, language: e.target.value });
             queryClient.invalidateQueries(["Newspapers"]);
           }}
         >
@@ -201,9 +216,34 @@ function NewPaper(val) {
           ))}
         </select>
         <label>Logo</label>
-        <input id="logo" type="file" accept="image/*" capture="camera" />
+
+        <input
+          id="logo"
+          type="file"
+          accept="image/*"
+          capture="camera"
+          onChange={(e) => {
+            reader.readAsDataURL(e.target.files[0]);
+            handleImg();
+            setInp({ ...inp, image: reader });
+          }}
+        />
+        <br />
+        {!!inp.image.length && (
+          <div style={{ textAlign: "center" }}>
+            <img
+              className={styles.img}
+              src={inp.image}
+              // style={{ height: "150px" }}
+            />
+          </div>
+        )}
         <label>Description</label>
-        <textarea />
+        <textarea
+          onChange={(e) => {
+            setInp({ ...inp, desc: e.target.value });
+          }}
+        />
         <div>
           <button
             style={{ marginRight: "10px" }}

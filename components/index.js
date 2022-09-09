@@ -29,7 +29,7 @@ export default function Index() {
             className="dashboard"
             src="/news3.png"
             height={"300"}
-            width={"250"}
+            width={"300"}
             style={{ transform: "translateY(-40px)" }}
           ></Image>
         </div>

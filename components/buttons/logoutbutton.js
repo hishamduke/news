@@ -7,7 +7,7 @@ export default function Logout() {
   return (
     <>
       <button
-        style={{ margin: "10px" }}
+        // style={{ margin: "10px" }}
         onClick={(e) => {
           e.preventDefault();
           setButload(true);

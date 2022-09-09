@@ -32,10 +32,11 @@ function Error() {
     <>
       <div className="collumns">
         <div className="collumn">
-          <h2 className="formhead">
-            An error occured, Please try again. If this error persists please
-            contact the support.
-          </h2>
+          {/* <h2 className="formhead"> */}
+          An error occured, Please try again. If this error persists please
+          contact the support.
+          <br /> Is db connected??
+          {/* </h2> */}
           <br />
         </div>
       </div>
