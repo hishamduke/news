@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       imgName = inp.name + inp.language + "." + extension;
       console.log(imgName);
       fs.writeFile(
-        "public/News" + imgName,
+        "public/newspapers/" + imgName,
         base64Data,
         "base64",
         function (err, data) {
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     const result = await prisma.Newspaper.create({
       data: {
         name: inp.name,
-        img: !!imgName ? imgName : "",
+        img: !!imgName ? "/newspapers/" + imgName : "",
         language: inp.language,
         description: inp.desc,
       },

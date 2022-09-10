@@ -73,10 +73,14 @@ function NewsTable(val) {
   let newdata = [];
   if (data)
     for (let i = 0; i < data.length; i++) {
-      console.log(data[i]);
+      // console.log(data[i]);
       if (data[i].language == lang) newdata.push(data[i]);
-      console.log("loop");
+      // console.log("loop");
     }
+  for (let i = 0; i < newdata.length; i++) {
+    // newdata[0].img.replace(/ /g, "%20");
+    newdata[i].img = newdata[i].img.replace(/ /g, "%20");
+  }
   return (
     <>
       {/* {JSON.stringify(newdata.length)} */}
@@ -85,30 +89,14 @@ function NewsTable(val) {
         {view && <NewPaper a={setView} lang={lang} />}
         {newdata.length ? (
           <>
-            <div className={styles.NewsBox} ref={listRef}>
-              <img
-                ref={listRef}
-                className={styles.NewsImg}
-                src={"/newspapers/manorama.jpg"}
-              />
-              <p className={styles.NewsName}>Malayala Manorama</p>
-            </div>
-            <div className={styles.NewsBox} ref={listRef}>
-              <img
-                ref={listRef}
-                className={styles.NewsImg}
-                src={"/newspapers/manorama.jpg"}
-              />
-              <p className={styles.NewsName}>Malayala Manorama</p>
-            </div>
-            <div className={styles.NewsBox} ref={listRef}>
-              <img
-                ref={listRef}
-                className={styles.NewsImg}
-                src={"/newspapers/manorama.jpg"}
-              />
-              <p className={styles.NewsName}>Malayala Manorama</p>
-            </div>
+            {newdata.map((val) => (
+              <div className={styles.NewsBox} ref={listRef}>
+                {console.log(val)}
+                <img ref={listRef} className={styles.NewsImg} src={val.img} />
+                <h1 className={styles.NewsName}>{val.name}</h1>
+                <p style={{ textAlign: "center" }}>{val.description}</p>
+              </div>
+            ))}
 
             <div
               className={styles.NewsBox}
@@ -186,11 +174,12 @@ function NewPaper(val) {
         inp,
       })
       .then(function (response) {
+        queryClient.invalidateQueries(["Newspapers"]);
         console.log(response.status);
         const myTimeout = setTimeout(() => {
           setButload(false);
           setTimeout(val.a(false), 200);
-        }, 3000);
+        }, 100);
       })
       .catch(function (error) {
         console.log(error.response.data.error);
