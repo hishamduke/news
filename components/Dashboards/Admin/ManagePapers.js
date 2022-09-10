@@ -132,7 +132,7 @@ function NewsTable(val) {
                   className={styles.Nofeed}
                   style={{
                     textAlign: "center",
-                    marginBottom: "10px",
+                    marginBottom: "40px",
                     fontSize: 30,
                   }}
                   ref={listRef}
@@ -140,7 +140,9 @@ function NewsTable(val) {
                   There are no {lang} newspapers yet!
                 </div>
                 <div onClick={() => setView(!view)}>
-                  <button className={styles.NewsName}>Add a new One</button>
+                  <button className={(styles.NewsName, "Link")}>
+                    Add a new One
+                  </button>
                 </div>
               </div>
             )}
@@ -160,6 +162,7 @@ function NewPaper(val) {
     desc: "",
   });
   // var fReader = new FileReader();
+
   async function handleImg() {
     reader.onload = function (e) {
       setInp({ ...inp, image: reader.result });
@@ -174,94 +177,120 @@ function NewPaper(val) {
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
   );
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    setButload(true);
+
+    axios
+      .post("/api/admin/addPaper", {
+        inp,
+      })
+      .then(function (response) {
+        console.log(response.status);
+        const myTimeout = setTimeout(() => {
+          setButload(false);
+          setTimeout(val.a(false), 200);
+        }, 3000);
+      })
+      .catch(function (error) {
+        console.log(error.response.data.error);
+        setButload(false);
+        if (error.response.data.error == "Non unique")
+          alert("A newspaper with same name exist in this language,Try again");
+      });
     console.log("hi");
   }
   return (
-    <div className={styles.NewCont}>
-      <div className={styles.NewPaper} ref={listRef}>
-        <div>
-          <p
-            style={{
-              // marginLeft: "10%",
-              fontSize: "medium",
-              // backgroundColor: "red",
-              width: "fit-content",
-            }}
-            className="zoom"
-            onClick={() => {
-              val.a(false);
-            }}
-          >
-            {<BiArrowBack />} go back
-          </p>
-        </div>
-        <label>Name</label>
-        <input onChange={(e) => setInp({ ...inp, name: e.target.value })} />
-        <label>language</label>
-        <select
-          className={styles.Select}
-          name="lang"
-          id="lang"
-          defaultValue={val.lang}
-          onChange={(e) => {
-            setInp({ ...inp, language: e.target.value });
-            queryClient.invalidateQueries(["Newspapers"]);
-          }}
+    <>
+      <div className={styles.NewCont}>
+        <form
+          className={styles.NewPaper}
+          ref={listRef}
+          onSubmit={(e) => handleSubmit(e)}
         >
-          {data.map((val) => (
-            <option value={val} key={val}>
-              {val}
-            </option>
-          ))}
-        </select>
-        <label>Logo</label>
-
-        <input
-          id="logo"
-          type="file"
-          accept="image/*"
-          capture="camera"
-          onChange={(e) => {
-            reader.readAsDataURL(e.target.files[0]);
-            handleImg();
-            setInp({ ...inp, image: reader });
-          }}
-        />
-        <br />
-        {!!inp.image.length && (
-          <div style={{ textAlign: "center" }}>
-            <img
-              className={styles.img}
-              src={inp.image}
-              // style={{ height: "150px" }}
-            />
+          <div>
+            <p
+              style={{
+                // marginLeft: "10%",
+                fontSize: "medium",
+                // backgroundColor: "red",
+                width: "fit-content",
+              }}
+              className="zoom"
+              onClick={() => {
+                val.a(false);
+              }}
+            >
+              {<BiArrowBack />} go back
+            </p>
           </div>
-        )}
-        <label>Description</label>
-        <textarea
-          onChange={(e) => {
-            setInp({ ...inp, desc: e.target.value });
-          }}
-        />
-        <div>
-          <button
-            style={{ marginRight: "10px" }}
-            ref={listRef}
-            onClick={() => {
-              setButload(!butload);
-              handleSubmit();
+
+          <label>Name</label>
+          <input
+            onChange={(e) => setInp({ ...inp, name: e.target.value })}
+            required
+            minLength={3}
+          />
+          <label>language</label>
+          <select
+            required
+            className={styles.Select}
+            name="lang"
+            id="lang"
+            defaultValue={val.lang}
+            onChange={(e) => {
+              setInp({ ...inp, language: e.target.value });
+              queryClient.invalidateQueries(["Newspapers"]);
             }}
           >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              {butload && (
-                <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
-              )}
-              Submit
+            {data.map((val) => (
+              <option value={val} key={val}>
+                {val}
+              </option>
+            ))}
+          </select>
+          <label>Logo</label>
+
+          <input
+            id="logo"
+            type="file"
+            accept="image/*"
+            capture="camera"
+            onChange={(e) => {
+              reader.readAsDataURL(e.target.files[0]);
+              handleImg();
+              setInp({ ...inp, image: reader });
+            }}
+          />
+          <br />
+          {!!inp.image.length && (
+            <div style={{ textAlign: "center" }}>
+              <img
+                className={styles.img}
+                src={inp.image}
+                // style={{ height: "150px" }}
+              />
             </div>
-          </button>
-        </div>
+          )}
+          <label>Description</label>
+          <textarea
+            required
+            onChange={(e) => {
+              setInp({ ...inp, desc: e.target.value });
+            }}
+          />
+          <div>
+            <button style={{ marginRight: "10px" }} ref={listRef} type="submit">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {butload && (
+                  <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
+                )}
+                Submit
+              </div>
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
+    </>
   );
 }
