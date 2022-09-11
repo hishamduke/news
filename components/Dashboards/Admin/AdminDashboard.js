@@ -8,8 +8,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import styles from "../../../styles/AdminDashboard.module.css";
-
 import { BiArrowBack } from "react-icons/bi";
+import Router from "next/router";
 
 export default function Index() {
   const listRef = useAutoAnimate();
@@ -43,7 +43,10 @@ export default function Index() {
             <div className="dashboard" style={{ marginRight: "100px" }}>
               <br />
               <form>
-                <h2 className={"formhead Link"} onClick={() => setCurrcomp(1)}>
+                <h2
+                  className={"formhead Link"}
+                  onClick={() => Router.push("/dashboard/agentManage")}
+                >
                   Approve or disapprove agents
                 </h2>
 
