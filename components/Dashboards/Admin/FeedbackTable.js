@@ -4,9 +4,10 @@ import { useState } from "react";
 import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
 import Image from "next/image";
+import BackButton from "../../buttons/backButton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-export default function AgentTable() {
+export default function FeedbackTable() {
   console.log("tabless");
   const listRef = useAutoAnimate();
   const [status, setStatus] = useState();
@@ -100,12 +101,17 @@ export default function AgentTable() {
             </table>
           ) : (
             <>
-              <div
-                className={styles.Nofeed}
-                style={{ textAlign: "center", fontSize: 30 }}
-                ref={listRef}
-              >
-                There are no feedbacks yet!
+              <div>
+                <div style={{ display: "flex", marginLeft: 100 }}>
+                  <BackButton />
+                </div>
+                <div
+                  className={styles.Nofeed}
+                  style={{ textAlign: "center", fontSize: 30 }}
+                  ref={listRef}
+                >
+                  There are no feedbacks yet!
+                </div>
               </div>
             </>
           )}

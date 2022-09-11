@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/ManagePapers.module.css";
 import Image from "next/image";
@@ -80,6 +80,24 @@ function NewsTable(val) {
   for (let i = 0; i < newdata.length; i++) {
     // newdata[0].img.replace(/ /g, "%20");
     newdata[i].img = newdata[i].img.replace(/ /g, "%20");
+  }
+
+  if (isLoading) {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <div
+          className={styles.Nofeed}
+          style={{
+            textAlign: "center",
+            marginBottom: "40px",
+            fontSize: 30,
+          }}
+          ref={listRef}
+        >
+          Please wait....
+        </div>
+      </div>
+    );
   }
   return (
     <>

@@ -5,6 +5,7 @@ import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
 import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import BackButton from "../../buttons/backButton";
 
 export default function AgentTable() {
   console.log("tabless");
@@ -64,6 +65,14 @@ export default function AgentTable() {
       {data.length == 0 ? (
         <>
           <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <BackButton />
+          </div>
+          <div
             className={styles.Nofeed}
             style={{ textAlign: "center", fontSize: 30 }}
             ref={listRef}
@@ -75,7 +84,9 @@ export default function AgentTable() {
         <div className={styles.Base}>
           <div className={styles.In}>
             {/* {JSON.stringify(data)} */}
-
+            <div style={{ display: "flex" }}>
+              <BackButton />
+            </div>
             <table className={styles.Table} cellSpacing={0} cellPadding={0}>
               <thead className={styles.TableHead}>
                 <tr className={styles.Tr}>

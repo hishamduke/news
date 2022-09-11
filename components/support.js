@@ -5,6 +5,7 @@ import Router from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import BackButton from "./buttons/backButton";
 
 export default function Support() {
   const [butload, setButload] = useState(false);
@@ -40,6 +41,7 @@ export default function Support() {
             handlesubmit(e);
           }}
         >
+          <BackButton />
           <h2 className={"formhead"}>We are happy to help you.</h2>
           <p>Please input in the following field :</p>
           <textarea

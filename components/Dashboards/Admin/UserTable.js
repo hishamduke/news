@@ -41,12 +41,14 @@ export default function AgentTable() {
       )}
       {data.length == 0 ? (
         <>
-          <div
-            className={styles.Nofeed}
-            style={{ textAlign: "center", fontSize: 30 }}
-            ref={listRef}
-          >
-            There are no Users yet!
+          <div className={styles.Base}>
+            <div
+              className={styles.Nofeed}
+              style={{ textAlign: "center", fontSize: 30 }}
+              ref={listRef}
+            >
+              There are no Users yet!
+            </div>
           </div>
         </>
       ) : (

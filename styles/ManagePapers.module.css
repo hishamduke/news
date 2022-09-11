@@ -134,6 +134,7 @@
   background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 1%;
 }
 .NewCont {
   position: fixed;

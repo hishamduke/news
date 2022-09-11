@@ -1,6 +1,6 @@
 import Dashboard from "../components/Dashboards/dashboard";
 import Admin from "../components/Dashboards/Admin/AdminDashboard";
-import Agent from "../components/Dashboards/Agent";
+import Agent from "../components/Dashboards/Agent/dashboard";
 import { useQuery } from "@tanstack/react-query";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 

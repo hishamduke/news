@@ -9,6 +9,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function Register() {
   const [msg, setmsg] = useState("");
   const [vis, setvis] = useState(false);
+  const [butload, setButload] = useState(false);
   const [inp, setInp] = useState({
     name: "",
     email: "",
@@ -40,6 +41,7 @@ export default function Register() {
   }
   function valida() {
     console.log(inp);
+    setButload(true);
     axios
       .post("/api/reg", {
         inp,
@@ -59,7 +61,11 @@ export default function Register() {
         password: inp.password,
       })
       .then(function (response) {
+        setButload(false);
         Router.push("/dashboard");
+      })
+      .catch((e) => {
+        setButload(false);
       });
   }
   return (
@@ -191,12 +197,19 @@ export default function Register() {
               }}
             ></input>
           </div>
-          <div className="but">
-            <button>Submit</button>{" "}
-          </div>
+
+          <button>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {butload && (
+                <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
+              )}{" "}
+              Submit
+            </div>
+          </button>
+
           <br />
-          <Link href={"/login"}>
-            <div className="Link">Login to User account</div>
+          <Link href={"/agentRegister"}>
+            <a className="Link">Create an Agent account</a>
           </Link>
         </form>
       </div>

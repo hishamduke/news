@@ -168,8 +168,8 @@ export default function AgentRegister() {
             <button>Submit</button>{" "}
           </div>
           <br />
-          <Link href={"/login"}>
-            <div className="Link">Login to User account</div>
+          <Link href={"/register"}>
+            <a className="Link">Create an User account</a>
           </Link>
         </form>
       </div>
