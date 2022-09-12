@@ -9,7 +9,7 @@ import { BiArrowBack } from "react-icons/bi";
 
 export default function ManagePapers() {
   console.log("tabless");
-  const listRef = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
   const [lang, setLang] = useState("English");
 
   const [butload, setButload] = useState(false);
@@ -64,7 +64,7 @@ export default function ManagePapers() {
 function NewsTable(val) {
   const lang = val.language;
   const [butload, setButload] = useState(false);
-  const listRef = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
   const [view, setView] = useState(false);
 
   const { isLoading, error, data } = useQuery(["Newspapers"], () =>
@@ -103,14 +103,18 @@ function NewsTable(val) {
     <>
       {/* {JSON.stringify(newdata.length)} */}
 
-      <div className={styles.NewsCont} ref={listRef}>
+      <div className={styles.NewsCont} ref={animationParent}>
         {view && <NewPaper a={setView} lang={lang} />}
         {newdata.length ? (
           <>
             {newdata.map((val) => (
-              <div className={styles.NewsBox} ref={listRef} key={val}>
+              <div className={styles.NewsBox} ref={animationParent} key={val}>
                 {console.log(val)}
-                <img ref={listRef} className={styles.NewsImg} src={val.img} />
+                <img
+                  ref={animationParent}
+                  className={styles.NewsImg}
+                  src={val.img}
+                />
                 <h1 className={styles.NewsName}>{val.name}</h1>
                 <p style={{ textAlign: "center" }}>{val.description}</p>
               </div>
@@ -118,12 +122,12 @@ function NewsTable(val) {
 
             <div
               className={styles.NewsBox}
-              ref={listRef}
+              ref={animationParent}
               style={{ cursor: "pointer" }}
               onClick={() => setView(!view)}
             >
               <img
-                ref={listRef}
+                ref={animationParent}
                 className={styles.NewsImg}
                 src={"/newspapers/add.png"}
               />
@@ -141,7 +145,7 @@ function NewsTable(val) {
                     marginBottom: "40px",
                     fontSize: 30,
                   }}
-                  ref={listRef}
+                  ref={animationParent}
                 >
                   There are no {lang} newspapers yet!
                 </div>

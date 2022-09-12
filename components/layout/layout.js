@@ -3,12 +3,12 @@ import Footer from "./footer";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Layout({ children }) {
-  const listRef = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
 
   return (
     <>
       <div className="body">
-        <main ref={listRef} className="main">
+        <main ref={animationParent} className="main">
           {children}
         </main>
         <Header />
