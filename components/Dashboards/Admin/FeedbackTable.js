@@ -44,7 +44,7 @@ export default function FeedbackTable() {
         <div className={styles.In} ref={listRef}>
           {/* {JSON.stringify(data)} */}
           {data.length ? (
-            <table className={styles.Table} cellspacing={0} cellpadding={0}>
+            <table className={styles.Table}>
               <thead className={styles.TableHead}>
                 <tr className={styles.Tr}>
                   <th colSpan="20" className={styles.MainHead}>

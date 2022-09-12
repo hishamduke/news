@@ -108,7 +108,7 @@ function NewsTable(val) {
         {newdata.length ? (
           <>
             {newdata.map((val) => (
-              <div className={styles.NewsBox} ref={listRef}>
+              <div className={styles.NewsBox} ref={listRef} key={val}>
                 {console.log(val)}
                 <img ref={listRef} className={styles.NewsImg} src={val.img} />
                 <h1 className={styles.NewsName}>{val.name}</h1>
