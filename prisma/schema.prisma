@@ -1,0 +1,61 @@
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model Accounts {
+  id       Int    @id @default(autoincrement())
+  email    String @unique @db.VarChar(255)
+  name     String @db.VarChar(255)
+  password String @db.VarChar(255)
+  role     Role   @default(USER)
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  accountid Int     @unique
+  num       BigInt  @unique
+  house     String  @db.VarChar(255)
+  street    String  @db.VarChar(255)
+  pin       BigInt
+  banned    Boolean @default(false)
+}
+
+model Feedback {
+  id      Int    @id @default(autoincrement())
+  account Int
+  content String @db.VarChar(255)
+}
+
+model Agent {
+  accountid Int     @unique
+  id        Int     @id @default(autoincrement())
+  num       BigInt  @unique
+  loc       String  @db.VarChar(255)
+  approved  Boolean @default(false)
+}
+
+model Newspaper {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  language    Language @default(English)
+  img         String   @default("")
+  description String   @default("") @db.VarChar(255)
+}
+
+enum Role {
+  USER
+  ADMIN
+  AGENT
+}
+
+enum Language {
+  English
+  Malayalam
+}

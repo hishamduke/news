@@ -1,0 +1,29 @@
+.textarea1 {
+  width: 800px;
+  height: 250px;
+  /* background-color: yellow; */
+  padding-left: 2%;
+  padding-top: 2%;
+}
+.form {
+  /* background-color: aqua; */
+  width: auto;
+  /* background-color: red; */
+}
+.imge {
+  transform: translateY(35px);
+  transition: all 0.5s;
+}
+
+.supportCont {
+  gap: 100px;
+  display: flex;
+  padding-left: 4%;
+  flex-wrap: wrap;
+  /* width: 100%; */
+  /* background-color: violet; */
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
