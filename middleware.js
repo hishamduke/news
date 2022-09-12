@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login/:path*", "/register"],
+  // matcher: ["/dashboard/:path*", "/login/:path*", "/register"],
 };
 export async function middleware(request) {
   let cookiename = "OurSiteJWT";
