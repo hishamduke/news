@@ -92,7 +92,7 @@ function NewsTable(val) {
             marginBottom: "40px",
             fontSize: 30,
           }}
-          ref={listRef}
+          ref={animationParent}
         >
           Please wait....
         </div>
@@ -163,7 +163,7 @@ function NewsTable(val) {
   );
 }
 function NewPaper(val) {
-  const listRef = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
   let reader = new FileReader();
   const [inp, setInp] = useState({
     name: "",
@@ -216,7 +216,7 @@ function NewPaper(val) {
       <div className={styles.NewCont}>
         <form
           className={styles.NewPaper}
-          ref={listRef}
+          ref={animationParent}
           onSubmit={(e) => handleSubmit(e)}
         >
           <div>
@@ -291,7 +291,11 @@ function NewPaper(val) {
             }}
           />
           <div>
-            <button style={{ marginRight: "10px" }} ref={listRef} type="submit">
+            <button
+              style={{ marginRight: "10px" }}
+              ref={animationParent}
+              type="submit"
+            >
               <div style={{ display: "flex", alignItems: "center" }}>
                 {butload && (
                   <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />

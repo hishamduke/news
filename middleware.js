@@ -10,6 +10,7 @@ export async function middleware(request) {
   let obj;
 
   console.log("one");
+  console.log(url);
   const valid = await fetch(url, {
     headers: {
       cookie: cookie,
