@@ -22,7 +22,9 @@ export default function Home() {
     );
   if (error) return <Error />;
   if (data == "ADMIN") return <Admin />;
-  if (data == "AGENT") return <Agent />;
+  if (data == "AGENT") {
+    return <Agent />;
+  }
   if (data == "USER") return <Dashboard />;
   else return <Error />;
 }

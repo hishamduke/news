@@ -24,6 +24,7 @@ export default function AgentTable() {
         setButload(false);
       }, 500);
       setTimeout(() => {
+        queryClient.invalidateQueries(["agentStatus"]);
         queryClient.invalidateQueries(["agentsDetails"]);
       }, 700);
     },
@@ -38,6 +39,7 @@ export default function AgentTable() {
         setButload(false);
       }, 1100);
       setTimeout(() => {
+        queryClient.invalidateQueries(["agentStatus"]);
         queryClient.invalidateQueries(["agentsDetails"]);
       }, 700);
     },

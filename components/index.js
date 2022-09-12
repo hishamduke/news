@@ -9,27 +9,32 @@ export default function Index() {
         <div className="dashboard" style={{ marginRight: "100px" }}>
           <br />
           <form>
+            <h1 className={"formhead test"}>Hey there !</h1>
+            <p>
+              Welcome to Newspaper subscription <br />
+              system
+            </p>
             <Link href={"/login"}>
-              <h2 className={"formhead Link"}>Login?</h2>
+              <h3 className={"formhead Link"}>Login?</h3>
             </Link>{" "}
             <Link href={"/loginAgent"}>
-              <h2 className={"formhead Link"}>agent Login?</h2>
+              <h3 className={"formhead Link"}>agent Login?</h3>
             </Link>
             <Link href={"/register"}>
-              <h2 className={"formhead Link"}>Create a new user account?</h2>
+              <h3 className={"formhead Link"}>Create a new user account?</h3>
             </Link>
             <Link href={"/test"}>
-              <h2 className={"formhead Link"}>Go to test field</h2>
+              <h3 className={"formhead Link"}>Go to test field</h3>
             </Link>
-            <h2 className={"formhead Link"}>
+            <h3 className={"formhead Link"}>
               <Logout />
-            </h2>
+            </h3>
           </form>
           <Image
             className="dashboard"
             src="/news3.png"
-            height={"300"}
-            width={"320"}
+            height={"290"}
+            width={"330"}
             style={{ transform: "translateY(-40px)" }}
           ></Image>
         </div>

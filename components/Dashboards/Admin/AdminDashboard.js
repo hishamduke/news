@@ -12,7 +12,7 @@ import styles from "../../../styles/ManagePapers.module.css";
 export default function Index() {
   const listRef = useAutoAnimate();
   const [currcomp, setCurrcomp] = useState(0);
-  const { isLoading, error, data } = useQuery(["agentStatus"], () =>
+  const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
   );
   if (data) queryClient.invalidateQueries("account");
@@ -118,7 +118,7 @@ export default function Index() {
               src="/news1.png"
               height={"300"}
               width={"320"}
-              style={{ transform: "translateY(-40px)" }}
+              // style={{ transform: "translateY(-40px)" }}
             ></Image>
           </div>
         </div>
