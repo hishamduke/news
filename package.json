@@ -10,7 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@formkit/auto-animate": "^1.0.0-beta.3npm",
+    "@formkit/auto-animate": "^1.0.0-beta.3",
     "@prisma/client": "^4.1.1",
     "@react-google-maps/api": "^2.12.2",
     "@tanstack/react-query": "^4.3.4",
