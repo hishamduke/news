@@ -41,7 +41,7 @@ function News(props) {
     </>
   );
 }
-export default function breaking() {
+export default function Breaking() {
   const { isLoading, error, data } = useQuery(["News"], () =>
     axios.get("/api/news").then((res) => {
       return res.data;
