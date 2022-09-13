@@ -4,6 +4,7 @@ export const config = {
   matcher: ["/dashboard/:path*", "/login/:path*", "/register", "/logout"],
 };
 export async function middleware(request) {
+  console.log("inside middleware");
   let cookiename = "OurSiteJWT";
   let cookie = cookiename + "=" + request.cookies.get(cookiename);
   let url = request.nextUrl.origin + "/api/auth/cook";
