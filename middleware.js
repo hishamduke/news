@@ -7,18 +7,12 @@ export async function middleware(request) {
   let cookiename = "OurSiteJWT";
   let cookie = cookiename + "=" + request.cookies.get(cookiename);
   let url = request.nextUrl.origin + "/api/auth/cook";
-  let obj;
-
-  console.log("oneoneoneoneone");
-
-  console.log("oneoneoneoneone");
   const valid = await fetch(url, {
     headers: {
       cookie: cookie,
     },
   }).then((response) => response.json());
-  console.log(valid);
-  console.log("oneoneoneoneone");
+
   if (request.nextUrl.pathname.includes("/login")) {
     if (valid.Message == !false) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
@@ -34,10 +28,6 @@ export async function middleware(request) {
     }
   }
   if (valid.Message == false) {
-    const logins = NextResponse.redirect(new URL("/login", request.url));
-    logins.cookies.set(cookiename, null, { maxAge: 0 });
-    return logins;
+    return NextResponse.redirect(new URL("/logout", request.url));
   }
-
-  // console.log(valid);
 }
