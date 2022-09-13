@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login/:path*", "/register"],
+  matcher: ["/dashboard/:path*", "/login/:path*", "/register", "/logout"],
 };
 export async function middleware(request) {
   let cookiename = "OurSiteJWT";
@@ -26,6 +26,12 @@ export async function middleware(request) {
     } else {
       return NextResponse.next();
     }
+  }
+  if (request.nextUrl.pathname.includes("/logout")) {
+    const response = NextResponse.next();
+    response.cookies.delete(cookiename);
+    response.cookies.clear();
+    return response;
   }
   if (valid.Message == false) {
     return NextResponse.redirect(new URL("/logout", request.url));

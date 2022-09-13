@@ -1,11 +1,8 @@
 import React from "react";
 import styles from "../styles/ManagePapers.module.css";
 import Image from "next/image";
-import Router from "next/router";
-import { deleteCookie } from "cookies-next";
-
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Logout from "../components/buttons/logoutbutton";
+import Router from "next/router";
 export default function Loading() {
   let a = async () => {
     let val = await fetch("/api/auth/logout");
@@ -45,7 +42,3 @@ export default function Loading() {
     </div>
   );
 }
-export const getServerSideProps = ({ req, res }) => {
-  deleteCookie("OurSiteJWT", { req, res });
-  return { props: {} };
-};
