@@ -28,6 +28,7 @@ export async function middleware(request) {
     }
   }
   if (request.nextUrl.pathname.includes("/logout")) {
+    console.log("Inside logout middleware");
     const response = NextResponse.next();
     response.cookies.delete(cookiename);
     response.cookies.clear();

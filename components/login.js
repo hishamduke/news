@@ -90,8 +90,8 @@ export default function Login() {
             {axres}
           </div>
 
-          <div style={{ display: "flex" }}>
-            Create an
+          <div style={{ display: "content" }}>
+            Create an&nbsp;
             <Link href={"/register"}>
               <a className="Link">User account </a>
             </Link>
