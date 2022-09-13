@@ -9,8 +9,10 @@ export async function middleware(request) {
   let url = request.nextUrl.origin + "/api/auth/cook";
   let obj;
 
-  console.log("one");
+  console.log("oneoneoneoneone");
   console.log(url);
+
+  console.log("twotwotwotwo");
   const valid = await fetch(url, {
     headers: {
       cookie: cookie,
