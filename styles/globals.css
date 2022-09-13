@@ -395,12 +395,12 @@ input::-webkit-inner-spin-button {
   padding-bottom: 2%;
   transition: all 0.7s; */
   /* background-color: yellowgreen; */
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 20px;
   /* margin-right: 100px; */
   width: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   /* padding: 0 1% 0 1%; */
   vertical-align: top;
@@ -634,7 +634,7 @@ th {
   }
   header {
     max-width: 320px;
-    font-size: 5vh;
+    font-size: 4vh;
     line-height: 54px;
     overflow: hidden;
   }

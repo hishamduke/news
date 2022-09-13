@@ -6,9 +6,11 @@ export default function Index() {
   return (
     <>
       <div className="collumns">
-        <div className="dashboard" style={{ marginRight: "100px" }}>
+        <div className="dashboard">
           <br />
-          <form>
+          <form
+          // style={{ backgroundColor: "blue" }}
+          >
             <h1 className={"formhead test"}>Hey there !</h1>
             <p>
               Welcome to Newspaper subscription <br />
@@ -30,13 +32,23 @@ export default function Index() {
               <Logout />
             </h3>
           </form>
-          <Image
-            className="dashboard"
-            src="/news3.png"
-            height={"290"}
-            width={"330"}
-            style={{ transform: "translateY(-40px)" }}
-          ></Image>
+          <div
+            style={{
+              height: "500px",
+              width: "500px",
+              // backgroundColor: "red",
+              overflow: "none",
+            }}
+          >
+            <Image
+              className="dashboard"
+              src="/news3.png"
+              height={"1000"}
+              width={"950"}
+              // layout="fill"
+              style={{ transform: "translateY(-40px)" }}
+            ></Image>
+          </div>
         </div>
       </div>
       {/* <Breaking /> */}
