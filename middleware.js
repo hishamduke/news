@@ -10,15 +10,15 @@ export async function middleware(request) {
   let obj;
 
   console.log("oneoneoneoneone");
-  console.log(url);
 
-  console.log("twotwotwotwo");
+  console.log("oneoneoneoneone");
   const valid = await fetch(url, {
     headers: {
       cookie: cookie,
     },
   }).then((response) => response.json());
-
+  console.log(valid);
+  console.log("oneoneoneoneone");
   if (request.nextUrl.pathname.includes("/login")) {
     if (valid.Message == !false) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
