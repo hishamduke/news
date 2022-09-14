@@ -6,10 +6,12 @@ import { queryClient } from "../pages/_app";
 import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function Login() {
-  const listRef = useAutoAnimate();
-  const [axres, setAxres] = useState("");
+  const [parent] = useAutoAnimate(/* optional config */);
+
+  const [axres, setAxres] = useState(1);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [items, setItems] = useState([]);
 
   const [butload, setButload] = useState(false);
 
@@ -26,7 +28,7 @@ export default function Login() {
   }, []);
 
   function handlelogin(e) {
-    setTimeout(() => setAxres(""), 4000);
+    setTimeout(() => setItems([]), 4000);
     e.preventDefault();
     setButload(true);
     axios
@@ -35,13 +37,14 @@ export default function Login() {
         password,
       })
       .then(function (response) {
-        setAxres("");
+        setAxres(1);
         queryClient.invalidateQueries("account");
         Router.push("/dashboard");
       })
       .catch(function (error) {
         setButload(false);
-        setAxres("Invalid credentials");
+        setItems([...items, "Invalid credentials"]);
+        setAxres(0);
       });
   }
 
@@ -62,9 +65,9 @@ export default function Login() {
               }}
             ></input>
           </div>
+          <br />
           <div> Password</div>
           <div>
-            {" "}
             <input
               required
               className="forminp"
@@ -75,6 +78,7 @@ export default function Login() {
               }}
             ></input>
           </div>
+          <br />
           <div className="but">
             <button>
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -86,10 +90,12 @@ export default function Login() {
             </button>
           </div>
           <br />
-          <div ref={listRef} className="axres">
-            {axres}
+          <div ref={parent}>
+            {items.map((item) => (
+              <div>{item}</div>
+            ))}
           </div>
-
+          <br />
           <div style={{ display: "content" }}>
             Create an&nbsp;
             <Link href={"/register"}>

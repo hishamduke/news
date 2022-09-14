@@ -21,7 +21,7 @@ export default function Verified() {
             <h1 className={"formhead test"}>Hey {data.name} !</h1>
             <h3
               className={"formhead Link"}
-              onClick={() => Router.push("/dashboard/agentManage")}
+              onClick={() => Router.push("/dashboard/admin/agentManage")}
             >
               Manage employees
             </h3>

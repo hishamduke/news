@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   try {
     var decoded = verify(JWT, secret);
     const id = decoded.id;
-    console.log(id);
+    // console.log(id);
     const userac = await prisma.agent.findUnique({
       where: {
         accountid: id,
@@ -70,5 +70,5 @@ export default async function handler(req, res) {
     return;
   }
 
-  console.log(date.getTime());
+  // console.log(date.getTime());
 }

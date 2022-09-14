@@ -55,6 +55,15 @@ enum Role {
   AGENT
 }
 
+model Employee {
+  id       Int    @id @default(autoincrement())
+  email    String @unique @db.VarChar(255)
+  name     String @db.VarChar(255)
+  password String @db.VarChar(255)
+  agentid  Int    @default(0)
+  num      BigInt @unique
+}
+
 enum Language {
   English
   Malayalam

@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   let result = {};
   try {
     var decoded = verify(JWT, secret);
-    console.log(decoded);
+    // console.log(decoded);
 
     const result = await prisma.agent.findFirst({
       where: {
@@ -25,5 +25,5 @@ export default async function handler(req, res) {
     res.status(200).json({ error: e.name });
   }
 
-  console.log(date.getTime());
+  // console.log(date.getTime());
 }

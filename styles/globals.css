@@ -404,6 +404,7 @@ input::-webkit-inner-spin-button {
   flex-wrap: wrap;
   /* padding: 0 1% 0 1%; */
   vertical-align: top;
+  gap: 100px;
   /* margin-bottom: 50px; */
   transition: all 0.7s;
 }

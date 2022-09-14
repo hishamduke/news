@@ -81,27 +81,27 @@ export default function Index() {
               <h1 className={"formhead test"}>Hey {data.name} !</h1>
               <h3
                 className={"formhead Link"}
-                onClick={() => Router.push("/dashboard/agentManage")}
+                onClick={() => Router.push("/dashboard/admin/agentManage")}
               >
                 Approve or disapprove agents
               </h3>
 
               <h3
                 className={"formhead Link"}
-                onClick={() => Router.push("/dashboard/feedbacks")}
+                onClick={() => Router.push("/dashboard/admin/feedbacks")}
               >
                 View feedbacks
               </h3>
 
               <h3
                 className={"formhead Link"}
-                onClick={() => Router.push("/dashboard/users")}
+                onClick={() => Router.push("/dashboard/admin/users")}
               >
                 Manage users
               </h3>
               <h3
                 className={"formhead Link"}
-                onClick={() => Router.push("/dashboard/newspapers")}
+                onClick={() => Router.push("/dashboard/admin/newspapers")}
               >
                 Manage Newspapers
               </h3>
@@ -111,15 +111,23 @@ export default function Index() {
               </Link>
               <Logout />
             </form>
-            <Image
-              priority="false"
-              // placeholder="blur"
-              className="dashboard"
-              src="/news1.png"
-              height={"300"}
-              width={"320"}
-              // style={{ transform: "translateY(-40px)" }}
-            ></Image>
+            <div
+              style={{
+                height: "500px",
+                width: "500px",
+                // backgroundColor: "red",
+                overflow: "none",
+              }}
+            >
+              <Image
+                className="dashboard"
+                src="/news1.png"
+                height={"1000"}
+                width={"950"}
+                // layout="fill"
+                style={{ transform: "translateY(-40px)" }}
+              ></Image>
+            </div>
           </div>
         </div>
 

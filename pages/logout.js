@@ -5,6 +5,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { getCookies, deleteCookie, setCookie } from "cookies-next";
 import Router from "next/router";
 export default function Loading(props) {
+  console.log("Logout mounted");
   let a = async () => {
     setTimeout(() => {
       Router.push("/login");
@@ -37,7 +38,7 @@ export default function Loading(props) {
             style={{ textAlign: "center", fontSize: 30 }}
             ref={listRef}
           >
-            Logging out...2
+            Logging out...
           </div>
         </div>
       </div>
