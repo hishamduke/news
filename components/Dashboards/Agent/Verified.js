@@ -1,13 +1,10 @@
 import Router from "next/router";
-import styles from "../../../styles/ManagePapers.module.css";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Logout from "../../buttons/logoutbutton";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Loading from "../../common/Loading";
 import Link from "next/link";
 export default function Verified() {
-  const listRef = useAutoAnimate();
   const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
   );
@@ -21,7 +18,7 @@ export default function Verified() {
             <h1 className={"formhead test"}>Hey {data.name} !</h1>
             <h3
               className={"formhead Link"}
-              onClick={() => Router.push("/dashboard/admin/agentManage")}
+              onClick={() => Router.push("/dashboard/agent/employees")}
             >
               Manage employees
             </h3>

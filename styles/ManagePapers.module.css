@@ -86,6 +86,8 @@
   transition: all 0.5s;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+
   /* height: %; */
 }
 .NewsName {
