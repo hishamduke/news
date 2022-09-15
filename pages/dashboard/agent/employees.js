@@ -12,7 +12,7 @@ export default function employees() {
 }
 function Employee() {
   const [animationParent] = useAutoAnimate();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   return (
     <>
@@ -46,13 +46,100 @@ function Employee() {
     </>
   );
 }
+
 function NewEmp(prop) {
-  console.log(prop.action);
+  const [inp, setInp] = useState({
+    name: "",
+    email: "",
+    password: "",
+    number: "",
+  });
+  const [butload, setButload] = useState(false);
+
   if (prop.state)
     return (
       <>
-        <div className={styles.fullscreen} onClick={() => prop.action(false)}>
-          hi
+        <div
+          className={styles.fullscreen}
+          onClick={() => {
+            prop.action(false);
+          }}
+        ></div>
+        <div className={styles.inside} onClick={() => {}}>
+          <form
+            className={styles.form}
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log("hi");
+              // prop.action(false);
+            }}
+          >
+            <label>name</label>
+            <input
+              required
+              onChange={(e) => {
+                setInp({ ...inp, name: e.target.value });
+              }}
+            />
+            <label>email</label>
+            <input
+              type="email"
+              onChange={(e) => {
+                setInp({ ...inp, email: e.target.value });
+              }}
+            />
+            <label>password</label>
+            <input
+              required
+              type={"password"}
+              onChange={(e) => {
+                setInp({ ...inp, password: e.target.value });
+              }}
+            />
+            <label>number</label>
+            <div>
+              <input
+                type="text"
+                title="Please enter 10 digit numbers"
+                pattern="\d*"
+                minLength="10"
+                maxLength="10"
+                required
+                onChange={(e) => {
+                  setInp({ ...inp, num: parseInt(e.target.value) });
+                }}
+              ></input>
+            </div>
+            <div
+              style={{
+                // backgroundColor: "rebeccapurple",
+                display: "flex",
+                gap: "10px",
+              }}
+            >
+              <button className={styles.button}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {butload && (
+                    <Image
+                      src={"/spinner.svg"}
+                      height={"30px"}
+                      width={"30px"}
+                    />
+                  )}
+                  submit
+                </div>
+              </button>
+              <button
+                className={styles.button}
+                onClick={(e) => {
+                  e.preventDefault();
+                  prop.action(false);
+                }}
+              >
+                close
+              </button>
+            </div>
+          </form>
         </div>
       </>
     );

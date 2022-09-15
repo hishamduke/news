@@ -7,7 +7,7 @@ import { logout } from "../../lib/logout";
 import Router from "next/router";
 
 export default function Profile() {
-  const listRef = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
   const [show, setShow] = useState(false);
   const [uname, setUname] = useState();
 
@@ -32,7 +32,7 @@ export default function Profile() {
     if (data.role == "AGENT" || data.role == "USER")
       return (
         <>
-          <div ref={listRef}>
+          <div ref={animationParent}>
             <div
               className={styles.head}
               style={{ marginRight: 10 }}
