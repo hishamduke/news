@@ -25,6 +25,8 @@ model User {
   street    String  @db.VarChar(255)
   pin       BigInt
   banned    Boolean @default(false)
+  agent     Int
+  employee  Int     @default(0)
 }
 
 model Feedback {
@@ -61,6 +63,7 @@ model Employee {
   name     String @db.VarChar(255)
   password String @db.VarChar(255)
   agentid  Int    @default(0)
+  loc      String @default("") @db.VarChar(255)
   num      BigInt @unique
 }
 

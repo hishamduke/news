@@ -2,13 +2,12 @@ import Dashboard from "../components/Dashboards/dashboard";
 import Admin from "../components/Dashboards/Admin/AdminDashboard";
 import Agent from "../components/Dashboards/Agent/dashboard";
 import { useQuery } from "@tanstack/react-query";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Home() {
-  const { isLoading, error, data } = useQuery(["roleData"], () =>
+  const { isLoading, error, data } = useQuery(["roleData"], async () =>
     fetch("/api/userrole").then((res) => res.json())
   );
-  const listRef = useAutoAnimate();
+
   if (isLoading)
     return (
       <>
