@@ -68,7 +68,7 @@ export default function Breaking() {
   return (
     <>
       <News>{news}</News>
-      <News>{news2}</News>
+      {/* <News>{news2}</News> */}
     </>
   );
 }

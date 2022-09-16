@@ -19,10 +19,11 @@ export default async function handler(req, res) {
 
   try {
     var decoded = verify(JWT, secret);
-    console.log(decoded.id);
 
     let data = Account.parse(req.body.inp);
+
     data.agentid = decoded.id;
+    data.loc = JSON.stringify(req.body.inp.loc);
     const account = await prisma.employee.create({
       data: data,
     });

@@ -3,9 +3,9 @@ import styles from "../../styles/ManagePapers.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Logout from "../buttons/logoutbutton";
 export default function Loading() {
-  const listRef = useAutoAnimate();
+  const [listRef] = useAutoAnimate();
   return (
-    <div>
+    <div className="collumns">
       <div
         style={{
           display: "flex",
@@ -13,6 +13,7 @@ export default function Loading() {
           justifyContent: "center",
           marginBottom: "1%",
         }}
+        className="collumn"
       >
         <div
           className={styles.Nofeed}

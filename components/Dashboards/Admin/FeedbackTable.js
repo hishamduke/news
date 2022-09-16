@@ -5,11 +5,10 @@ import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
 import Image from "next/image";
 import BackButton from "../../buttons/backButton";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function FeedbackTable() {
   console.log("tabless");
-  const listRef = useAutoAnimate();
+
   const [status, setStatus] = useState();
 
   const [butload, setButload] = useState(false);
@@ -41,7 +40,7 @@ export default function FeedbackTable() {
         </div>
       )}
       <div className={styles.Base}>
-        <div className={styles.In} ref={listRef}>
+        <div className={styles.In}>
           {/* {JSON.stringify(data)} */}
           {data.length ? (
             <table className={styles.Table}>
@@ -108,7 +107,6 @@ export default function FeedbackTable() {
                 <div
                   className={styles.Nofeed}
                   style={{ textAlign: "center", fontSize: 30 }}
-                  ref={listRef}
                 >
                   There are no feedbacks yet!
                 </div>

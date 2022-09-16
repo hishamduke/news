@@ -3,19 +3,22 @@ import styles from "../../../styles/Employees.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Image from "next/image";
 import axios from "axios";
+import BackButton from "../../../components/buttons/backButton";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import MapView from "./mapView";
+import MapView from "../../../components/Dashboards/Agent/mapView";
+import { queryClient } from "../../_app";
 export default function employees() {
   return (
     <>
+      <BackButton />
       <Employee />
     </>
   );
 }
 function Employee() {
   const [animationParent] = useAutoAnimate();
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const { isLoading, error, data } = useQuery(["employees"], () =>
     fetch("/api/agent/viewemployee").then((res) => res.json())
@@ -27,15 +30,18 @@ function Employee() {
         {visible && <NewEmp state={visible} action={setVisible} />}
         <div className={styles.NewsCont} ref={animationParent}>
           {data.map((item) => (
-            <div className={styles.NewsBox} ref={animationParent}>
+            <div className={styles.NewsBox} ref={animationParent} key={item.id}>
               <h1 className={styles.NewsName}>{item.name}</h1>
 
               <p className={styles.p} style={{ textAlign: "center" }}>
-                Location(pending)
+                phone : {item.num}
               </p>
               <p className={styles.p} style={{ textAlign: "center" }}>
-                {item.num}
+                Lat :{JSON.parse(item.loc).lat}
+                <br />
+                Lng :{JSON.parse(item.loc).lng}
               </p>
+
               <p className={styles.p} style={{ textAlign: "center" }}>
                 3 Users assigned.
               </p>
@@ -63,7 +69,7 @@ function NewEmp(prop) {
     name: "",
     email: "",
     password: "",
-    number: "",
+    num: "",
     loc: "",
   });
   const [butload, setButload] = useState(false);
@@ -76,6 +82,14 @@ function NewEmp(prop) {
     e.preventDefault();
     console.log("hi");
     setButload(true);
+    if (inp.loc == "") {
+      setTimeout(() => {
+        setButload(false);
+      }, 1500);
+      alert("Choose the location");
+
+      return;
+    }
     axios
       .post("/api/agent/addemployee", {
         inp,
@@ -84,6 +98,7 @@ function NewEmp(prop) {
         console.log(response);
 
         setTimeout(() => {
+          queryClient.invalidateQueries("account");
           setErr("Account created");
         }, 1000);
         setTimeout(() => {

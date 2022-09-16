@@ -5,12 +5,10 @@ export default function Home() {
   console.log(" logout mounted");
 
   return (
-    <div className="body">
-      <div className="collumns">
-        <Login />
+    <div className="collumns">
+      <Login />
 
-        <Breaking></Breaking>
-      </div>
+      <Breaking />
     </div>
   );
 }

@@ -23,6 +23,7 @@ export default function MapView(val) {
   const [showMap, setShowMap] = useState(false);
   const [Loc, setLoc] = useState("Not set");
   async function getLoc(lat, lng) {
+    setLoc("Loading");
     console.log(map.zoom);
     const res = await cordToStreet(lat, lng);
     setLoc(res);

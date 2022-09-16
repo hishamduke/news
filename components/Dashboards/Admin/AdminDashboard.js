@@ -2,7 +2,6 @@ import Link from "next/link";
 import Logout from "../../buttons/logoutbutton";
 import Image from "next/image";
 import { useState } from "react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Router from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import { queryClient } from "../../../pages/_app";
@@ -10,7 +9,6 @@ import BackButton from "../../buttons/backButton";
 import styles from "../../../styles/ManagePapers.module.css";
 
 export default function Index() {
-  const listRef = useAutoAnimate();
   const [currcomp, setCurrcomp] = useState(0);
   const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
@@ -31,7 +29,6 @@ export default function Index() {
           <div
             className={styles.Nofeed}
             style={{ textAlign: "center", fontSize: 30 }}
-            ref={listRef}
           >
             Loading please wait...
           </div>
@@ -57,7 +54,6 @@ export default function Index() {
           <div
             className={styles.Nofeed}
             style={{ textAlign: "center", fontSize: 30 }}
-            ref={listRef}
           >
             Sorry, An error occured.
             <br />

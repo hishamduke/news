@@ -4,12 +4,10 @@ import { useState } from "react";
 import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
 import Image from "next/image";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import BackButton from "../../buttons/backButton";
 
 export default function AgentTable() {
   console.log("tabless");
-  const listRef = useAutoAnimate();
   const [status, setStatus] = useState();
 
   const [butload, setButload] = useState(false);
@@ -56,7 +54,7 @@ export default function AgentTable() {
           </div>
         </div>
       )}
-      <div ref={listRef}>
+      <div>
         {disapprove.isError || approve.error ? (
           <div>
             An error occurred: {disapprove.error?.message}
@@ -77,7 +75,6 @@ export default function AgentTable() {
           <div
             className={styles.Nofeed}
             style={{ textAlign: "center", fontSize: 30 }}
-            ref={listRef}
           >
             There are no Agents yet!
           </div>

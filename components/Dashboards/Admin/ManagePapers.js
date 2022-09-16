@@ -17,49 +17,46 @@ export default function ManagePapers() {
     fetch("/api/admin/newslang").then((res) => res.json())
   );
 
-  if (isLoading) return <>loading</>;
+  if (data)
+    return (
+      <>
+        {butload && (
+          <div className={styles.Loading}>
+            <div className={styles.LoadingText}>
+              <div>Loading please wait..</div>
+            </div>
+          </div>
+        )}
 
-  // if (data) console.log(data);
+        <div className={styles.Base}>
+          {/* {JSON.stringify(lang)} */}
+          <div className={styles.In}>
+            <div className={styles.DivSelect}>
+              <div> Select language</div>
+              <select
+                className={styles.Select}
+                name="lang"
+                id="lang"
+                defaultValue={""}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setLang(e.target.value);
+                  queryClient.invalidateQueries(["Newspapers"]);
+                }}
+              >
+                {data.map((val) => (
+                  <option value={val} key={val}>
+                    {val}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-  return (
-    <>
-      {butload && (
-        <div className={styles.Loading}>
-          <div className={styles.LoadingText}>
-            <div>Loading please wait..</div>
+            <NewsTable language={lang} />
           </div>
         </div>
-      )}
-
-      <div className={styles.Base}>
-        {/* {JSON.stringify(lang)} */}
-        <div className={styles.In}>
-          <div className={styles.DivSelect}>
-            <div> Select language</div>
-            <select
-              className={styles.Select}
-              name="lang"
-              id="lang"
-              defaultValue={""}
-              onChange={(e) => {
-                console.log(e.target.value);
-                setLang(e.target.value);
-                queryClient.invalidateQueries(["Newspapers"]);
-              }}
-            >
-              {data.map((val) => (
-                <option value={val} key={val}>
-                  {val}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <NewsTable language={lang} />
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }
 function NewsTable(val) {
   const lang = val.language;

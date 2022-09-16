@@ -7,18 +7,14 @@ export default function BackButton() {
         style={{
           display: "flex",
           justifyContent: "center",
-          //   backgroundColor: "red",
           alignContent: "center",
         }}
       >
         <p
           style={{
-            // marginLeft: "10%",
             fontSize: "medium",
-            // backgroundColor: "red",
             width: "fit-content",
             alignSelf: "center",
-            // backgroundColor: "red",
           }}
           className="zoom"
           onClick={() => {
