@@ -5,7 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-
+import MapView from "./mapView";
 export default function employees() {
   return (
     <>
@@ -15,7 +15,8 @@ export default function employees() {
 }
 function Employee() {
   const [animationParent] = useAutoAnimate();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+
   const { isLoading, error, data } = useQuery(["employees"], () =>
     fetch("/api/agent/viewemployee").then((res) => res.json())
   );
@@ -63,8 +64,10 @@ function NewEmp(prop) {
     email: "",
     password: "",
     number: "",
+    loc: "",
   });
   const [butload, setButload] = useState(false);
+  const [mapview, setMapview] = useState(false);
 
   const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
@@ -114,82 +117,101 @@ function NewEmp(prop) {
             prop.action(false);
           }}
         ></div>
-        <div className={styles.inside} onClick={() => {}}>
-          <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-            <label>name</label>
-            <input
-              required
-              onChange={(e) => {
-                setInp({ ...inp, name: e.target.value });
-              }}
-            />
-            <label>email</label>
-            <input
-              type="email"
-              onChange={(e) => {
-                setInp({ ...inp, email: e.target.value });
-              }}
-            />
-            <label>password</label>
-            <input
-              required
-              type={"password"}
-              minLength="6"
-              onChange={(e) => {
-                setInp({ ...inp, password: e.target.value });
-              }}
-            />
-            <label>number</label>
-            <div>
+        <div className={styles.inside} ref={animationParent}>
+          {mapview ? (
+            <MapView inp={inp} setInp={setInp} view={setMapview} />
+          ) : (
+            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+              <label>name</label>
               <input
-                type="text"
-                title="Please enter 10 digit numbers"
-                pattern="\d*"
-                minLength="10"
-                maxLength="10"
+                value={inp.name}
                 required
                 onChange={(e) => {
-                  setInp({ ...inp, num: parseInt(e.target.value) });
+                  setInp({ ...inp, name: e.target.value });
                 }}
-              ></input>
-            </div>
-            <label>agent </label>
-            <input
-              required
-              placeholder={` ${data.name} id:${data.id}`}
-              readOnly={true}
-            />
-            <div
-              style={{
-                // backgroundColor: "rebeccapurple",
-                display: "flex",
-                gap: "10px",
-              }}
-            >
-              <button className={styles.button}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  {butload && (
-                    <Image
-                      src={"/spinner.svg"}
-                      height={"30px"}
-                      width={"30px"}
-                    />
-                  )}
-                  submit
-                </div>
-              </button>
-              <button
-                className={styles.button}
-                onClick={(e) => {
-                  e.preventDefault();
-                  prop.action(false);
+              />
+              <label>email</label>
+              <input
+                value={inp.email}
+                type="email"
+                onChange={(e) => {
+                  setInp({ ...inp, email: e.target.value });
+                }}
+              />
+              <label>password</label>
+              <input
+                value={inp.password}
+                required
+                type={"password"}
+                minLength="6"
+                onChange={(e) => {
+                  setInp({ ...inp, password: e.target.value });
+                }}
+              />
+              <label>number</label>
+              <div>
+                <input
+                  value={inp.num}
+                  type="text"
+                  title="Please enter 10 digit numbers"
+                  pattern="\d*"
+                  minLength="10"
+                  maxLength="10"
+                  required
+                  onChange={(e) => {
+                    setInp({ ...inp, num: parseInt(e.target.value) });
+                  }}
+                ></input>
+              </div>
+              <label>agent </label>
+              <input
+                required
+                placeholder={` ${data.name} id:${data.id}`}
+                readOnly={true}
+              />
+              <label>
+                base location &nbsp;
+                <a className="Link" onClick={() => setMapview(true)}>
+                  choose
+                </a>
+              </label>
+              <input
+                required
+                placeholder={` Lat :${inp.loc.lat} Lng:${inp.loc.lat}`}
+                readOnly={true}
+              />
+              <div
+                style={{
+                  // backgroundColor: "rebeccapurple",
+                  display: "flex",
+                  gap: "10px",
                 }}
               >
-                close
-              </button>
-            </div>
-            <div ref={animationParent}>{err}</div>
-          </form>
+                <button className={styles.button}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    {butload && (
+                      <Image
+                        src={"/spinner.svg"}
+                        height={"30px"}
+                        width={"30px"}
+                      />
+                    )}
+                    submit
+                  </div>
+                </button>
+                <button
+                  className={styles.button}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    prop.action(false);
+                  }}
+                >
+                  close
+                </button>
+              </div>
+              <div ref={animationParent}>{err}</div>
+            </form>
+          )}
         </div>
       </>
     );

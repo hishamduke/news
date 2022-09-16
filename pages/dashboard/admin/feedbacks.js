@@ -7,6 +7,7 @@ import BackButton from "../../../components/buttons/backButton";
 export default function agentPage() {
   return (
     <>
+      <BackButton />
       <FeedbackTable />
     </>
   );
