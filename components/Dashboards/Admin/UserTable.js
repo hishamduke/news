@@ -8,7 +8,6 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function AgentTable() {
   console.log("tabless");
-  const listRef = useAutoAnimate();
   const [status, setStatus] = useState();
 
   const [butload, setButload] = useState(false);
@@ -45,7 +44,6 @@ export default function AgentTable() {
             <div
               className={styles.Nofeed}
               style={{ textAlign: "center", fontSize: 30 }}
-              ref={listRef}
             >
               There are no Users yet!
             </div>

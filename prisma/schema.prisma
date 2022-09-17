@@ -39,7 +39,7 @@ model Agent {
   accountid Int     @unique
   id        Int     @id @default(autoincrement())
   num       BigInt  @unique
-  loc       String  @db.VarChar(255)
+  loc       String  @default("") @db.VarChar(255)
   approved  Boolean @default(false)
 }
 

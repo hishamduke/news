@@ -4,7 +4,6 @@ import axios from "axios";
 import valida from "../lib/validate";
 import Image from "next/image";
 import Router from "next/router";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Register() {
   const [msg, setmsg] = useState("");
@@ -20,7 +19,6 @@ export default function Register() {
     street: "",
     pin: 0,
   });
-  const listRef = useAutoAnimate();
   const after = () => {
     setmsg();
   };
@@ -72,7 +70,7 @@ export default function Register() {
     <>
       <div className="collumn">
         <br />
-        <div onClick={() => after()} ref={listRef} className="hey">
+        <div onClick={() => after()} className="hey">
           {msg ? (
             <>
               <div className="messtext">

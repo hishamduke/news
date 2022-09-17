@@ -1,9 +1,7 @@
 import React from "react";
 import styles from "../../styles/ManagePapers.module.css";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Logout from "../buttons/logoutbutton";
 export default function Loading() {
-  const [listRef] = useAutoAnimate();
   return (
     <div className="collumns">
       <div
@@ -18,7 +16,6 @@ export default function Loading() {
         <div
           className={styles.Nofeed}
           style={{ textAlign: "center", fontSize: 30 }}
-          ref={listRef}
         >
           Loading please wait...
         </div>

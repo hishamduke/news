@@ -18,11 +18,11 @@ export default async function handler(req, res) {
       .number()
       .gt(999999999, { message: "Must be 10 digits" })
       .lt(10000000000, { message: "Must be 10 digits" }),
-    loc: z.string(),
   });
   try {
     console.log(req.body);
     let agentdata = Agent.parse(req.body.inp);
+
     let accountdata = Account.parse(req.body.inp);
     delete accountdata.password2;
     console.log(agentdata);
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       data: accountdata,
     });
     agentdata.accountid = account.id;
-
+    agentdata.loc = JSON.stringify(req.body.inp.loc);
     const agent = await prisma.agent.create({
       data: agentdata,
     });

@@ -11,7 +11,6 @@ import { queryClient } from "../../../pages/_app";
 import NotVerified from "./NotVerified";
 import Verified from "./Verified";
 export default function Index() {
-  const listRef = useAutoAnimate();
   const [currcomp, setCurrcomp] = useState(0);
   console.log("here");
   const { isLoading, error, data } = useQuery(["agentStatus"], () =>

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+// import RegMap from "../reg/RegMap";
+import RegMap from "./reg/RegMap";
+
 import valida from "../lib/validate";
 import Image from "next/image";
 import Router from "next/router";
@@ -15,9 +18,10 @@ export default function AgentRegister() {
     password: "",
     password2: "",
     num: 0,
-    loc: "",
+    loc: {},
   });
-  const listRef = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
+
   const after = () => {
     setmsg();
   };
@@ -28,16 +32,21 @@ export default function AgentRegister() {
     }, 2000);
   }
   function handleSubmit(e) {
-    console.log(inp.password);
+    e.preventDefault();
+
+    if (!inp.loc.lat) {
+      message("Please set location first");
+      return;
+    }
     if (inp.password !== inp.password2) {
       message("Passwords do not match");
     } else {
       valida();
     }
-    e.preventDefault();
   }
   function valida() {
     console.log(inp);
+
     axios
       .post("/api/agentreg", {
         inp,
@@ -64,7 +73,7 @@ export default function AgentRegister() {
     <>
       <div className="collumn">
         <br />
-        <div onClick={() => after()} ref={listRef} className="hey">
+        <div onClick={() => after()} className="hey" ref={animationParent}>
           {msg ? (
             <>
               <div className="messtext">
@@ -86,6 +95,7 @@ export default function AgentRegister() {
           onSubmit={(e) => {
             handleSubmit(e);
           }}
+          ref={animationParent}
         >
           <h2 className="formhead headline hl1">Create a new Agent account</h2>
 
@@ -96,6 +106,8 @@ export default function AgentRegister() {
               className="forminp"
               type="text"
               onChange={(e) => {
+                console.log();
+
                 setInp({ ...inp, name: e.target.value });
               }}
             ></input>
@@ -152,18 +164,38 @@ export default function AgentRegister() {
             ></input>
           </div>
 
-          <div>Service location </div>
-          <div>
+          <div>Service location</div>
+          <div
+            style={{
+              display: "flex ",
+              alignItems: "center",
+              gap: "1%",
+              alignContent: "center",
+            }}
+          >
             <input
               required
               className="forminp"
+              readOnly
+              // value={inp.loc}
+              placeholder={`Lat ${inp.loc.lat}   Lng ${inp.loc.lng}`}
+              style={{
+                width: "50%",
+              }}
               type="text"
               onChange={(e) => {
                 setInp({ ...inp, loc: e.target.value });
               }}
             ></input>
+            <div className="Link" onClick={() => setvis(true)}>
+              click here to set
+            </div>
           </div>
-
+          {vis && (
+            <>
+              <RegMap setvis={setvis} inp={inp} setInp={setInp} />
+            </>
+          )}
           <div className="but">
             <button>Submit</button>{" "}
           </div>

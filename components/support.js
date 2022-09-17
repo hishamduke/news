@@ -10,7 +10,6 @@ import BackButton from "./buttons/backButton";
 export default function Support() {
   const [butload, setButload] = useState(false);
 
-  const listRef = useAutoAnimate();
   const [content, setContent] = useState("");
   const [resp, setResp] = useState();
   let date = new Date();
@@ -62,7 +61,7 @@ export default function Support() {
               submit
             </div>
           </button>
-          <div ref={listRef}>
+          <div>
             {" "}
             {resp == 200 && (
               <>

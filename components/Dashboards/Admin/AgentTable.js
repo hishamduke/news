@@ -65,14 +65,6 @@ export default function AgentTable() {
       {data.length == 0 ? (
         <>
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <BackButton />
-          </div>
-          <div
             className={styles.Nofeed}
             style={{ textAlign: "center", fontSize: 30 }}
           >
@@ -83,9 +75,6 @@ export default function AgentTable() {
         <div className={styles.Base}>
           <div className={styles.In}>
             {/* {JSON.stringify(data)} */}
-            <div style={{ display: "flex" }}>
-              <BackButton />
-            </div>
             <table className={styles.Table} cellSpacing={0} cellPadding={0}>
               <thead className={styles.TableHead}>
                 <tr className={styles.Tr}>

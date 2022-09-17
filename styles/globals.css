@@ -267,6 +267,12 @@ input::-webkit-inner-spin-button {
   list-style: none;
   display: flex;
   gap: 10px;
+  /* justify-content: center; */
+  /* text-align: center; */
+}
+.newul .newli {
+  /* width: 100px; */
+  /* background-color: yellowgreen; */
 }
 .newa {
   color: rgb(0, 0, 0);
@@ -284,13 +290,8 @@ input::-webkit-inner-spin-button {
 
   grid-row: 1 / 2;
 }
-.newli p {
-  z-index: -10;
-}
-.newli:hover ~ .newli p {
-  /* font-size: 72px; */
-  /* background: linear-gradient(to right, #ff0000 0%, #8e34fc 90%); */
 
+.newli:hover ~ .newli p {
   z-index: -10;
   animation: wave-animation 0.3s infinite;
 }

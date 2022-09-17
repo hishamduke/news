@@ -12,7 +12,6 @@ export default function Loading(props) {
     }, 700);
   };
   a();
-  const listRef = useAutoAnimate();
   return (
     <div>
       <div
@@ -36,7 +35,6 @@ export default function Loading(props) {
           <div
             className={styles.Nofeed}
             style={{ textAlign: "center", fontSize: 30 }}
-            ref={listRef}
           >
             Logging out...
           </div>

@@ -1,13 +1,11 @@
 import Router from "next/router";
 import styles from "../../../styles/ManagePapers.module.css";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Logout from "../../buttons/logoutbutton";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Loading from "../../common/Loading";
 
 export default function NotVerified() {
-  const listRef = useAutoAnimate();
   const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
   );
@@ -24,7 +22,7 @@ export default function NotVerified() {
           width={"300"}
           //   style={{ transform: "translateY(-40px)" }}
         ></Image>
-        <div className={styles.Nofeed} style={{ fontSize: 30 }} ref={listRef}>
+        <div className={styles.Nofeed} style={{ fontSize: 30 }}>
           {/* {JSON.stringify(data)} */}
           Hey {data.name} !<br />
           Your account has not been verified yet!
