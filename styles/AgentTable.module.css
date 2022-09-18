@@ -13,10 +13,10 @@
   /* box-shadow: 1px 1px 10px 2px #888888; */
   background-image: linear-gradient(
     to bottom right,
-    rgb(180, 255, 220, 0.5),
-    rgb(112, 255, 219, 0.5)
+    rgb(180, 255, 220, 0.2),
+    rgb(112, 255, 219, 0.2)
   );
-  box-shadow: 10px 10px 8px #88888888;
+  box-shadow: 10px 10px 15px #88888824;
 }
 .Tr,
 .Td {
@@ -48,6 +48,7 @@
   backdrop-filter: blur(5px);
   /* background: white; */
   z-index: 1;
+  display: flex;
 }
 
 .LoadingText {
@@ -68,6 +69,9 @@
   text-align: center;
   justify-content: center;
   background: rgb(44, 44, 44, 0.7);
+}
+.Map {
+  margin: auto;
 }
 .Nofeed {
   font-size: 72px;

@@ -187,7 +187,7 @@ export default function AgentRegister() {
                 setInp({ ...inp, loc: e.target.value });
               }}
             ></input>
-            <div className="Link" onClick={() => setvis(true)}>
+            <div className="Link" onClick={() => setvis(!vis)}>
               click here to set
             </div>
           </div>

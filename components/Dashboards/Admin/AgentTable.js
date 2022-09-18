@@ -5,10 +5,11 @@ import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
 import Image from "next/image";
 import BackButton from "../../buttons/backButton";
+import LocView from "../../common/LocView";
 
 export default function AgentTable() {
   console.log("tabless");
-  const [status, setStatus] = useState();
+  const [viewMap, setViewmap] = useState(false);
 
   const [butload, setButload] = useState(false);
   const { isLoading, error, data } = useQuery(["agentsDetails"], () =>
@@ -44,7 +45,7 @@ export default function AgentTable() {
   });
 
   if (isLoading) return <>loading</>;
-
+  console.log(viewMap);
   return (
     <>
       {butload && (
@@ -54,6 +55,7 @@ export default function AgentTable() {
           </div>
         </div>
       )}
+
       <div>
         {disapprove.isError || approve.error ? (
           <div>
@@ -98,7 +100,25 @@ export default function AgentTable() {
                     <td className={styles.Td}>{val.name}</td>
                     <td className={styles.Td}>{val.email}</td>
                     <td className={styles.Td}>{val.num}</td>
-                    <td className={styles.Td}>{val.loc}</td>
+                    <td className={styles.Td}>
+                      {/* lat:{JSON.parse(val.loc).lat}
+                      <br />
+                      lng:{JSON.parse(val.loc).lng} */}
+                      <a className="Link" onClick={() => setViewmap(!viewMap)}>
+                        click here to view
+                        {console.log(JSON.parse(val.loc))}
+                      </a>
+                      {viewMap && (
+                        <div className={styles.Loading}>
+                          <div className={styles.Map}>
+                            <LocView
+                              setViewmap={setViewmap}
+                              loc={JSON.parse(val.loc)}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </td>
                     <td className={styles.Td}>
                       {!val.app ? "Not approved" : "Approved"}
                     </td>
@@ -109,7 +129,6 @@ export default function AgentTable() {
                             className={styles.Button}
                             onClick={() => {
                               setButload(!butload);
-                              setStatus("Loading....");
                               approve.mutate({ id: val.id });
                             }}
                           >

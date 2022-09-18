@@ -7,15 +7,13 @@ const mapContainerStyle = {
   width: "100%",
 };
 
-let begin = {
-  lat: 11.257059218149296,
-  lng: 75.77515962416318,
-};
 export default function RegMap(val) {
-  if (!!val.inp.loc) {
+  let begin;
+
+  if (!!val.loc) {
     begin = {
-      lat: val.inp.loc.lat,
-      lng: val.inp.loc.lng,
+      lat: val.loc.lat,
+      lng: val.loc.lng,
     };
   }
   const [map, setMap] = useState(null);
@@ -59,7 +57,7 @@ export default function RegMap(val) {
                 }}
                 className="zoom"
                 onClick={() => {
-                  val.setvis(false);
+                  val.setViewmap(false);
                 }}
               >
                 {<BiArrowBack />} back

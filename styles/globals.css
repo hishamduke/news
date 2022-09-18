@@ -22,7 +22,7 @@ body {
   font-family: "Droid Serif", serif;
   font-size: 14px;
   color: black;
-  margin-top: 9vw;
+  margin-top: 17vh;
   height: auto;
   transition: all 0.7s;
   /* margin-bottom: 15vh; */
@@ -384,6 +384,7 @@ input::-webkit-inner-spin-button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
   /* padding: 0 1% 0 1%; */
   vertical-align: top;
   gap: 100px;
@@ -583,7 +584,7 @@ th {
 /*MEDIAQUERIES*/
 @media only all and (max-width: 1400px) {
   .body {
-    margin-top: 12vw;
+    margin-top: 16vh;
   }
 }
 @media only all and (max-width: 1200px) {
@@ -592,25 +593,21 @@ th {
     margin: 1%;
     /* background-color: blue; */
   }
-
-  .empty {
-    /* background-color: aqua; */
-    /* height: 25vh; */
+  .body {
+    margin-top: 17vh;
   }
 }
 @media only all and (max-width: 900px) {
   .collumn {
     width: 95%;
-    /* background-color: red; */
   }
-  .empty {
-    /* height: 27vh; */
-    /* background-color: yellowgreen; */
+  .body {
+    margin-top: 19vh;
   }
 }
 @media only all and (max-width: 600px) {
   .body {
-    margin-top: 30vw;
+    margin-top: 19vh;
   }
   .collumn + .collumn {
     border-left: none;

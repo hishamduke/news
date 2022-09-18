@@ -78,6 +78,7 @@ function NewEmp(prop) {
   const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
   );
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log("hi");
@@ -123,6 +124,8 @@ function NewEmp(prop) {
       });
   }
   console.log("account", data);
+  console.log("Loc", defLoc);
+
   if (data)
     return (
       <>
@@ -134,7 +137,12 @@ function NewEmp(prop) {
         ></div>
         <div className={styles.inside} ref={animationParent}>
           {mapview ? (
-            <MapView inp={inp} setInp={setInp} view={setMapview} />
+            <MapView
+              inp={inp}
+              setInp={setInp}
+              view={setMapview}
+              defLoc={JSON.parse(defLoc)}
+            />
           ) : (
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <label>name</label>
