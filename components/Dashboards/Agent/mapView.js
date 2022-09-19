@@ -9,10 +9,6 @@ const mapContainerStyle = {
 };
 
 export default function MapView(val) {
-  const { isLoading, error, data } = useQuery(["agentLoc"], () =>
-    fetch("/api/agent/baseloc").then((res) => res.json())
-  );
-  console.log(data);
   let begin = val.defLoc;
   if (!!val.inp.loc) {
     begin = {
@@ -32,90 +28,89 @@ export default function MapView(val) {
     // setLocation({ lat, lng });
     console.log(res);
   }
-
+  console.log(val);
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPSKEY, // ,
     // ...otherOptions
   });
-  if (data)
-    if (isLoaded)
-      return (
-        <div style={{ width: "500px", minHeight: "300px" }}>
+  if (isLoaded)
+    return (
+      <div style={{ width: "500px", minHeight: "300px" }}>
+        <>
           <>
-            <>
-              <div
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                //   backgroundColor: "red",
+                alignContent: "center",
+              }}
+            >
+              <p
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  //   backgroundColor: "red",
-                  alignContent: "center",
+                  // marginLeft: "10%",
+                  fontSize: "medium",
+                  // backgroundColor: "red",
+                  width: "fit-content",
+                  alignSelf: "center",
+                  // backgroundColor: "red",
+                }}
+                className="zoom"
+                onClick={() => {
+                  val.setMapview(false);
                 }}
               >
-                <p
-                  style={{
-                    // marginLeft: "10%",
-                    fontSize: "medium",
-                    // backgroundColor: "red",
-                    width: "fit-content",
-                    alignSelf: "center",
-                    // backgroundColor: "red",
-                  }}
-                  className="zoom"
-                  onClick={() => {
-                    val.view(false);
-                  }}
-                >
-                  {<BiArrowBack />} back
-                </p>
-              </div>
-            </>
+                {<BiArrowBack />} back
+              </p>
+            </div>
+          </>
 
-            {/* {!showMap && (
+          {/* {!showMap && (
           // <button onClick={() => setShowMap(!showMap)}>change</button>
         )} */}
 
-            <GoogleMap
-              id="marker-example"
-              mapContainerStyle={mapContainerStyle}
-              center={begin}
-              zoom={17}
-              onLoad={(map) => {
-                setMap(map);
-                console.log(map.getZoom());
+          <GoogleMap
+            id="marker-example"
+            mapContainerStyle={mapContainerStyle}
+            center={begin}
+            zoom={17}
+            onLoad={(map) => {
+              setMap(map);
+              console.log(map.getZoom());
+            }}
+          >
+            <Marker
+              // onLoad={onLoad}
+              position={location}
+              draggable={true}
+              onDragEnd={(e) => {
+                setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+                getLoc(e.latLng.lat(), e.latLng.lng());
+              }}
+            />
+          </GoogleMap>
+          <br />
+        </>
+        {Loc != "Not set" && (
+          <>
+            <p>Street name : {Loc}</p>
+            <p>Lat : {location.lat}</p>
+            <p>Lng : {location.lng}</p>
+            <button
+              onClick={() => {
+                val.setInp({
+                  ...val.inp,
+                  loc: { lat: location.lat, lng: location.lng },
+                });
+
+                val.view(false);
               }}
             >
-              <Marker
-                // onLoad={onLoad}
-                position={location}
-                draggable={true}
-                onDragEnd={(e) => {
-                  setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-                  getLoc(e.latLng.lat(), e.latLng.lng());
-                }}
-              />
-            </GoogleMap>
-            <br />
+              Set
+            </button>
           </>
-          {Loc != "Not set" && (
-            <>
-              <p>Street name : {Loc}</p>
-              <p>Lat : {location.lat}</p>
-              <p>Lng : {location.lng}</p>
-              <button
-                onClick={() => {
-                  val.setInp({
-                    ...val.inp,
-                    loc: { lat: location.lat, lng: location.lng },
-                  });
-
-                  val.view(false);
-                }}
-              >
-                Set
-              </button>
-            </>
-          )}
-        </div>
-      );
+        )}
+      </div>
+    );
   return <div style={{ minWidth: "500px", height: "300px" }}></div>;
 }

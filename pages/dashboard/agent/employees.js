@@ -124,7 +124,6 @@ function NewEmp(prop) {
       });
   }
   console.log("account", data);
-  console.log("Loc", defLoc);
 
   if (data)
     return (
@@ -137,12 +136,7 @@ function NewEmp(prop) {
         ></div>
         <div className={styles.inside} ref={animationParent}>
           {mapview ? (
-            <MapView
-              inp={inp}
-              setInp={setInp}
-              view={setMapview}
-              defLoc={JSON.parse(defLoc)}
-            />
+            <Maps inp={inp} setInp={setInp} setMapview={setMapview} />
           ) : (
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <label>name</label>
@@ -236,6 +230,23 @@ function NewEmp(prop) {
             </form>
           )}
         </div>
+      </>
+    );
+}
+
+function Maps(val) {
+  const { isLoading, error, data } = useQuery(["agentLoc"], () =>
+    fetch("/api/agent/baseloc").then((res) => res.json())
+  );
+  if (data)
+    return (
+      <>
+        <MapView
+          inp={val.inp}
+          setInp={val.setInp}
+          setMapview={val.setMapview}
+          defLoc={JSON.parse(data)}
+        />
       </>
     );
 }
