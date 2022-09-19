@@ -43,7 +43,7 @@ export default function Login() {
       })
       .catch(function (error) {
         setButload(false);
-        setItems([...items, "Invalid credentials"]);
+        setItems(["Invalid credentials"]);
         setAxres(0);
       });
   }
@@ -92,7 +92,7 @@ export default function Login() {
           <br />
           <div ref={parent}>
             {items.map((item) => (
-              <div>{item}</div>
+              <div key={item}>ye{item}</div>
             ))}
           </div>
           <br />
