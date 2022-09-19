@@ -18,7 +18,10 @@ export default function AgentRegister() {
     password: "",
     password2: "",
     num: 0,
-    loc: {},
+    loc: {
+      lat: 11.257059218149296,
+      lng: 75.77515962416318,
+    },
   });
   const [animationParent] = useAutoAnimate();
 
