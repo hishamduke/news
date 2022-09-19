@@ -5,6 +5,8 @@ import Image from "next/image";
 import axios from "axios";
 import BackButton from "../../../components/buttons/backButton";
 import { useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import Router from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import MapView from "../../../components/Dashboards/Agent/mapView";
 import { queryClient } from "../../_app";
@@ -21,7 +23,7 @@ function Employee() {
   const [visible, setVisible] = useState(false);
 
   const { isLoading, error, data } = useQuery(["employees"], () =>
-    fetch("/api/agent/viewemployee").then((res) => res.json())
+    fetch("/api/agent/viewemployees").then((res) => res.json())
   );
   if (isLoading) return;
   if (data)
@@ -30,32 +32,33 @@ function Employee() {
         {visible && <NewEmp state={visible} action={setVisible} />}
         <div className={styles.NewsCont} ref={animationParent}>
           {data.map((item) => (
-            <div className={styles.NewsBox} ref={animationParent} key={item.id}>
+            <div
+              className={styles.NewsBox}
+              ref={animationParent}
+              key={item.id}
+              onClick={() =>
+                Router.push(`/dashboard/agent/employee/${item.id}`)
+              }
+            >
               <h1 className={styles.NewsName}>{item.name}</h1>
 
               <p className={styles.p} style={{ textAlign: "center" }}>
                 phone : {item.num}
               </p>
-              <p className={styles.p} style={{ textAlign: "center" }}>
-                Lat :{JSON.parse(item.loc).lat}
-                <br />
-                Lng :{JSON.parse(item.loc).lng}
-              </p>
 
-              <p className={styles.p} style={{ textAlign: "center" }}>
-                3 Users assigned.
-              </p>
               <button className={styles.button}>Manage</button>
             </div>
           ))}
 
-          <div className={styles.NewsBox} ref={animationParent}>
+          <div
+            className={styles.NewsBox}
+            ref={animationParent}
+            onClick={() => setVisible(true)}
+          >
             {/* <img className={styles.NewsImg} src="/newsboy.jpg" /> */}
             <h1 className={styles.NewsName}>Add a new employee</h1>
 
-            <button className={styles.button} onClick={() => setVisible(true)}>
-              Add
-            </button>
+            <button className={styles.button}>Add</button>
           </div>
         </div>
       </>
@@ -241,6 +244,33 @@ function Maps(val) {
   if (data)
     return (
       <>
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              //   backgroundColor: "red",
+              alignContent: "center",
+            }}
+          >
+            <p
+              style={{
+                // marginLeft: "10%",
+                fontSize: "medium",
+                // backgroundColor: "red",
+                width: "fit-content",
+                alignSelf: "center",
+                // backgroundColor: "red",
+              }}
+              className="zoom"
+              onClick={() => {
+                val.setMapview(false);
+              }}
+            >
+              {<BiArrowBack />} back
+            </p>
+          </div>
+        </>
         <MapView
           inp={val.inp}
           setInp={val.setInp}

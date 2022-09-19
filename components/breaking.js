@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 function genrandom() {
   return Math.floor(Math.random() * (18 - 0 + 1) + 0);
 }
@@ -14,10 +15,10 @@ function genrandom2(val) {
 }
 function News(props) {
   const news = props.children;
-  console.log(news.urlToImage);
-  return (
-    <>
-      {news ? (
+  console.log(news);
+  if (news.title)
+    return (
+      <>
         <div className="collumn">
           <div className="head">
             <span className="headline hl4">{news.title}</span>
@@ -26,20 +27,20 @@ function News(props) {
           <>
             <figure className="figure">
               <img className="media" src={news.urlToImage}></img>
+              {/* <Image src={news.urlToImage} height={900} width={1600} /> */}
 
               <figcaption className="figcaption">
                 source : {news.source.name}
               </figcaption>
             </figure>
-            <p>{news.content}</p>
+            <p>{news.content.split("[")[0]}</p>
             <p>
               <Link href={news.url}>more....</Link>
             </p>
-          </>{" "}
+          </>
         </div>
-      ) : null}
-    </>
-  );
+      </>
+    );
 }
 export default function Breaking() {
   const { isLoading, error, data } = useQuery(["News"], () =>

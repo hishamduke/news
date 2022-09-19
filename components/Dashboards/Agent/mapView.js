@@ -37,34 +37,6 @@ export default function MapView(val) {
     return (
       <div style={{ width: "500px", minHeight: "300px" }}>
         <>
-          <>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                //   backgroundColor: "red",
-                alignContent: "center",
-              }}
-            >
-              <p
-                style={{
-                  // marginLeft: "10%",
-                  fontSize: "medium",
-                  // backgroundColor: "red",
-                  width: "fit-content",
-                  alignSelf: "center",
-                  // backgroundColor: "red",
-                }}
-                className="zoom"
-                onClick={() => {
-                  val.setMapview(false);
-                }}
-              >
-                {<BiArrowBack />} back
-              </p>
-            </div>
-          </>
-
           {/* {!showMap && (
           // <button onClick={() => setShowMap(!showMap)}>change</button>
         )} */}
@@ -72,7 +44,7 @@ export default function MapView(val) {
           <GoogleMap
             id="marker-example"
             mapContainerStyle={mapContainerStyle}
-            center={begin}
+            center={location}
             zoom={17}
             onLoad={(map) => {
               setMap(map);
@@ -103,7 +75,7 @@ export default function MapView(val) {
                   loc: { lat: location.lat, lng: location.lng },
                 });
 
-                val.view(false);
+                val.setMapview(false);
               }}
             >
               Set

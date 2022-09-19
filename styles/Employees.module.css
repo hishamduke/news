@@ -70,28 +70,31 @@
   animation: gradient 7s ease infinite;
   z-index: 1;
   display: flex;
+  justify-content: center;
 }
 
 .inside {
-  position: fixed;
+  position: absolute;
+  left: 0;
+  margin: 0 auto;
   z-index: 3;
-  margin: auto;
-  left: 39%;
-
   background-color: rgba(245, 240, 218, 0.74);
   border: 2px solid black;
   /* width: 200px; */
   transition: all 0.5s;
   /* text-align: center; */
   /* height: 250px; */
-  align-items: center;
+  /* margin: 25%; */
+  margin-left: 35vw;
+  margin-right: 35vw;
+  align-self: center;
   backdrop-filter: blur(2px);
   /* background: linear-gradient(-45deg, #f5aaef, #95ffc5, #e5f794, #ffa8a8); */
   background-size: 400% 400%;
   animation: gradient 7s ease infinite;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 2%;
 }
 
