@@ -30,19 +30,7 @@ function Employee() {
     return (
       <>
         {visible && <NewEmp state={visible} action={setVisible} />}
-        <form
-          style={{
-            justifyContent: "center",
-            display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            textAlign: "center",
-            margin: "auto",
-          }}
-        >
-          <span>Search</span>
-          <input />
-        </form>
+
         <div className={styles.NewsCont} ref={animationParent}>
           {data.map((item) => (
             <div className={styles.NewsBox} ref={animationParent} key={item.id}>

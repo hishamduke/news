@@ -9,13 +9,40 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import MapView from "../../../../components/Dashboards/Agent/mapView";
 export default function employees() {
-  return (
-    <>
-      <EmpId />
-    </>
+  const router = useRouter();
+  const { id } = router.query;
+  const [visible, setVisible] = useState(false);
+  const { isLoading, error, data } = useQuery([`employee${id}`], () =>
+    fetch(`/api/agent/employees/${id}`).then((res) => res.json())
   );
+  if (data)
+    return (
+      <>
+        {!visible ? (
+          <>
+            <BackButton />
+            <div className="collumns">
+              <div className="dashboard" style={{ marginRight: "100px" }}>
+                <br />
+                <form>
+                  <h1 className={"formhead test"}>Manage User</h1>
+                  <h4>{data.name}</h4>
+                  <p className={" Link"} onClick={() => setVisible(!visible)}>
+                    Edit profile
+                  </p>
+                </form>
+              </div>
+              {JSON.stringify(data)}
+            </div>
+          </>
+        ) : (
+          <EmpId setVisible={setVisible} />
+        )}
+        <br />
+      </>
+    );
 }
-const EmpId = () => {
+const EmpId = ({ setVisible }) => {
   const router = useRouter();
   const { id } = router.query;
   const { isLoading, error, data } = useQuery([`employee${id}`], () =>
@@ -44,7 +71,8 @@ const EmpId = () => {
         queryClient.invalidateQueries(`employee${id}`);
         queryClient.invalidateQueries("employees");
         setTimeout(() => {
-          Router.push("/dashboard/agent/employees");
+          setVisible(false);
+          // Router.push("/dashboard/agent/employee/");
         }, 1000);
       })
       .catch(function (error) {
@@ -68,7 +96,29 @@ const EmpId = () => {
             <Maps inp={inp} setInp={setInp} setMapview={setMapview} />
           ) : (
             <>
-              <BackButton />
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: "medium",
+                      width: "fit-content",
+                      alignSelf: "center",
+                    }}
+                    className="zoom"
+                    onClick={() => {
+                      setVisible(false);
+                    }}
+                  >
+                    {<BiArrowBack />} back
+                  </p>
+                </div>
+              </>
               <div className="dashboard">
                 <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
                   <label>name</label>

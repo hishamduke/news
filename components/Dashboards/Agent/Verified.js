@@ -16,37 +16,20 @@ export default function Verified() {
           <br />
           <form>
             <h1 className={"formhead test"}>Hey {data.name} !</h1>
-            <h3
-              className={"formhead Link"}
+            <h4>Employees</h4>
+            <p
+              className={" Link"}
               onClick={() => Router.push("/dashboard/agent/employees")}
             >
-              Manage employees
-            </h3>
+              Manage Employees
+            </p>
 
-            <h3
-              className={"formhead Link"}
+            <p
+              className={" Link"}
               onClick={() => Router.push("/dashboard/feedbacks")}
             >
-              Manage newspapers
-            </h3>
-
-            <h3
-              className={"formhead Link"}
-              onClick={() => Router.push("/dashboard/users")}
-            >
-              Manage subscriptions
-            </h3>
-            <h3
-              className={"formhead Link"}
-              onClick={() => Router.push("/dashboard/newspapers")}
-            >
-              View feedbacks
-            </h3>
-
-            <Link href={"/test"}>
-              <h3 className={"formhead Link"}>Go to test field</h3>
-            </Link>
-            <Logout />
+              Assign newspapers
+            </p>
           </form>
           <Image
             priority="false"
