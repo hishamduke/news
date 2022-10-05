@@ -101,9 +101,9 @@ export default function FeedbackTable() {
           ) : (
             <>
               <div>
-                <div style={{ display: "flex", marginLeft: 100 }}>
+                {/* <div style={{ display: "flex", marginLeft: 100 }}>
                   <BackButton />
-                </div>
+                </div> */}
                 <div
                   className={styles.Nofeed}
                   style={{ textAlign: "center", fontSize: 30 }}

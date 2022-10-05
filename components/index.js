@@ -11,10 +11,9 @@ export default function Index() {
           <form
           // style={{ backgroundColor: "blue" }}
           >
-            <h1 className={"formhead test"}>Hey there ! huh?</h1>
-            <p>
-              Welcome to Newspaper subscription <br />
-              system
+            <h1 className={"formhead test"}>Hey there !!</h1>
+            <p style={{ fontSize: "20px" }}>
+              Welcome to Newspaper subscription system
             </p>
             <Link href={"/login"}>
               <h3 className={"formhead Link"}>Login?</h3>

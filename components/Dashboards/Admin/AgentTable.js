@@ -19,13 +19,9 @@ export default function AgentTable() {
   const addTodo = (id) => axios.post("/api/admin/disapprove", id);
   const disapprove = useMutation(addTodo, {
     onSuccess: async () => {
-      setTimeout(() => {
-        setButload(false);
-      }, 500);
-      setTimeout(() => {
-        queryClient.invalidateQueries(["agentStatus"]);
-        queryClient.invalidateQueries(["agentsDetails"]);
-      }, 700);
+      queryClient.invalidateQueries(["agentStatus"]);
+      queryClient.invalidateQueries(["agentsDetails"]);
+      setButload(false);
     },
   });
 
@@ -34,13 +30,9 @@ export default function AgentTable() {
   const approve = useMutation(addTodo2, {
     onMutate: async () => {},
     onSuccess: async () => {
-      setTimeout(() => {
-        setButload(false);
-      }, 1100);
-      setTimeout(() => {
-        queryClient.invalidateQueries(["agentStatus"]);
-        queryClient.invalidateQueries(["agentsDetails"]);
-      }, 700);
+      queryClient.invalidateQueries(["agentStatus"]);
+      queryClient.invalidateQueries(["agentsDetails"]);
+      setButload(false);
     },
   });
 
@@ -48,13 +40,13 @@ export default function AgentTable() {
   console.log(viewMap);
   return (
     <>
-      {butload && (
+      {/* {butload && (
         <div className={styles.Loading}>
           <div className={styles.LoadingText}>
             <div>Loading please wait..</div>
           </div>
         </div>
-      )}
+      )} */}
 
       <div>
         {disapprove.isError || approve.error ? (
@@ -151,7 +143,7 @@ export default function AgentTable() {
                           className={styles.Button}
                           onClick={() => {
                             setButload(!butload);
-                            setStatus("Loading....");
+                            // setStatus("Loading....");
                             disapprove.mutate({ id: val.id });
                           }}
                         >
