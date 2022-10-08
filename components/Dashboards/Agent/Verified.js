@@ -26,10 +26,11 @@ export default function Verified() {
 
             <p
               className={" Link"}
-              onClick={() => Router.push("/dashboard/feedbacks")}
+              onClick={() => Router.push("/dashboard/agent/newspapers")}
             >
-              Assign newspapers
+              Available newspapers
             </p>
+            <Logout />
           </form>
           <Image
             priority="false"

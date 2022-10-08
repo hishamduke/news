@@ -36,11 +36,12 @@ model Feedback {
 }
 
 model Agent {
-  accountid Int     @unique
-  id        Int     @id @default(autoincrement())
-  num       BigInt  @unique
-  loc       String  @default("") @db.VarChar(255)
-  approved  Boolean @default(false)
+  accountid  Int         @unique
+  id         Int         @id @default(autoincrement())
+  num        BigInt      @unique
+  loc        String      @default("") @db.VarChar(255)
+  approved   Boolean     @default(false)
+  newspapers Newspaper[]
 }
 
 model Newspaper {
@@ -49,6 +50,8 @@ model Newspaper {
   language    Language @default(English)
   img         String   @default("")
   description String   @default("") @db.VarChar(255)
+  Agent       Agent?   @relation(fields: [agentId], references: [id])
+  agentId     Int?
 }
 
 enum Role {

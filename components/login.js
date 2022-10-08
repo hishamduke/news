@@ -92,7 +92,7 @@ export default function Login() {
           <br />
           <div ref={parent}>
             {items.map((item) => (
-              <div key={item}>ye{item}</div>
+              <div key={item}>{item}</div>
             ))}
           </div>
           <br />

@@ -32,7 +32,7 @@ export default function employees() {
                   </p>
                 </form>
               </div>
-              {JSON.stringify(data)}
+              {/* {JSON.stringify(data)} */}
             </div>
           </>
         ) : (

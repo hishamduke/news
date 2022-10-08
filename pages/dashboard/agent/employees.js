@@ -46,7 +46,7 @@ function Employee() {
                   Router.push(`/dashboard/agent/employee/${item.id}`)
                 }
               >
-                Edit profile
+                Click
               </button>
             </div>
           ))}
