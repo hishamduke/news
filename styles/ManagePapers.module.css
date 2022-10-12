@@ -79,7 +79,8 @@
   /* flex-basis: 33%; */
   border: 2px solid black;
   background: linear-gradient(to right, #5cffc0 0%, #4cfced 100%);
-  -webkit-background-clip: content-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
   /* -webkit-text-fill-color: transparent; */
   width: 200px;
   display: flex;
@@ -87,7 +88,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-
+  align-items: center;
+  padding: 2px;
   /* height: %; */
 }
 

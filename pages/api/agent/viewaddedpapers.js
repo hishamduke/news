@@ -10,24 +10,27 @@ BigInt.prototype.toJSON = function () {
 export default async function handler(req, res) {
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
-  console.log("View papers");
+  console.log("View Added papers");
   try {
     var decoded = verify(JWT, secret);
     // console.log(decoded.id);
 
-    const papers = await prisma.newspaper.findMany({
-      where: {
-        language: req.body,
-      },
-    });
-    const agent = await prisma.agent.findFirst({
+    const agent = await prisma.agent.findUnique({
       where: {
         accountid: decoded.id,
       },
+      select: {
+        // This will work!
+        newspapers: {
+          where: {
+            language: req.body,
+          },
+        },
+      },
     });
-    console.log(req.body);
+    console.log(agent);
 
-    res.status(200).json(papers);
+    res.status(200).json(agent);
   } catch (e) {
     console.log(e);
   }

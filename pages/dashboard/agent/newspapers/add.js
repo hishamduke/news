@@ -1,9 +1,11 @@
 import BackButton from "../../../../components/buttons/backButton";
 import { queryClient } from "../../../_app";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "../../../../styles/ManagePapers.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import NoNewspapers from "../../../../components/Dashboards/Agent/NoNewspapers";
 
 export default function Show() {
   const [lang, setLang] = useState("English");
@@ -62,7 +64,28 @@ export default function Show() {
 }
 function ShowPapers({ lang }) {
   const [animationParent] = useAutoAnimate();
-
+  const addMutation = useMutation(
+    (id) => {
+      return axios.post("/api/agent/agentPaperMutate", { id, add: true });
+    },
+    {
+      onSettled: async () => {
+        queryClient.invalidateQueries([`AgentPapers${lang}`]);
+        queryClient.invalidateQueries([`AgentAddedPapers${lang}`]);
+      },
+    }
+  );
+  const removeMutation = useMutation(
+    (id) => {
+      return axios.post("/api/agent/agentPaperMutate", { id, add: false });
+    },
+    {
+      onSettled: async () => {
+        queryClient.invalidateQueries([`AgentPapers${lang}`]);
+        queryClient.invalidateQueries([`AgentAddedPapers${lang}`]);
+      },
+    }
+  );
   const { isLoading, error, data } = useQuery([`AgentPapers${lang}`], () =>
     fetch("/api/agent/viewpapers", {
       method: "POST", // or 'PUT'
@@ -72,10 +95,37 @@ function ShowPapers({ lang }) {
       body: JSON.stringify(lang),
     }).then((res) => res.json())
   );
+  const {
+    data: otherData,
+    loading: otherLoading,
+    error: otherError,
+  } = useQuery([`AgentAddedPapers${lang}`], () =>
+    fetch("/api/agent/viewaddedpapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(lang),
+    }).then((res) => res.json())
+  );
+
+  const isAddedPaper = (id) => {
+    console.log(otherData);
+    if (!otherData) return false;
+    for (let i = 0; i < otherData.newspapers.length; i++) {
+      if (otherData.newspapers[i].id == id) {
+        console.log(true);
+        return true;
+      }
+    }
+    console.log(false);
+    return false;
+  };
+
   if (data)
     return (
       <>
-        {/* {JSON.stringify(data)} */}
+        {!data.length && <Empty />}
 
         <div
           ref={animationParent}
@@ -88,10 +138,32 @@ function ShowPapers({ lang }) {
         >
           {data.map((val) => (
             <div className={styles.NewsBox} key={val}>
-              {console.log(val)}
+              {/* {console.log(val)} */}
               <img className={styles.NewsImg} src={val.img} />
               <h1 className={styles.NewsName}>{val.name}</h1>
               <p style={{ textAlign: "center" }}>{val.description}</p>
+              {isAddedPaper(val.id) ? (
+                <button
+                  style={{ textAlign: "center" }}
+                  onClick={() => {
+                    removeMutation.mutate({ id: val.id });
+                    // console.log(val.id);
+                  }}
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  style={{ textAlign: "center" }}
+                  onClick={() => {
+                    addMutation.mutate({ id: val.id });
+                    // console.log(val.id);
+                  }}
+                >
+                  Add
+                </button>
+              )}
+              {/* {JSON.stringify(isAddedPaper(val.id))} */}
             </div>
           ))}
         </div>
@@ -99,4 +171,8 @@ function ShowPapers({ lang }) {
         {/* {data} */}
       </>
     );
+}
+
+function Empty() {
+  return <NoNewspapers />;
 }
