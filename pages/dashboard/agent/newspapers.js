@@ -29,14 +29,14 @@ function Newspapers() {
             className={" Link"}
             onClick={() => Router.push("/dashboard/agent/newspapers/show")}
           >
-            Show newspapers
+            List newspapers
           </p>
 
           <p
             className={" Link"}
             onClick={() => Router.push("/dashboard/agent/newspapers/add")}
           >
-            Add more newspapers
+            Manage newspapers list
           </p>
         </form>
       </div>

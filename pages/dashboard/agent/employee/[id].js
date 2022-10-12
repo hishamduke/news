@@ -4,21 +4,24 @@ import BackButton from "../../../../components/buttons/backButton";
 import axios from "axios";
 import { queryClient } from "../../../_app";
 import styles from "../../../../styles/Employees.module.css";
-import Router from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import MapView from "../../../../components/Dashboards/Agent/mapView";
+import NewspaperEmp from "../../../../components/Dashboards/Agent/NewspaperEmp";
 export default function employees() {
   const router = useRouter();
   const { id } = router.query;
-  const [visible, setVisible] = useState(false);
+  //~~
+  const [visible, setVisible] = useState(2);
+  //^^
+  //TODO:change to 0
   const { isLoading, error, data } = useQuery([`employee${id}`], () =>
     fetch(`/api/agent/employees/${id}`).then((res) => res.json())
   );
   if (data)
     return (
       <>
-        {!visible ? (
+        {visible == 0 && (
           <>
             <BackButton />
             <div className="collumns">
@@ -27,21 +30,25 @@ export default function employees() {
                 <form>
                   <h1 className={"formhead test"}>Manage User</h1>
                   <h4>{data.name}</h4>
-                  <p className={" Link"} onClick={() => setVisible(!visible)}>
+                  <p className={" Link"} onClick={() => setVisible(1)}>
                     Edit profile
+                  </p>
+                  <p className={" Link"} onClick={() => setVisible(2)}>
+                    Newspapers
                   </p>
                 </form>
               </div>
               {/* {JSON.stringify(data)} */}
             </div>
           </>
-        ) : (
-          <EmpId setVisible={setVisible} />
         )}
+        {visible == 1 && <EmpId setVisible={setVisible} />}
+        {visible == 2 && <NewspaperEmp setVisible={setVisible} />}
         <br />
       </>
     );
 }
+
 const EmpId = ({ setVisible }) => {
   const router = useRouter();
   const { id } = router.query;
@@ -71,7 +78,7 @@ const EmpId = ({ setVisible }) => {
         queryClient.invalidateQueries(`employee${id}`);
         queryClient.invalidateQueries("employees");
         setTimeout(() => {
-          setVisible(false);
+          setVisible(0);
           // Router.push("/dashboard/agent/employee/");
         }, 1000);
       })
@@ -91,7 +98,6 @@ const EmpId = ({ setVisible }) => {
       console.log(inp);
       return (
         <>
-          {" "}
           {mapview ? (
             <Maps inp={inp} setInp={setInp} setMapview={setMapview} />
           ) : (
@@ -112,7 +118,7 @@ const EmpId = ({ setVisible }) => {
                     }}
                     className="zoom"
                     onClick={() => {
-                      setVisible(false);
+                      setVisible(0);
                     }}
                   >
                     {<BiArrowBack />} back
