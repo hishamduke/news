@@ -14,7 +14,7 @@ export default function Footer() {
               </Link>
             </li>
             <li className="newli">
-              <Link href="mailto:julesforrest@gmail.com">
+              <Link href="mailto:hishamdkz@gmail.com">
                 <a className="newa">Email</a>
               </Link>
             </li>
