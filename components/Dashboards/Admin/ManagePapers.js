@@ -107,12 +107,8 @@ function NewsTable(val) {
             {newdata.map((val) => (
               <div className={styles.NewsBox} ref={animationParent} key={val}>
                 {console.log(val)}
-                <img
-                  ref={animationParent}
-                  className={styles.NewsImg}
-                  src={val.img}
-                />
-                <h1 className={styles.NewsName}>{val.name}</h1>
+                <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
+                <img className={styles.NewsImg} src={val.img} />
                 <p style={{ textAlign: "center" }}>{val.description}</p>
               </div>
             ))}

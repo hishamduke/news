@@ -112,8 +112,8 @@ function ShowPapers({ lang }) {
   const isAddedPaper = (id) => {
     console.log(otherData);
     if (!otherData) return false;
-    for (let i = 0; i < otherData.newspapers.length; i++) {
-      if (otherData.newspapers[i].id == id) {
+    for (let i = 0; i < otherData.length; i++) {
+      if (otherData[i].id == id) {
         console.log(true);
         return true;
       }
@@ -125,7 +125,7 @@ function ShowPapers({ lang }) {
   if (data)
     return (
       <>
-        {!data.length && <Empty />}
+        {!data.length && <NoNewspapers />}
 
         <div
           ref={animationParent}
@@ -139,8 +139,8 @@ function ShowPapers({ lang }) {
           {data.map((val) => (
             <div className={styles.NewsBox} key={val}>
               {/* {console.log(val)} */}
+              <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
               <img className={styles.NewsImg} src={val.img} />
-              <h1 className={styles.NewsName}>{val.name}</h1>
               <p style={{ textAlign: "center" }}>{val.description}</p>
               {isAddedPaper(val.id) ? (
                 <button
@@ -171,8 +171,4 @@ function ShowPapers({ lang }) {
         {/* {data} */}
       </>
     );
-}
-
-function Empty() {
-  return <NoNewspapers />;
 }

@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     });
     console.log(agent);
 
-    res.status(200).json(agent);
+    res.status(200).json(agent.newspapers);
   } catch (e) {
     console.log(e);
   }

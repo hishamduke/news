@@ -28,7 +28,7 @@ export default function Verified() {
               className={" Link"}
               onClick={() => Router.push("/dashboard/agent/newspapers")}
             >
-              Available newspapers
+              Manage Newspapers
             </p>
             <Logout />
           </form>

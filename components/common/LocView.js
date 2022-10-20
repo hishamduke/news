@@ -2,6 +2,8 @@ import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { cordToStreet } from "../../lib/cordToStreet";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 const mapContainerStyle = {
   height: "400px",
   width: "100%",
@@ -68,31 +70,32 @@ export default function RegMap(val) {
           {/* {!showMap && (
           // <button onClick={() => setShowMap(!showMap)}>change</button>
         )} */}
-
-          <GoogleMap
-            id="marker-example"
-            mapContainerStyle={mapContainerStyle}
-            center={begin}
-            zoom={10}
-            onLoad={(map) => {
-              setMap(map);
-              console.log(map.getZoom());
-            }}
-          >
-            <Marker
-              // onLoad={onLoad}
-              position={location}
-              draggable={true}
-              onDragEnd={(e) => {
-                setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-                getLoc(e.latLng.lat(), e.latLng.lng());
-                val.setInp({
-                  ...val.inp,
-                  loc: { lat: e.latLng.lat(), lng: e.latLng.lng() },
-                });
+          <div style={{ border: "1px solid black" }}>
+            <GoogleMap
+              id="marker-example"
+              mapContainerStyle={mapContainerStyle}
+              center={begin}
+              zoom={10}
+              onLoad={(map) => {
+                setMap(map);
+                console.log(map.getZoom());
               }}
-            />
-          </GoogleMap>
+            >
+              <Marker
+                // onLoad={onLoad}
+                position={location}
+                draggable={false}
+                // onDragEnd={(e) => {
+                //   setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+                //   getLoc(e.latLng.lat(), e.latLng.lng());
+                //   val.setInp({
+                //     ...val.inp,
+                //     loc: { lat: e.latLng.lat(), lng: e.latLng.lng() },
+                //   });
+                // }}
+              />
+            </GoogleMap>
+          </div>
           <br />
         </>
       </div>

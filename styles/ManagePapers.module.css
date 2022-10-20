@@ -69,7 +69,7 @@
   border: 1px solid black;
   background-color: white;
   /* object-fit: cover; */
-
+  object-fit: cover;
   width: 180px;
   height: 180px;
 
@@ -77,10 +77,11 @@
 }
 .NewsBox {
   /* flex-basis: 33%; */
-  border: 2px solid black;
-  background: linear-gradient(to right, #5cffc0 0%, #4cfced 100%);
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
+  /* border: 1px solid black; */
+  background-color: #f0eee7c7;
+  /* background: linear-gradient(to right, #5cffc0 0%, #4cfced 100%); */
+  /* -webkit-background-clip: border-box; */
+  /* background-clip: border-box; */
   /* -webkit-text-fill-color: transparent; */
   width: 200px;
   display: flex;
@@ -89,7 +90,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding: 2px;
+  padding: 15px;
   /* height: %; */
 }
 
