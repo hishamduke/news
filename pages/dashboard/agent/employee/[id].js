@@ -12,7 +12,7 @@ export default function employees() {
   const router = useRouter();
   const { id } = router.query;
   //~~
-  const [visible, setVisible] = useState(2);
+  const [visible, setVisible] = useState(0);
   //^^
   //TODO:change to 0
   const { isLoading, error, data } = useQuery([`employee${id}`], () =>

@@ -37,7 +37,7 @@ export default function Verified() {
             // placeholder="blur"
             className="dashboard"
             src="/news1.png"
-            height={"300"}
+            height={"320"}
             width={"320"}
             // style={{ transform: "translateY(-40px)" }}
           ></Image>

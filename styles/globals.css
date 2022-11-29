@@ -157,7 +157,7 @@ button {
   transition: all 0.2s;
 }
 .Link:hover {
-  transform: scale(1.01);
+  transform: scale(1.001);
   text-decoration: underline;
 }
 .zoom {
