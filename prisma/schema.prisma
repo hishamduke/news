@@ -45,15 +45,14 @@ model Agent {
 }
 
 model Newspaper {
-  id          Int       @id @default(autoincrement())
-  name        String    @db.VarChar(255)
-  language    Language  @default(English)
-  img         String    @default("")
-  description String    @default("") @db.VarChar(255)
-  Agent       Agent?    @relation(fields: [agentId], references: [id])
+  id          Int        @id @default(autoincrement())
+  name        String     @db.VarChar(255)
+  language    Language   @default(English)
+  img         String     @default("")
+  description String     @default("") @db.VarChar(255)
+  Agent       Agent?     @relation(fields: [agentId], references: [id])
   agentId     Int?
-  Employee    Employee? @relation(fields: [employeeId], references: [id])
-  employeeId  Int?
+  Employee    Employee[]
 }
 
 enum Role {

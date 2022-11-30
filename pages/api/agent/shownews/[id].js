@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   let { id } = req.query;
   id = parseInt(id);
   try {
-    console.log(id);
+    console.log("shownews");
     let employee = await prisma.employee.findFirst({
       where: {
         id,

@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { BiArrowBack } from "react-icons/bi";
 import { useState } from "react";
 import styles from "../../../styles/ManagePapers.module.css";
+import { queryClient } from "../../../pages/_app";
 import axios from "axios";
 const NewsEmp = ({ setVisible }) => {
   const router = useRouter();
@@ -58,14 +59,14 @@ const NewsEmp = ({ setVisible }) => {
       >
         <div style={{ display: "flex", gap: "2rem" }}>
           <p className="Link" onClick={() => setvis(0)} style={styles1}>
-            Add new
+            Manage
           </p>
           <p className="Link" onClick={() => setvis(1)} style={styles2}>
             Show available
           </p>
         </div>
       </div>
-      {vis == 0 ? <AddNew id={id} /> : <ShowAv />}
+      {vis == 0 ? <AddNew id={id} /> : <ShowAv id={id} />}
     </>
   );
 };
@@ -75,37 +76,113 @@ const AddNew = (id) => {
   const { isLoading, error, data } = useQuery([`news${id.id}`], () =>
     fetch(`/api/agent/shownews/${id.id}`).then((res) => res.json())
   );
-  const addTodo = (id) => axios.post("/api/agent/empPaperMutate", id);
+
+  const { loading: loading2, data: data2 } = useQuery([`empnews`], () =>
+    fetch(`/api/agent/empnews/${id.id}`).then((res) => res.json())
+  );
 
   const addMutation = useMutation(
-    (id) => {
-      return axios.post("/api/agent/empPaperMutate", { id, add: true });
+    (newsid) => {
+      return axios.post("/api/agent/empPaperMutate", {
+        id: id.id,
+        add: true,
+        newsid,
+      });
     },
     {
       onSettled: async () => {
+        queryClient.invalidateQueries([`news${id.id}`]);
+      },
+      onSuccess: async () => {
         queryClient.invalidateQueries([`news${id.id}`]);
       },
     }
   );
   const removeMutation = useMutation(
-    (id) => {
-      return axios.post("//api/agent/empPaperMutate", { id, add: false });
+    (newsid) => {
+      return axios.post("/api/agent/empPaperMutate", {
+        id: id.id,
+        add: false,
+        newsid,
+      });
     },
     {
       onSettled: async () => {
         queryClient.invalidateQueries([`news${id.id}`]);
       },
+      onSuccess: async () => {
+        queryClient.invalidateQueries([`news${id.id}`]);
+      },
     }
   );
 
-  const disapprove = useMutation(addTodo, {
-    onSuccess: async () => {},
-  });
-  const handleadd = () => {
+  const handleAdd = (newsid) => {
     console.log("hi");
-    disapprove.mutate();
+    addMutation.mutate(newsid);
   };
-  if (data)
+  const handleRem = (newsid) => {
+    console.log("hi");
+    removeMutation.mutate(newsid);
+  };
+
+  if (data) {
+    const isAdded = (id) => {
+      let flag = false;
+      for (let i = 0; i < data2.newspapers.length; i++) {
+        if (data2.newspapers[i].id == id) return true;
+      }
+      return false;
+    };
+    return (
+      <>
+        {JSON.stringify(data) + "hi"}
+        {JSON.stringify(isAdded(1))}
+        <div className="dashboard">
+          {/* Language */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+              marginTop: "15px",
+            }}
+          >
+            {data.newspapers.map((val) => (
+              <div className={styles.NewsBox} key={val.id}>
+                <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
+                <img className={styles.NewsImg} src={val.img} />
+                <p style={{ textAlign: "center" }}>{val.language}</p>
+                {!isAdded(val.id) ? (
+                  <button
+                    onClick={() => {
+                      handleAdd(val.id);
+                    }}
+                  >
+                    add
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      handleRem(val.id);
+                    }}
+                  >
+                    remove
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  }
+};
+
+const ShowAv = ({ id }) => {
+  const { isLoading, error, data } = useQuery([`empnews`], () =>
+    fetch(`/api/agent/empnews/${id}`).then((res) => res.json())
+  );
+  if (data.newspapers)
     return (
       <>
         {JSON.stringify(data)}
@@ -123,13 +200,7 @@ const AddNew = (id) => {
                 <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
                 <img className={styles.NewsImg} src={val.img} />
                 <p style={{ textAlign: "center" }}>{val.language}</p>
-                <button
-                  onClick={() => {
-                    handleadd();
-                  }}
-                >
-                  add
-                </button>
+
                 {/* {JSON.stringify(isAddedPaper(val.id))} */}
               </div>
             ))}
@@ -137,9 +208,5 @@ const AddNew = (id) => {
         </div>
       </>
     );
-};
-
-const ShowAv = ({ setVisible }) => {
-  return <div className="dashboard">hey</div>;
 };
 export default NewsEmp;
