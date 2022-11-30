@@ -91,10 +91,10 @@ const AddNew = (id) => {
     },
     {
       onSettled: async () => {
-        queryClient.invalidateQueries([`news${id.id}`]);
+        queryClient.invalidateQueries(`news${id.id}`);
       },
       onSuccess: async () => {
-        queryClient.invalidateQueries([`news${id.id}`]);
+        queryClient.invalidateQueries(`news${id.id}`);
       },
     }
   );
@@ -108,10 +108,10 @@ const AddNew = (id) => {
     },
     {
       onSettled: async () => {
-        queryClient.invalidateQueries([`news${id.id}`]);
+        queryClient.invalidateQueries(`news${id.id}`);
       },
       onSuccess: async () => {
-        queryClient.invalidateQueries([`news${id.id}`]);
+        queryClient.invalidateQueries(`news${id.id}`);
       },
     }
   );
