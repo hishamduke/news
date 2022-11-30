@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const Paper = z.object({
     id: z.number(),
   });
-  console.log("hmmm");
+
   try {
     var decoded = verify(JWT, secret);
     let data = Paper.parse(req.body.id);

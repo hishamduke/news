@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { BiArrowBack } from "react-icons/bi";
 import { useState } from "react";
 import styles from "../../../styles/ManagePapers.module.css";
+import axios from "axios";
 const NewsEmp = ({ setVisible }) => {
   const router = useRouter();
   const { id } = router.query;
@@ -74,12 +75,41 @@ const AddNew = (id) => {
   const { isLoading, error, data } = useQuery([`news${id.id}`], () =>
     fetch(`/api/agent/shownews/${id.id}`).then((res) => res.json())
   );
+  const addTodo = (id) => axios.post("/api/agent/empPaperMutate", id);
+
+  const addMutation = useMutation(
+    (id) => {
+      return axios.post("/api/agent/empPaperMutate", { id, add: true });
+    },
+    {
+      onSettled: async () => {
+        queryClient.invalidateQueries([`news${id.id}`]);
+      },
+    }
+  );
+  const removeMutation = useMutation(
+    (id) => {
+      return axios.post("//api/agent/empPaperMutate", { id, add: false });
+    },
+    {
+      onSettled: async () => {
+        queryClient.invalidateQueries([`news${id.id}`]);
+      },
+    }
+  );
+
+  const disapprove = useMutation(addTodo, {
+    onSuccess: async () => {},
+  });
+  const handleadd = () => {
+    console.log("hi");
+    disapprove.mutate();
+  };
   if (data)
     return (
-      <div className="dashboard">
-        <>
-          {JSON.stringify(data)}
-
+      <>
+        {JSON.stringify(data)}
+        <div className="dashboard">
           <div
             style={{
               display: "flex",
@@ -93,13 +123,19 @@ const AddNew = (id) => {
                 <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
                 <img className={styles.NewsImg} src={val.img} />
                 <p style={{ textAlign: "center" }}>{val.language}</p>
-                <button>add</button>
+                <button
+                  onClick={() => {
+                    handleadd();
+                  }}
+                >
+                  add
+                </button>
                 {/* {JSON.stringify(isAddedPaper(val.id))} */}
               </div>
             ))}
           </div>
-        </>
-      </div>
+        </div>
+      </>
     );
 };
 
