@@ -18,15 +18,17 @@ model Accounts {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  accountid Int     @unique
-  num       BigInt  @unique
-  house     String  @db.VarChar(255)
-  street    String  @db.VarChar(255)
-  pin       BigInt
-  banned    Boolean @default(false)
-  agent     Int
-  employee  Int     @default(0)
+  id         Int       @id @default(autoincrement())
+  accountid  Int       @unique
+  num        BigInt    @unique
+  house      String    @db.VarChar(255)
+  street     String    @db.VarChar(255)
+  pin        BigInt
+  banned     Boolean   @default(false)
+  agent      Agent?    @relation(fields: [agentId], references: [id])
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  agentId    Int?
+  employeeId Int?
 }
 
 model Feedback {
@@ -42,6 +44,7 @@ model Agent {
   loc        String      @default("") @db.VarChar(255)
   approved   Boolean     @default(false)
   newspapers Newspaper[]
+  User       User[]
 }
 
 model Newspaper {
@@ -70,6 +73,7 @@ model Employee {
   loc        String      @default("") @db.VarChar(255)
   num        BigInt      @unique
   newspapers Newspaper[]
+  User       User[]
 }
 
 enum Language {

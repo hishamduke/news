@@ -125,7 +125,7 @@ const AddNew = (id) => {
     removeMutation.mutate(newsid);
   };
 
-  if (data) {
+  if (data && data2) {
     const isAdded = (id) => {
       let flag = false;
       for (let i = 0; i < data2.newspapers.length; i++) {
@@ -135,8 +135,6 @@ const AddNew = (id) => {
     };
     return (
       <>
-        {JSON.stringify(data) + "hi"}
-        {JSON.stringify(isAdded(1))}
         <div className="dashboard">
           {/* Language */}
           <div
@@ -185,7 +183,6 @@ const ShowAv = ({ id }) => {
   if (data.newspapers)
     return (
       <>
-        {JSON.stringify(data)}
         <div className="dashboard">
           <div
             style={{
