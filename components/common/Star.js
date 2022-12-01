@@ -1,5 +1,4 @@
 const Star = (number) => {
-  console.log(number);
   const starfilled = "★";
   const starempt = "☆";
   let out = "";

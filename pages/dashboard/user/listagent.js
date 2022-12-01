@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import MapView from "../../../components/Dashboards/Agent/mapView";
 import { queryClient } from "../../_app";
 import Star from "../../../components/common/Star";
+import { cordToStreet } from "../../../lib/cordToStreet";
 export default function employees() {
   return (
     <>
@@ -23,8 +24,8 @@ function Employee() {
   const [animationParent] = useAutoAnimate();
   const [visible, setVisible] = useState(false);
 
-  const { isLoading, error, data } = useQuery(["employees"], () =>
-    fetch("/api/agent/viewemployees").then((res) => res.json())
+  const { isLoading, error, data } = useQuery(["allagents"], () =>
+    fetch("/api/user/viewagents").then((res) => res.json())
   );
   if (isLoading) return;
   if (data)
@@ -32,17 +33,19 @@ function Employee() {
       <>
         <form>
           <h2 style={{ textAlign: "center" }}> Available Agents</h2>
+          {/* {JSON.stringify(data)} */}
         </form>
 
         <div className="collumns">
           <div className="dashboard" ref={animationParent}>
             <div className="collumns">
-              <Box />
-
-              <Box />
-              <Box />
-              <Box />
-              <Box />
+              {/* <Box name="Jishnu" phone="9923323222" rating={3} /> */}
+              {data.map((val) => (
+                <div key={val.id}>
+                  {/* {JSON.stringify(val.loc)} */}
+                  <Box name={val.name} phone={val.num} loc={val.loc} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -50,7 +53,7 @@ function Employee() {
     );
 }
 
-const Box = () => {
+const Box = ({ name, phone, rating, loc }) => {
   return (
     <div className={styles.NewsBox}>
       {/* {console.log(val)} */}
@@ -61,15 +64,20 @@ const Box = () => {
       <div className={styles.ContBox}>
         <div className={styles.Info}>
           <p>Name :</p>
-          <p> Jishnu</p>
+          <p> {name}</p>
         </div>
         <div className={styles.Info}>
           <p>Phone :</p>
-          <p> 2130312290231</p>
+          <p> {phone}</p>
         </div>
         <div className={styles.Info}>
           <p>Rating :</p>
-          <Star val={2} />
+          <Star val={rating} />
+        </div>
+        <div className={styles.Info}>
+          <p>location :</p>
+
+          <LocName lat={JSON.parse(loc).lat} lng={JSON.parse(loc).lng} />
         </div>
       </div>
       {/* <button className={styles.Button2}>Remove</button> */}
@@ -77,4 +85,30 @@ const Box = () => {
       {/* {JSON.stringify(isAddedPaper(val.id))} */}
     </div>
   );
+};
+
+const LocName = ({ lat, lng }) => {
+  // {"lat":11.553216976538248,"lng":75.75868013197568}
+  const { isLoading, error, data } = useQuery([`loc${lat + lng}`], () =>
+    fetch(
+      "https://www.mapquestapi.com/geocoding/v1/reverse?key=G1moSFJkXvMTf7kCVqTOPMh1SxtvJaGi&location=" +
+        lat +
+        "%2C" +
+        lng +
+        "&outFormat=json&thumbMaps=false"
+    ).then((res) => res.json())
+  );
+
+  if (data)
+    if (data.results)
+      return (
+        <>
+          {/* {console.log(data.results[0].locations)} */}
+          {data.results[0].locations[0].street +
+            " " +
+            data.results[0].locations[0].adminArea5}
+          {/* {console.log(data.results[0].locations[0])} */}
+        </>
+      );
+  return "loading";
 };

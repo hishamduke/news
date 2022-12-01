@@ -115,10 +115,10 @@
 }
 
 .Heading {
-  padding: 1px;
+  margin-bottom: 2rem;
   text-align: center;
   /* background-color: violet; */
-  margin: auto;
+  /* margin: auto; */
   /* font-weight: 600; */
   font-size: 1.4rem;
   text-decoration: underline;
