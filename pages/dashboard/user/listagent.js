@@ -42,8 +42,14 @@ function Employee() {
               {/* <Box name="Jishnu" phone="9923323222" rating={3} /> */}
               {data.map((val) => (
                 <div key={val.id}>
-                  {/* {JSON.stringify(val.loc)} */}
-                  <Box name={val.name} phone={val.num} loc={val.loc} />
+                  {JSON.stringify(val)}
+                  <Box
+                    name={val.name}
+                    phone={val.num}
+                    loc={val.loc}
+                    id={val.id}
+                    current={val.currentAgent}
+                  />
                 </div>
               ))}
             </div>
@@ -53,7 +59,15 @@ function Employee() {
     );
 }
 
-const Box = ({ name, phone, rating, loc }) => {
+const Box = ({ name, phone, rating, loc, id, current }) => {
+  const handleSet = () => {
+    axios.post("/api/user/setAgent", { id, in: true });
+    queryClient.invalidateQueries("allagents");
+  };
+  const handleOut = () => {
+    axios.post("/api/user/setAgent", { id, in: false });
+    queryClient.invalidateQueries("allagents");
+  };
   return (
     <div className={styles.NewsBox}>
       {/* {console.log(val)} */}
@@ -78,6 +92,13 @@ const Box = ({ name, phone, rating, loc }) => {
           <p>location :</p>
 
           <LocName lat={JSON.parse(loc).lat} lng={JSON.parse(loc).lng} />
+        </div>
+        <div className={styles.Info} style={{ margin: "auto" }}>
+          {current ? (
+            <button onClick={() => handleOut()}>opt-out</button>
+          ) : (
+            <button onClick={() => handleSet()}>choose</button>
+          )}
         </div>
       </div>
       {/* <button className={styles.Button2}>Remove</button> */}

@@ -18,17 +18,18 @@ model Accounts {
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
-  accountid  Int       @unique
-  num        BigInt    @unique
-  house      String    @db.VarChar(255)
-  street     String    @db.VarChar(255)
-  pin        BigInt
-  banned     Boolean   @default(false)
-  agent      Agent?    @relation(fields: [agentId], references: [id])
-  employee   Employee? @relation(fields: [employeeId], references: [id])
-  agentId    Int?
-  employeeId Int?
+  id          Int           @id @default(autoincrement())
+  accountid   Int           @unique
+  num         BigInt        @unique
+  house       String        @db.VarChar(255)
+  street      String        @db.VarChar(255)
+  pin         BigInt
+  banned      Boolean       @default(false)
+  agent       Agent?        @relation(fields: [agentId], references: [id])
+  employee    Employee?     @relation(fields: [employeeId], references: [id])
+  agentId     Int?
+  employeeId  Int?
+  RatingAgent RatingAgent[]
 }
 
 model Feedback {
@@ -38,13 +39,14 @@ model Feedback {
 }
 
 model Agent {
-  accountid  Int         @unique
-  id         Int         @id @default(autoincrement())
-  num        BigInt      @unique
-  loc        String      @default("") @db.VarChar(255)
-  approved   Boolean     @default(false)
-  newspapers Newspaper[]
-  User       User[]
+  accountid   Int           @unique
+  id          Int           @id @default(autoincrement())
+  num         BigInt        @unique
+  loc         String        @default("") @db.VarChar(255)
+  approved    Boolean       @default(false)
+  newspapers  Newspaper[]
+  User        User[]
+  RatingAgent RatingAgent[]
 }
 
 model Newspaper {
@@ -79,4 +81,13 @@ model Employee {
 enum Language {
   English
   Malayalam
+}
+
+model RatingAgent {
+  id      Int   @id @default(autoincrement())
+  User    User  @relation(fields: [userId], references: [id])
+  userId  Int
+  Agent   Agent @relation(fields: [agentId], references: [id])
+  agentId Int
+  rating  Int
 }

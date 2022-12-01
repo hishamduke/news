@@ -12,8 +12,9 @@ export default async function handler(req, res) {
   const JWT = cookies.OurSiteJWT;
   console.log("View agents");
   try {
-    var decoded = verify(JWT, secret);
     // console.log(decoded.id);
+    var decoded = verify(JWT, secret);
+
     const agents = await prisma.agent.findMany({});
     let out = agents;
     const accounts = await prisma.accounts.findMany({
@@ -21,9 +22,25 @@ export default async function handler(req, res) {
         role: "AGENT",
       },
     });
-    // console.log(agents);
+    const userAgent = await prisma.user.findFirst({
+      where: {
+        accountid: decoded.id,
+      },
+    });
+    // console.log(userAgent);
+
     for (let i = 0; i < agents.length; i++) {
       for (let j = 0; j < accounts.length; j++) {
+        if (userAgent.agentId == out[i].id) {
+          out[i].currentAgent = true;
+        } else {
+          out[i].currentAgent = false;
+        }
+        console.log("loop");
+        console.log("id decoded " + decoded.id);
+
+        console.log(userAgent);
+
         if (accounts[j].id == agents[i].accountid) {
           out[i].name = accounts[j].name;
           out[i].email = accounts[j].email;
