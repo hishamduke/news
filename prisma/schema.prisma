@@ -84,10 +84,11 @@ enum Language {
 }
 
 model RatingAgent {
-  id      Int   @id @default(autoincrement())
-  User    User  @relation(fields: [userId], references: [id])
-  userId  Int
-  Agent   Agent @relation(fields: [agentId], references: [id])
-  agentId Int
-  rating  Int
+  id       Int     @id @default(autoincrement())
+  User     User    @relation(fields: [userId], references: [id])
+  userId   Int
+  Agent    Agent   @relation(fields: [agentId], references: [id])
+  agentId  Int
+  rating   Int
+  feedback String?
 }

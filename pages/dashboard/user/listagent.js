@@ -42,7 +42,7 @@ function Employee() {
               {/* <Box name="Jishnu" phone="9923323222" rating={3} /> */}
               {data.map((val) => (
                 <div key={val.id}>
-                  {JSON.stringify(val)}
+                  {/* {JSON.stringify(val)} */}
                   <Box
                     name={val.name}
                     phone={val.num}
@@ -63,10 +63,12 @@ const Box = ({ name, phone, rating, loc, id, current }) => {
   const handleSet = () => {
     axios.post("/api/user/setAgent", { id, in: true });
     queryClient.invalidateQueries("allagents");
+    alert("Successfully chosen");
   };
   const handleOut = () => {
     axios.post("/api/user/setAgent", { id, in: false });
     queryClient.invalidateQueries("allagents");
+    alert("Successfully opted out");
   };
   return (
     <div className={styles.NewsBox}>
