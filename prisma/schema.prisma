@@ -30,6 +30,7 @@ model User {
   agentId     Int?
   employeeId  Int?
   RatingAgent RatingAgent[]
+  FeedAgent   FeedAgent[]
 }
 
 model Feedback {
@@ -47,6 +48,7 @@ model Agent {
   newspapers  Newspaper[]
   User        User[]
   RatingAgent RatingAgent[]
+  FeedAgent   FeedAgent[]
 }
 
 model Newspaper {
@@ -91,4 +93,13 @@ model RatingAgent {
   agentId  Int
   rating   Int
   feedback String?
+}
+
+model FeedAgent {
+  id      Int    @id @default(autoincrement())
+  User    User   @relation(fields: [userId], references: [id])
+  userId  Int
+  Agent   Agent  @relation(fields: [agentId], references: [id])
+  agentId Int
+  content String
 }

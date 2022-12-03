@@ -72,6 +72,12 @@ export default function Dashboard(yea) {
               >
                 Give rating to your agent
               </p>
+              <p
+                className={" Link"}
+                onClick={() => Router.push("/dashboard/user/agentsupport")}
+              >
+                Write to your agent
+              </p>
 
               <h4>Newspapers</h4>
               <p
@@ -90,15 +96,18 @@ export default function Dashboard(yea) {
 
               <Logout />
             </form>
-            <Image
-              priority="false"
-              // placeholder="blur"
-              className="dashboard"
-              src="/newsillu.webp"
-              height={"300"}
-              width={"330"}
-              // style={{ transform: "translateY(-40px)" }}
-            ></Image>
+            <div style={{ margin: "auto" }}>
+              <Image
+                priority="false"
+                // placeholder="blur"
+                className="dashboard"
+                src="/newsillu.webp"
+                height={"320"}
+                width={"330"}
+
+                // style={{ transform: "translateY(-40px)" }}
+              ></Image>
+            </div>
           </div>
         </div>
       </>

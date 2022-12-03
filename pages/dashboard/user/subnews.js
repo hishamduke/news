@@ -98,15 +98,8 @@ function NewsOf({ lang }) {
 }
 
 const Box = ({ val }) => {
-  const handleSet = () => {
-    axios.post("/api/user/setAgent", { id, in: true });
-    queryClient.invalidateQueries("allagents");
-    alert("Successfully chosen");
-  };
-  const handleOut = () => {
-    axios.post("/api/user/setAgent", { id, in: false });
-    queryClient.invalidateQueries("allagents");
-    alert("Successfully opted out");
+  const handleOut = (id) => {
+    Router.push(`/dashboard/user/subnews/${id}`);
   };
   return (
     <div className={styles.NewsBox}>
@@ -125,16 +118,9 @@ const Box = ({ val }) => {
         <p style={{ margin: "auto", padding: "0.5rem" }}> {val.description}</p>
 
         <div className={styles.Info} style={{ margin: "auto" }}>
-          {/* {current ? ( */}
-          <button onClick={() => handleOut()}>opt-out</button>
-          {/* ) : ( */}
-          {/* <button onClick={() => handleSet()}>choose</button> */}
-          {/* )} */}
+          <button onClick={() => handleOut(val.id)}>Click</button>
         </div>
       </div>
-      {/* <button className={styles.Button2}>Remove</button> */}
-
-      {/* {JSON.stringify(isAddedPaper(val.id))} */}
     </div>
   );
 };

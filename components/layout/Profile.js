@@ -71,7 +71,7 @@ export default function Profile() {
                         go("support");
                       }}
                     >
-                      ✉️ Write to support
+                      ✉️ Write to Admin
                     </div>
                     <div
                       className={styles.row}

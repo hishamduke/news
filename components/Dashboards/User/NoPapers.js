@@ -17,7 +17,7 @@ export default function NoPapers({ lang }) {
           priority="false"
           // placeholder="blur"
           className="dashboard"
-          src="/news2.png"
+          src="/newsillu2.webp"
           height={"300"}
           width={"300"}
           //   style={{ transform: "translateY(-40px)" }}
@@ -40,9 +40,9 @@ export default function NoPapers({ lang }) {
           <div
             className="zoom Link"
             style={{ color: "#2f56d6" }}
-            onClick={() => Router.push("/dashboard/user/listagent")}
+            onClick={() => Router.push("/dashboard/user/agentsupport")}
           >
-            contact your agent
+            Write to your agent
           </div>
         </div>
       </div>

@@ -41,12 +41,23 @@ export default function Support() {
           }}
         >
           <BackButton />
-          <h2 className={"formhead"}>We are happy to help you.</h2>
+          <h2 className={"formhead"}>
+            We are{" "}
+            <el
+              style={{
+                backgroundColor: "#fee160",
+              }}
+            >
+              happy
+            </el>{" "}
+            to help you.
+          </h2>
           <p>Please input in the following field :</p>
           <textarea
             required
             placeholder="type here ..."
             className={styles.textarea1}
+            style={{ width: "479px", height: "403px" }}
             onChange={(e) => {
               setContent(e.target.value);
             }}
@@ -77,7 +88,7 @@ export default function Support() {
         </form>
         <div className={styles.imge}>
           <Image
-            src="/news2.png"
+            src="/newsillu3.webp"
             height={"300"}
             width={"250"}
             // style={{ transform: "translateY(-40px)" }}
