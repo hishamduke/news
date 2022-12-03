@@ -70,7 +70,7 @@ export default function Dashboard(yea) {
                 className={" Link"}
                 onClick={() => Router.push("/dashboard/user/rateagent")}
               >
-                Rate Agents
+                Give rating to your agent
               </p>
 
               <h4>Newspapers</h4>
@@ -85,7 +85,7 @@ export default function Dashboard(yea) {
                 className={" Link"}
                 onClick={() => Router.push("/dashboard/user/ratenews")}
               >
-                Rate Newspapers
+                Give rating to Newspapers
               </p>
 
               <Logout />

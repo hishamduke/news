@@ -12,6 +12,7 @@ import MapView from "../../../components/Dashboards/Agent/mapView";
 import { queryClient } from "../../_app";
 import Star from "../../../components/common/Star";
 import { cordToStreet } from "../../../lib/cordToStreet";
+import NoPapers from "../../../components/Dashboards/User/NoPapers";
 export default function employees() {
   return (
     <>
@@ -23,6 +24,7 @@ export default function employees() {
 function NewsMain() {
   const [animationParent] = useAutoAnimate();
   const [visible, setVisible] = useState(false);
+  // const [lang, setLang] = useState("English");
   const [lang, setLang] = useState("English");
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
@@ -32,10 +34,9 @@ function NewsMain() {
       <>
         <form>
           <h2 style={{ textAlign: "center" }}> Available newspapers</h2>
-          {/* {JSON.stringify(data)} */}
         </form>
 
-        <div className={styles.Base}>
+        <div className={styles.Base} style={{ marginBottom: "1rem" }}>
           {/* {JSON.stringify(lang)} */}
           <div className={styles.In}>
             <div className={styles.DivSelect}>
@@ -58,9 +59,10 @@ function NewsMain() {
                 ))}
               </select>
             </div>
-            <NewsOf lang={lang} />
           </div>
         </div>
+
+        <NewsOf lang={lang} />
       </>
     );
 }
@@ -68,88 +70,71 @@ function NewsOf({ lang }) {
   const { isLoading, error, data } = useQuery(["allnews"], () =>
     fetch("/api/user/listnews").then((res) => res.json())
   );
-  return (
-    <>
-      {JSON.stringify(data)}
-      {lang}
-      "hmmm"
-    </>
-  );
+  let isEmpty = true;
+  function flip() {
+    isEmpty = false;
+  }
+  if (data)
+    return (
+      <>
+        {data.map((val) => (
+          <>
+            <div className="dashboard">
+              <div className="collumns">
+                {val.language == lang && (
+                  <>
+                    <Box val={val} />
+                    {flip()}
+                    {/* seting to nonEmpty for given language */}
+                  </>
+                )}
+              </div>
+            </div>
+          </>
+        ))}
+        {isEmpty && <NoPapers lang={lang} />}
+      </>
+    );
 }
 
-// const Box = ({ name, phone, rating, loc, id, current }) => {
-//   const handleSet = () => {
-//     axios.post("/api/user/setAgent", { id, in: true });
-//     queryClient.invalidateQueries("allagents");
-//     alert("Successfully chosen");
-//   };
-//   const handleOut = () => {
-//     axios.post("/api/user/setAgent", { id, in: false });
-//     queryClient.invalidateQueries("allagents");
-//     alert("Successfully opted out");
-//   };
-//   return (
-//     <div className={styles.NewsBox}>
-//       {/* {console.log(val)} */}
+const Box = ({ val }) => {
+  const handleSet = () => {
+    axios.post("/api/user/setAgent", { id, in: true });
+    queryClient.invalidateQueries("allagents");
+    alert("Successfully chosen");
+  };
+  const handleOut = () => {
+    axios.post("/api/user/setAgent", { id, in: false });
+    queryClient.invalidateQueries("allagents");
+    alert("Successfully opted out");
+  };
+  return (
+    <div className={styles.NewsBox}>
+      <h1 className={styles.Heading}>Newspaper Details</h1>
+      {/* <img className={styles.NewsImg} src={val.img} /> */}
+      {/* <p style={{ textAlign: "center" }}>{val.description}</p> */}
+      <div className={styles.ContBox}>
+        <div className={styles.Info}>
+          <p style={{ margin: "auto", padding: "0.5rem" }}> {val.name}</p>
+        </div>
+        <img
+          className={styles.NewsImg}
+          src={val.img}
+          style={{ margin: "auto" }}
+        />
+        <p style={{ margin: "auto", padding: "0.5rem" }}> {val.description}</p>
 
-//       <h1 className={styles.Heading}>Agent Details</h1>
-//       {/* <img className={styles.NewsImg} src={val.img} /> */}
-//       {/* <p style={{ textAlign: "center" }}>{val.description}</p> */}
-//       <div className={styles.ContBox}>
-//         <div className={styles.Info}>
-//           <p>Name :</p>
-//           <p> {name}</p>
-//         </div>
-//         <div className={styles.Info}>
-//           <p>Phone :</p>
-//           <p> {phone}</p>
-//         </div>
-//         <div className={styles.Info}>
-//           <p>Rating :</p>
-//           <Star val={rating} />
-//         </div>
-//         <div className={styles.Info}>
-//           <p>location :</p>
+        <div className={styles.Info} style={{ margin: "auto" }}>
+          {/* {current ? ( */}
+          <button onClick={() => handleOut()}>opt-out</button>
+          {/* ) : ( */}
+          {/* <button onClick={() => handleSet()}>choose</button> */}
+          {/* )} */}
+        </div>
+      </div>
+      {/* <button className={styles.Button2}>Remove</button> */}
 
-//           <LocName lat={JSON.parse(loc).lat} lng={JSON.parse(loc).lng} />
-//         </div>
-//         <div className={styles.Info} style={{ margin: "auto" }}>
-//           {current ? (
-//             <button onClick={() => handleOut()}>opt-out</button>
-//           ) : (
-//             <button onClick={() => handleSet()}>choose</button>
-//           )}
-//         </div>
-//       </div>
-//       {/* <button className={styles.Button2}>Remove</button> */}
-
-//       {/* {JSON.stringify(isAddedPaper(val.id))} */}
-//     </div>
-//   );
-// };
-
-// const LocName = ({ lat, lng }) => {
-//   // {"lat":11.553216976538248,"lng":75.75868013197568}
-//   const { isLoading, error, data } = useQuery([`loc${lat + lng}`], () =>
-//     fetch(
-//       "https://www.mapquestapi.com/geocoding/v1/reverse?key=G1moSFJkXvMTf7kCVqTOPMh1SxtvJaGi&location=" +
-//         lat +
-//         "%2C" +
-//         lng +
-//         "&outFormat=json&thumbMaps=false"
-//     ).then((res) => res.json())
-//   );
-
-//   if (data)
-//     if (data.results)
-//       return (
-//         <>
-//           {/* {console.log(data.results[0].locations)} */}
-//           {data.results[0].locations[0].street +
-//             " " +
-//             data.results[0].locations[0].adminArea5}
-//           {/* {console.log(data.results[0].locations[0])} */}
-//         </>
-//       );
-//   return "loading";
-// };
+      {/* {JSON.stringify(isAddedPaper(val.id))} */}
+    </div>
+  );
+};
