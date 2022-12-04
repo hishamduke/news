@@ -24,7 +24,12 @@ function NewsMain({ id }) {
     fetch(`/api/user/news/${id}`).then((res) => res.json())
   );
 
-  const d = new Date();
+  const { loading: loading2, data: isSub } = useQuery([`isSub${id}`], () =>
+    fetch(`/api/user/isSub/${id}`).then((res) => res.json())
+  );
+  if (loading2) return <></>;
+  let d = isSub || new Date();
+  const router = useRouter();
   const updateDate = (val) => {
     if (val < 1 || val > 36) val = 0;
 
@@ -49,17 +54,29 @@ function NewsMain({ id }) {
     setMonths(0);
   }
 
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    if (months < 1) {
-      setZero(true);
-    } else {
-      setZero(false);
-      // alert("next");
+  if (isSub) {
+    if (d != isSub) {
+      d = isSub;
     }
-  };
-  if (data) {
+  }
+
+  if (data && isSub) {
     let price = data.price;
+    const handlesubmit = (e) => {
+      e.preventDefault();
+      if (months < 1) {
+        setZero(true);
+        return;
+      } else {
+        setZero(false);
+        // alert("next");
+      }
+
+      axios.post("/api/user/subnewsAPI", { id, months }).then((res) => {
+        router.back();
+        queryClient.invalidateQueries([`isSub${id}`]);
+      });
+    };
     return (
       <>
         {JSON.stringify()}

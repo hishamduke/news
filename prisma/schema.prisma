@@ -18,19 +18,21 @@ model Accounts {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
-  accountid   Int           @unique
-  num         BigInt        @unique
-  house       String        @db.VarChar(255)
-  street      String        @db.VarChar(255)
-  pin         BigInt
-  banned      Boolean       @default(false)
-  agent       Agent?        @relation(fields: [agentId], references: [id])
-  employee    Employee?     @relation(fields: [employeeId], references: [id])
-  agentId     Int?
-  employeeId  Int?
-  RatingAgent RatingAgent[]
-  FeedAgent   FeedAgent[]
+  id            Int             @id @default(autoincrement())
+  accountid     Int             @unique
+  num           BigInt          @unique
+  house         String          @db.VarChar(255)
+  street        String          @db.VarChar(255)
+  pin           BigInt
+  banned        Boolean         @default(false)
+  agent         Agent?          @relation(fields: [agentId], references: [id])
+  employee      Employee?       @relation(fields: [employeeId], references: [id])
+  agentId       Int?
+  employeeId    Int?
+  RatingAgent   RatingAgent[]
+  FeedAgent     FeedAgent[]
+  Subscriptions Subscriptions[]
+  RatingNews    RatingNews[]
 }
 
 model Feedback {
@@ -40,27 +42,30 @@ model Feedback {
 }
 
 model Agent {
-  accountid   Int           @unique
-  id          Int           @id @default(autoincrement())
-  num         BigInt        @unique
-  loc         String        @default("") @db.VarChar(255)
-  approved    Boolean       @default(false)
-  newspapers  Newspaper[]
-  User        User[]
-  RatingAgent RatingAgent[]
-  FeedAgent   FeedAgent[]
+  accountid     Int             @unique
+  id            Int             @id @default(autoincrement())
+  num           BigInt          @unique
+  loc           String          @default("") @db.VarChar(255)
+  approved      Boolean         @default(false)
+  newspapers    Newspaper[]
+  User          User[]
+  RatingAgent   RatingAgent[]
+  FeedAgent     FeedAgent[]
+  Subscriptions Subscriptions[]
 }
 
 model Newspaper {
-  id          Int        @id @default(autoincrement())
-  name        String     @db.VarChar(255)
-  language    Language   @default(English)
-  img         String     @default("")
-  description String     @default("") @db.VarChar(255)
-  Agent       Agent?     @relation(fields: [agentId], references: [id])
-  agentId     Int?
-  Employee    Employee[]
-  price       Int        @default(0)
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(255)
+  language      Language        @default(English)
+  img           String          @default("")
+  description   String          @default("") @db.VarChar(255)
+  Agent         Agent?          @relation(fields: [agentId], references: [id])
+  agentId       Int?
+  Employee      Employee[]
+  price         Int             @default(0)
+  Subscriptions Subscriptions[]
+  RatingNews    RatingNews[]
 }
 
 enum Role {
@@ -103,4 +108,27 @@ model FeedAgent {
   Agent   Agent  @relation(fields: [agentId], references: [id])
   agentId Int
   content String
+}
+
+model Subscriptions {
+  id       Int      @id @default(autoincrement())
+  subAt    DateTime
+  expireAt DateTime
+  User     User     @relation(fields: [userId], references: [id])
+  userId   Int
+  Agent    Agent    @relation(fields: [agentId], references: [id])
+  agentId  Int
+
+  Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
+  newspaperId Int?
+}
+
+model RatingNews {
+  id          Int       @id @default(autoincrement())
+  User        User      @relation(fields: [userId], references: [id])
+  userId      Int
+  Newspaper   Newspaper @relation(fields: [newspaperId], references: [id])
+  newspaperId Int
+  rating      Int
+  feedback    String?
 }

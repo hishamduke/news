@@ -12,7 +12,7 @@ import MapView from "../../../components/Dashboards/Agent/mapView";
 import { queryClient } from "../../_app";
 import Star from "../../../components/common/Star";
 import { cordToStreet } from "../../../lib/cordToStreet";
-import NoPapers from "../../../components/Dashboards/User/NoPapers";
+import NoPapers from "../../../components/Dashboards/User/NoPapersSub";
 export default function SubNews() {
   return (
     <>
@@ -33,7 +33,7 @@ function NewsMain() {
     return (
       <>
         <form>
-          <h2 style={{ textAlign: "center" }}> Available newspapers</h2>
+          <h2 style={{ textAlign: "center" }}>Rate newspapers</h2>
         </form>
 
         <div className={styles.Base} style={{ marginBottom: "1rem" }}>
@@ -68,7 +68,7 @@ function NewsMain() {
 }
 function NewsOf({ lang }) {
   const { isLoading, error, data } = useQuery(["allnews"], () =>
-    fetch("/api/user/listnews").then((res) => res.json())
+    fetch("/api/user/listsubbed").then((res) => res.json())
   );
   let isEmpty = true;
   function flip() {
@@ -98,52 +98,27 @@ function NewsOf({ lang }) {
 
 const Box = ({ val }) => {
   const handleOut = (id) => {
-    Router.push(`/dashboard/user/subnews/${id}`);
+    Router.push(`/dashboard/user/ratenews/${id}`);
   };
-
-  const { loading, data } = useQuery([`rating${val.id}`], () =>
-    fetch(`/api/user/rating/average/${val.id}`).then((res) => res.json())
-  );
-  //PRECACHING subscription info
-  const { loading: loading2, data: isSub } = useQuery([`isSub${val.id}`], () =>
-    fetch(`/api/user/isSub/${val.id}`).then((res) => res.json())
-  );
-
   return (
     <div className={styles.NewsBox}>
-      {/* <h1 className={styles.Heading}>Newspaper Details</h1> */}
+      <h1 className={styles.Heading}>Newspaper Details</h1>
 
       <div className={styles.ContBox}>
+        <div className={styles.Info}>
+          <p style={{ margin: "auto", padding: "0.5rem" }}> {val.name}</p>
+        </div>
         <img
           className={styles.NewsImg}
           src={val.img}
           style={{ margin: "auto" }}
         />
-        <div className={styles.Info}>
-          <p style={{ margin: "auto", padding: "0.5rem" }}> {val.name}</p>
-        </div>
         <p style={{ margin: "auto", padding: "0.5rem" }}> {val.description}</p>
-        <StarIcon rating={data} />
+
         <div className={styles.Info} style={{ margin: "auto" }}>
-          <button onClick={() => handleOut(val.id)}>Subscribe</button>
+          <button onClick={() => handleOut(val.id)}>Rate</button>
         </div>
       </div>
     </div>
   );
 };
-
-function StarIcon({ rating }) {
-  const starEmpty = "☆";
-  const starFilled = "★";
-  let out = "";
-  for (let i = 0; i < 5; i++) {
-    if (i < Math.floor(rating)) {
-      out = out + starFilled;
-    } else out = out + starEmpty;
-  }
-  return (
-    <>
-      <p style={{ fontSize: "1.5rem" }}>{out}</p>
-    </>
-  );
-}

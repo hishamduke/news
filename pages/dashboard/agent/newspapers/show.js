@@ -95,6 +95,7 @@ function ShowPapers({ lang }) {
             justifyContent: "center",
             textAlign: "center",
             marginTop: "15px",
+            gap: "2rem",
           }}
         >
           {data.map((val) => (
