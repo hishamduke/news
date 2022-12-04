@@ -60,6 +60,7 @@ model Newspaper {
   Agent       Agent?     @relation(fields: [agentId], references: [id])
   agentId     Int?
   Employee    Employee[]
+  price       Int        @default(0)
 }
 
 enum Role {

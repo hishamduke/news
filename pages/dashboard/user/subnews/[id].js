@@ -9,78 +9,196 @@ import { useState } from "react";
 import MapView from "../../../../components/Dashboards/Agent/mapView";
 import NewspaperEmp from "../../../../components/Dashboards/Agent/NewspaperEmp";
 export default function employees() {
-  return (
-    <>
-      <BackButton />
-      <NewsMain />
-    </>
-  );
-}
-function NewsMain() {
   const router = useRouter();
   const { id } = router.query;
+  if (id)
+    return (
+      <>
+        <BackButton />
+        <NewsMain id={id} />
+      </>
+    );
+}
+function NewsMain({ id }) {
   const { isLoading, error, data } = useQuery([`news${id}`], () =>
     fetch(`/api/user/news/${id}`).then((res) => res.json())
   );
-  if (data)
+
+  const d = new Date();
+  const updateDate = (val) => {
+    if (val < 1 || val > 36) val = 0;
+
+    let exp = addDays(d, val * 28);
+    let exp2 = JSON.stringify(exp).split("T")[0];
+    exp2 = exp2.split(`"`);
+    exp2 = exp2[1];
+    return exp2;
+  };
+
+  const [months, setMonths] = useState(0);
+  const [zero, setZero] = useState(false);
+  const [expireDate, setExpireDate] = useState(updateDate(0));
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  if (months < 0 || months > 36) {
+    setMonths(0);
+  }
+
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    if (months < 1) {
+      setZero(true);
+    } else {
+      setZero(false);
+      // alert("next");
+    }
+  };
+  if (data) {
+    let price = data.price;
     return (
       <>
-        <form>
-          <div className="collumns">
-            <div className="dashboard">
-              <div className="collumns">
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    margin: "auto",
-                    gap: "1.5rem",
-                    textAlign: "center",
+        {JSON.stringify()}
+        <div className="collumns">
+          <div className="dashboard">
+            <div className="collumns">
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  margin: "auto",
+                  gap: "1.5rem",
+                  textAlign: "center",
+                }}
+              >
+                <h2 style={{ textAlign: "center" }}>
+                  Subscribe to {data.name}
+                </h2>
+                <form
+                  className={styles.form}
+                  onSubmit={(e) => {
+                    handlesubmit(e);
                   }}
                 >
-                  <h2 style={{ textAlign: "center" }}>
-                    Subscribe to {data.name}
-                  </h2>
-                  <form
-                    className={styles.form}
-                    onSubmit={(e) => {
-                      handlesubmit(e);
+                  <div
+                    style={{
+                      display: "flex",
+                      margin: "auto",
                     }}
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        backgroundColor: "#f8b3af",
-                        margin: "auto",
-                      }}
+                    <p
+                      style={
+                        {
+                          // margin: "1rem",
+                        }
+                      }
                     >
-                      <p
-                        style={{
-                          margin: "1rem",
+                      Subscription rate : ₹{price}
+                    </p>
+                  </div>
+                  <div style={{ marginTop: "1rem" }}>
+                    <p style={{ fontWeight: "bold" }}>Months</p>
+                  </div>
+                  <div style={{ marginBottom: "1rem" }}>
+                    <input
+                      value={months}
+                      onChange={(e) => {
+                        if (e.target.value == "") {
+                          setMonths(0);
+                          updateDate(0);
+                        } else {
+                          setMonths(parseInt(e.target.value));
+                          setExpireDate(updateDate(e.target.value));
+                        }
+                      }}
+                    />
+                    <div>
+                      <button
+                        type="button"
+                        style={{ marginRight: "1rem", width: "2rem" }}
+                        onClick={() => {
+                          setMonths((months) => parseInt(months) - 1);
+                          setExpireDate(updateDate(parseInt(months) - 1));
                         }}
                       >
-                        Price per month : ₹{"2"}
-                      </p>
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        style={{ width: "2rem" }}
+                        onClick={() => {
+                          setMonths((months) => parseInt(months) + 1);
+                          setExpireDate(updateDate(parseInt(months) + 1));
+                        }}
+                      >
+                        +
+                      </button>
                     </div>
-                    <div style={{ marginTop: "1rem" }}>
-                      <p>Months</p>
-                    </div>
-                    <div>
-                      <input type={"number"} value={1} />
-                    </div>
-                    <p></p>
-                    <button>submit</button>
-                  </form>
-                </div>
+                  </div>
+
+                  {/* <div style={{ marginTop: "1rem" }}>
+                    <p style={{ fontWeight: "bold" }}>Drop location</p>
+                  </div> */}
+                  <div
+                    style={{
+                      display: "flex",
+                      // backgroundColor: "#c3f8af80",
+                      flexDirection: "column",
+                      margin: "auto",
+                    }}
+                  >
+                    <p
+                      style={{
+                        margin: "1rem",
+                      }}
+                    >
+                      Total price : ₹{(price * months).toFixed(2)}
+                    </p>
+                    <p
+                      style={{
+                        margin: "1rem",
+                      }}
+                    >
+                      Will expire at : {expireDate}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      // backgroundColor: "#c3f8af80",
+                      margin: "auto",
+                    }}
+                  >
+                    <button style={{ textAlign: "center" }}>Confirm</button>
+                  </div>
+                </form>
+                {zero ? (
+                  <>
+                    <p
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      Minimum of one month is required
+                    </p>
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
-        </form>
+        </div>
+
         <br />
         <br />
         <br />
         <br />
-        {JSON.stringify(data)}
       </>
     );
+  }
 }

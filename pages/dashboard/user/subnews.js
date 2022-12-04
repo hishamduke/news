@@ -77,21 +77,20 @@ function NewsOf({ lang }) {
   if (data)
     return (
       <>
-        {data.map((val) => (
-          <>
-            <div className="dashboard">
-              <div className="collumns">
-                {val.language == lang && (
-                  <>
-                    <Box val={val} />
-                    {flip()}
-                    {/* seting to nonEmpty for given language */}
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        ))}
+        <div className="dashboard">
+          {data.map((val) => (
+            <>
+              {val.language == lang && (
+                <>
+                  <Box val={val} />
+
+                  {flip()}
+                  {/* seting to nonEmpty for given language */}
+                </>
+              )}
+            </>
+          ))}
+        </div>
         {isEmpty && <NoPapers lang={lang} />}
       </>
     );
@@ -104,8 +103,7 @@ const Box = ({ val }) => {
   return (
     <div className={styles.NewsBox}>
       <h1 className={styles.Heading}>Newspaper Details</h1>
-      {/* <img className={styles.NewsImg} src={val.img} /> */}
-      {/* <p style={{ textAlign: "center" }}>{val.description}</p> */}
+
       <div className={styles.ContBox}>
         <div className={styles.Info}>
           <p style={{ margin: "auto", padding: "0.5rem" }}> {val.name}</p>

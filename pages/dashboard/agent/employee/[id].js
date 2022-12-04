@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import MapView from "../../../../components/Dashboards/Agent/mapView";
 import NewspaperEmp from "../../../../components/Dashboards/Agent/NewspaperEmp";
-export default function employees() {
+export default function Employees() {
   const router = useRouter();
   const { id } = router.query;
   //~~

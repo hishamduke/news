@@ -45,6 +45,7 @@ export default async function handler(req, res) {
         img: !!imgName ? "/newspapers/" + imgName : "",
         language: inp.language,
         description: inp.desc,
+        price: parseInt(inp.price),
       },
     });
 

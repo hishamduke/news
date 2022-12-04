@@ -105,7 +105,11 @@ function NewsTable(val) {
         {newdata.length ? (
           <>
             {newdata.map((val) => (
-              <div className={styles.NewsBox} ref={animationParent} key={val}>
+              <div
+                className={styles.NewsBox}
+                ref={animationParent}
+                key={val.id}
+              >
                 {console.log(val)}
                 <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
                 <img className={styles.NewsImg} src={val.img} />
@@ -163,6 +167,7 @@ function NewPaper(val) {
     language: "",
     image: [],
     desc: "",
+    price: 0,
   });
   // var fReader = new FileReader();
 
@@ -266,19 +271,29 @@ function NewPaper(val) {
               setInp({ ...inp, image: reader });
             }}
           />
-          <br />
+
           {!!inp.image.length && (
             <div style={{ textAlign: "center" }}>
               <img
                 className={styles.img}
                 src={inp.image}
-                // style={{ height: "150px" }}
+                style={{ height: "150px", width: "150px" }}
               />
             </div>
           )}
+          <label>Price per month</label>
+          <input
+            onChange={(e) => setInp({ ...inp, price: e.target.value })}
+            required
+            type="number"
+          />
+
           <label>Description</label>
           <textarea
             required
+            style={{
+              height: "2rem",
+            }}
             onChange={(e) => {
               setInp({ ...inp, desc: e.target.value });
             }}
