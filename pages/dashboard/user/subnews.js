@@ -13,7 +13,7 @@ import { queryClient } from "../../_app";
 import Star from "../../../components/common/Star";
 import { cordToStreet } from "../../../lib/cordToStreet";
 import NoPapers from "../../../components/Dashboards/User/NoPapers";
-export default function employees() {
+export default function SubNews() {
   return (
     <>
       <BackButton />
