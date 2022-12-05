@@ -15,11 +15,11 @@ export default function Employees() {
     return (
       <>
         <BackButton />
-        <NewsMain id={id} />
+        <NewsMain id={id} router={router} />
       </>
     );
 }
-function NewsMain({ id }) {
+function NewsMain({ id, router }) {
   const { isLoading, error, data } = useQuery([`news${id}`], () =>
     fetch(`/api/user/news/${id}`).then((res) => res.json())
   );
@@ -29,7 +29,7 @@ function NewsMain({ id }) {
   );
   if (loading2) return <></>;
   let d = isSub || new Date();
-  const router = useRouter();
+  // const router = useRouter();
   const updateDate = (val) => {
     if (val < 1 || val > 36) val = 0;
 
