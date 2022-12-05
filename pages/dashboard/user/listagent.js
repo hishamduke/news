@@ -59,7 +59,7 @@ function Employee() {
     );
 }
 
-const Box = ({ name, phone, rating, loc, id, current }) => {
+const Box = ({ name, phone, loc, id, current }) => {
   const handleSet = () => {
     axios.post("/api/user/setAgent", { id, in: true });
     queryClient.invalidateQueries("allagents");
@@ -70,31 +70,29 @@ const Box = ({ name, phone, rating, loc, id, current }) => {
     queryClient.invalidateQueries("allagents");
     alert("Successfully opted out");
   };
+  const {
+    isLoading,
+    error,
+    data: rating,
+  } = useQuery([`agentrating${id}`], () =>
+    fetch(`/api/user/rating/agentaverage/${id}`).then((res) => res.json())
+  );
+
   return (
-    <div className={styles.NewsBox}>
-      {/* {console.log(val)} */}
-
-      <h1 className={styles.Heading}>Agent Details</h1>
-      {/* <img className={styles.NewsImg} src={val.img} /> */}
-      {/* <p style={{ textAlign: "center" }}>{val.description}</p> */}
+    <div className={styles.NewsBox} style={{ height: "30vh" }}>
       <div className={styles.ContBox}>
-        <div className={styles.Info}>
-          <p>Name :</p>
-          <p> {name}</p>
-        </div>
-        <div className={styles.Info}>
-          <p>Phone :</p>
-          <p> {phone}</p>
-        </div>
-        <div className={styles.Info}>
-          <p>Rating :</p>
-          <Star val={rating} />
-        </div>
-        <div className={styles.Info}>
-          <p>location :</p>
+        <h1 className={styles.Heading}>Agent Details</h1>
 
+        <p className={styles.Info}>Name : {name}</p>
+        <p className={styles.Info}>Phone :{phone}</p>
+
+        <Star val={rating} />
+
+        <p className={styles.Info}>
+          location :
           <LocName lat={JSON.parse(loc).lat} lng={JSON.parse(loc).lng} />
-        </div>
+        </p>
+
         <div className={styles.Info} style={{ margin: "auto" }}>
           {current ? (
             <button onClick={() => handleOut()}>opt-out</button>
@@ -103,6 +101,7 @@ const Box = ({ name, phone, rating, loc, id, current }) => {
           )}
         </div>
       </div>
+
       {/* <button className={styles.Button2}>Remove</button> */}
 
       {/* {JSON.stringify(isAddedPaper(val.id))} */}

@@ -28,7 +28,7 @@ export default function Employees() {
               <div className="dashboard" style={{ marginRight: "100px" }}>
                 <br />
                 <form>
-                  <h1 className={"formhead test"}>Manage User</h1>
+                  <h1 className={"formhead test"}>Manage Employee</h1>
                   <h4>{data.name}</h4>
                   <p className={" Link"} onClick={() => setVisible(1)}>
                     Edit profile

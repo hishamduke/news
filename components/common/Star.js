@@ -9,7 +9,7 @@ const Star = (number) => {
       out = out + starempt;
     }
   }
-  return out;
+  return <p style={{ fontSize: "1.5rem" }}>{out}</p>;
 };
 
 export default Star;

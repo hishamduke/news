@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         newspaperId: parseInt(id),
       },
     });
-    console.log(rating);
+
     res.status(200).json({ rating: rating.rating, feedback: rating.feedback });
   } catch (e) {
     console.log(e);

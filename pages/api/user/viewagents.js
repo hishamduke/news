@@ -10,7 +10,7 @@ BigInt.prototype.toJSON = function () {
 export default async function handler(req, res) {
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
-  console.log("View agents");
+
   try {
     // console.log(decoded.id);
     var decoded = verify(JWT, secret);
@@ -36,10 +36,6 @@ export default async function handler(req, res) {
         } else {
           out[i].currentAgent = false;
         }
-        console.log("loop");
-        console.log("id decoded " + decoded.id);
-
-        console.log(userAgent);
 
         if (accounts[j].id == agents[i].accountid) {
           out[i].name = accounts[j].name;

@@ -30,6 +30,17 @@ export default function Verified() {
             >
               Manage Newspapers
             </p>
+            <h4>Users</h4>
+            <p
+              className={" Link"}
+              onClick={() => Router.push("/dashboard/agent/feedbacks")}
+            >
+              Show user feedbacks
+            </p>
+            <h4>Admin</h4>
+            <p className={" Link"} onClick={() => Router.push("/support")}>
+              Write to Admin
+            </p>
             <Logout />
           </form>
           <Image

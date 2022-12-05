@@ -40,16 +40,16 @@ export default function Support() {
             handlesubmit(e);
           }}
         >
-          <BackButton />
           <h2 className={"formhead"}>
-            We are{" "}
+            We are
             <el
               style={{
                 backgroundColor: "#fee160",
+                margin: "10px",
               }}
             >
               happy
-            </el>{" "}
+            </el>
             to help you.
           </h2>
           <p>Please input in the following field :</p>
@@ -64,16 +64,14 @@ export default function Support() {
           ></textarea>
           <p></p>
           <button>
-            {" "}
             <div style={{ display: "flex", alignItems: "center" }}>
               {butload && (
                 <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
-              )}{" "}
+              )}
               submit
             </div>
           </button>
           <div>
-            {" "}
             {resp == 200 && (
               <>
                 <p>

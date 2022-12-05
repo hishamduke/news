@@ -79,7 +79,7 @@ function NewsOf({ lang }) {
       <>
         <div className="dashboard">
           {data.map((val) => (
-            <>
+            <div key={val.id}>
               {val.language == lang && (
                 <>
                   <Box val={val} />
@@ -88,7 +88,7 @@ function NewsOf({ lang }) {
                   {/* seting to nonEmpty for given language */}
                 </>
               )}
-            </>
+            </div>
           ))}
         </div>
         {isEmpty && <NoPapers lang={lang} />}

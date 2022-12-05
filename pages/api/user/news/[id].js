@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         id,
       },
     });
-    console.log(news);
+
     res.status(200).json(news);
   } catch (e) {
     console.log(e);

@@ -9,18 +9,19 @@
 }
 
 .Table {
-  border: 5px solid rgb(255, 255, 255, 0);
+  border: 5px solid rgb(0, 0, 0);
   /* box-shadow: 1px 1px 10px 2px #888888; */
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(180, 255, 220, 0.2),
-    rgb(112, 255, 219, 0.2)
-  );
-  box-shadow: 10px 10px 15px #88888824;
+  /* background-color: #f6b7ad; */
+  background-image: url("/bg.jpg");
+  /* background-size:; */
+  background-size: 1110px 500px;
+  background-repeat: no-repeat;
+  color: rgb(31, 31, 31);
+  box-shadow: 7px 7px 7px #00000024;
 }
 .Tr,
 .Td {
-  border: 5px solid rgb(255, 255, 255, 0);
+  border: 5px solid rgb(0, 0, 0, 0);
 }
 .TableHead {
   font-size: larger;
@@ -29,6 +30,7 @@
 }
 .MainHead {
   font-size: 2rem;
+  font-family: "Playfair Display", serif;
 }
 .Button {
   border: 0;

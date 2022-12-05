@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       },
     });
     if (isSub) {
-      console.log(addDays(isSub.expireAt, req.body.months * 28));
+      // console.log(addDays(isSub.expireAt, req.body.months * 28));
       const updSub = await prisma.Subscriptions.update({
         where: {
           id: isSub.id,

@@ -79,7 +79,7 @@ function NewsOf({ lang }) {
       <>
         <div className="dashboard">
           {data.map((val) => (
-            <>
+            <div key={val.id}>
               {val.language == lang && (
                 <>
                   <Box val={val} />
@@ -88,7 +88,7 @@ function NewsOf({ lang }) {
                   {/* seting to nonEmpty for given language */}
                 </>
               )}
-            </>
+            </div>
           ))}
         </div>
         {isEmpty && <NoPapers lang={lang} />}
@@ -102,7 +102,7 @@ const Box = ({ val }) => {
   };
 
   const { loading, data } = useQuery([`rating${val.id}`], () =>
-    fetch(`/api/user/rating/average/${val.id}`).then((res) => res.json())
+    fetch(`/api/user/rating/newsaverage/${val.id}`).then((res) => res.json())
   );
   //PRECACHING subscription info
   const { loading: loading2, data: isSub } = useQuery([`isSub${val.id}`], () =>
@@ -110,21 +110,19 @@ const Box = ({ val }) => {
   );
 
   return (
-    <div className={styles.NewsBox}>
+    <div className={styles.NewsBox} style={{ height: "40vh" }}>
       {/* <h1 className={styles.Heading}>Newspaper Details</h1> */}
 
       <div className={styles.ContBox}>
-        <img
-          className={styles.NewsImg}
-          src={val.img}
-          style={{ margin: "auto" }}
-        />
+        <img className={styles.NewsImg} src={val.img} />
+        <p className={styles.Info}>{val.name}</p>
+        <p style={{ maxHeight: "4vh", overflow: "hidden" }}>
+          {" "}
+          {val.description}
+        </p>
+        {/* <StarIcon rating={data} /> */}
+        <Star val={data} />
         <div className={styles.Info}>
-          <p style={{ margin: "auto", padding: "0.5rem" }}> {val.name}</p>
-        </div>
-        <p style={{ margin: "auto", padding: "0.5rem" }}> {val.description}</p>
-        <StarIcon rating={data} />
-        <div className={styles.Info} style={{ margin: "auto" }}>
           <button onClick={() => handleOut(val.id)}>Subscribe</button>
         </div>
       </div>
@@ -132,18 +130,18 @@ const Box = ({ val }) => {
   );
 };
 
-function StarIcon({ rating }) {
-  const starEmpty = "☆";
-  const starFilled = "★";
-  let out = "";
-  for (let i = 0; i < 5; i++) {
-    if (i < Math.floor(rating)) {
-      out = out + starFilled;
-    } else out = out + starEmpty;
-  }
-  return (
-    <>
-      <p style={{ fontSize: "1.5rem" }}>{out}</p>
-    </>
-  );
-}
+// function StarIcon({ rating }) {
+//   const starEmpty = "☆";
+//   const starFilled = "★";
+//   let out = "";
+//   for (let i = 0; i < 5; i++) {
+//     if (i < Math.floor(rating)) {
+//       out = out + starFilled;
+//     } else out = out + starEmpty;
+//   }
+//   return (
+//     <>
+//       <p style={{ fontSize: "1.5rem" }}>{out}</p>
+//     </>
+//   );
+// }

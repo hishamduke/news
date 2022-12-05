@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   let { id } = req.query;
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
-  console.log("in paper" + id);
+
   try {
     var decoded = verify(JWT, secret);
     const userAgent = await prisma.user.findFirst({

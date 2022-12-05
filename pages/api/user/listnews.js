@@ -10,7 +10,7 @@ BigInt.prototype.toJSON = function () {
 export default async function handler(req, res) {
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
-  console.log("View newsnews");
+
   try {
     // console.log(decoded.id);
     var decoded = verify(JWT, secret);
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       },
     });
 
-    console.log(news);
+    // console.log(news);
 
     res.status(200).json(news);
   } catch (e) {

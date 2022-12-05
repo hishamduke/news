@@ -33,8 +33,7 @@ export default async function handler(req, res) {
     });
     const feeds = await prisma.ratingNews.findMany();
     let isDone = false;
-    console.log("all ratings");
-    console.log(feeds);
+
     for (let i = 0; i < feeds.length; i++) {
       if (
         feeds[i].userId == userAgent.id &&

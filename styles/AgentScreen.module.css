@@ -73,17 +73,12 @@
   object-fit: cover;
   width: 180px;
   height: 180px;
-
+  margin: auto;
+  text-align: center;
   /* border-radius: 50%; */
 }
 .NewsBox {
-  /* flex-basis: 33%; */
-  /* border: 1px solid black; */
   background-color: #f0eee7c7;
-  /* background: linear-gradient(to right, #5cffc0 0%, #4cfced 100%); */
-  /* -webkit-background-clip: border-box; */
-  /* background-clip: border-box; */
-  /* -webkit-text-fill-color: transparent; */
   width: 300px;
   min-height: 10rem;
   display: flex;
@@ -93,7 +88,9 @@
   text-align: center;
   align-items: center;
   padding: 15px;
-  /* height: %; */
+  transition: all 0.5s;
+
+  /* height: 40vh; */
 }
 
 .NewsBox:hover {
@@ -102,12 +99,18 @@
 .ContBox {
   display: flex;
   flex-direction: column;
+  margin: auto;
+  text-align: center;
+}
+.ContBox > * {
+  margin: auto;
+  padding: 0.5rem;
 }
 .Info {
   /* padding: 8px; */
   /* text-align: center; */
   /* background-color: violet; */
-  /* margin: auto; */
+  margin: auto;
   display: flex;
   gap: 10px;
   /* font-weight: 600; */
@@ -116,11 +119,11 @@
 
 .Heading {
   margin-bottom: 1rem;
-  text-align: center;
+  /* text-align: center; */
   /* background-color: violet; */
   /* margin: auto; */
   /* font-weight: 600; */
-  font-size: 1.4rem;
+  /* font-size: 1.4rem; */
   text-decoration: underline;
 }
 
