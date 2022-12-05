@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 import Loading from "../../../../components/common/Loading";
 import LoadingSpinner from "../../../../components/common/LoadingSpinner";
 
-export default function employees() {
+export default function Employees() {
   const router = useRouter();
   const { id } = router.query;
   if (id)
