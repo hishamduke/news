@@ -1,17 +1,11 @@
 // import styles from "../../../styles/Empoyees.module.css";
 import styles from "../../../styles/AgentScreen.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Image from "next/image";
-import axios from "axios";
 import BackButton from "../../../components/buttons/backButton";
 import { useState } from "react";
-import { BiArrowBack } from "react-icons/bi";
 import Router from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import MapView from "../../../components/Dashboards/Agent/mapView";
 import { queryClient } from "../../_app";
-import Star from "../../../components/common/Star";
-import { cordToStreet } from "../../../lib/cordToStreet";
 import NoPapers from "../../../components/Dashboards/User/NoPapersSub";
 export default function SubNews() {
   return (
@@ -29,6 +23,12 @@ function NewsMain() {
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
   );
+  const { isLoading: isLoading2, data: hasAgent } = useQuery(["hasAgent"], () =>
+    fetch("/api/user/hasagent").then((res) => res.json())
+  );
+  if (isLoading || isLoading2) return;
+  if (!hasAgent) return <NoPapers />;
+
   if (data)
     return (
       <>
@@ -67,7 +67,7 @@ function NewsMain() {
     );
 }
 function NewsOf({ lang }) {
-  const { isLoading, error, data } = useQuery(["allnews"], () =>
+  const { isLoading, error, data } = useQuery(["allSubbed"], () =>
     fetch("/api/user/listsubbed").then((res) => res.json())
   );
   let isEmpty = true;

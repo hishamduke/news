@@ -27,11 +27,13 @@ export default async function handler(req, res) {
         accountid: decoded.id,
       },
     });
+
     const Agent = await prisma.agent.findFirst({
       where: {
         id: userAgent.agentId,
       },
     });
+
     const feeds = await prisma.ratingAgent.findMany();
 
     //IF ALREADY SUBSCRIBED EXTEND BRUV

@@ -19,7 +19,7 @@ export default function LoadingSpinner() {
           widows: "2.2rem",
         }}
       />
-      <p style={{}}>Loading please wait{dot}</p>
+      <p>Loading please wait{dot}</p>
     </div>
   );
 }

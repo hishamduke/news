@@ -13,6 +13,7 @@ import { queryClient } from "../../_app";
 import Star from "../../../components/common/Star";
 import { cordToStreet } from "../../../lib/cordToStreet";
 import NoPapers from "../../../components/Dashboards/User/NoPapers";
+import ChooseAgents from "../../../components/Dashboards/User/ChooseAgents";
 export default function SubNews() {
   return (
     <>
@@ -29,6 +30,12 @@ function NewsMain() {
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
   );
+  const { isLoading: isLoading2, data: hasAgent } = useQuery(["hasAgent"], () =>
+    fetch("/api/user/hasagent").then((res) => res.json())
+  );
+  if (isLoading || isLoading2) return;
+  if (!hasAgent) return <ChooseAgents />;
+
   if (data)
     return (
       <>
@@ -85,7 +92,6 @@ function NewsOf({ lang }) {
                   <Box val={val} />
 
                   {flip()}
-                  {/* seting to nonEmpty for given language */}
                 </>
               )}
             </div>

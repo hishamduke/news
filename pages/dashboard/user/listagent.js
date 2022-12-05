@@ -1,6 +1,7 @@
 // import styles from "../../../styles/Empoyees.module.css";
 import styles from "../../../styles/AgentScreen.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 import Image from "next/image";
 import axios from "axios";
 import BackButton from "../../../components/buttons/backButton";
@@ -22,8 +23,7 @@ export default function employees() {
 }
 function Employee() {
   const [animationParent] = useAutoAnimate();
-  const [visible, setVisible] = useState(false);
-
+  const [msg, setMsg] = useState(false);
   const { isLoading, error, data } = useQuery(["allagents"], () =>
     fetch("/api/user/viewagents").then((res) => res.json())
   );
@@ -31,11 +31,18 @@ function Employee() {
   if (data)
     return (
       <>
-        <form>
+        {msg && (
+          <div>
+            <h2 style={{ textAlign: "center", color: "#bb0000" }}>
+              Successfully selected, redirecting please wait..
+            </h2>
+          </div>
+        )}
+        <form ref={animationParent}>
           <h2 style={{ textAlign: "center" }}> Available Agents</h2>
+
           {/* {JSON.stringify(data)} */}
         </form>
-
         <div className="collumns">
           <div className="dashboard" ref={animationParent}>
             <div className="collumns">
@@ -49,6 +56,7 @@ function Employee() {
                     loc={val.loc}
                     id={val.id}
                     current={val.currentAgent}
+                    setMsg={setMsg}
                   />
                 </div>
               ))}
@@ -59,16 +67,24 @@ function Employee() {
     );
 }
 
-const Box = ({ name, phone, loc, id, current }) => {
+const Box = ({ name, phone, loc, id, current, setMsg }) => {
   const handleSet = () => {
     axios.post("/api/user/setAgent", { id, in: true });
-    queryClient.invalidateQueries("allagents");
-    alert("Successfully chosen");
+    queryClient.invalidateQueries(["allagents"], ["allnews"], ["hasAgent"]);
+
+    setMsg(true);
+    setTimeout(() => {
+      Router.back();
+    }, 1000);
   };
   const handleOut = () => {
     axios.post("/api/user/setAgent", { id, in: false });
-    queryClient.invalidateQueries("allagents");
-    alert("Successfully opted out");
+    queryClient.invalidateQueries(["allagents"], ["allnews"], ["hasAgent"]);
+
+    setMsg(true);
+    setTimeout(() => {
+      Router.back();
+    }, 1000);
   };
   const {
     isLoading,
@@ -82,17 +98,13 @@ const Box = ({ name, phone, loc, id, current }) => {
     <div className={styles.NewsBox} style={{ height: "30vh" }}>
       <div className={styles.ContBox}>
         <h1 className={styles.Heading}>Agent Details</h1>
-
         <p className={styles.Info}>Name : {name}</p>
         <p className={styles.Info}>Phone :{phone}</p>
-
         <Star val={rating} />
-
         <p className={styles.Info}>
           location :
           <LocName lat={JSON.parse(loc).lat} lng={JSON.parse(loc).lng} />
         </p>
-
         <div className={styles.Info} style={{ margin: "auto" }}>
           {current ? (
             <button onClick={() => handleOut()}>opt-out</button>
@@ -103,7 +115,6 @@ const Box = ({ name, phone, loc, id, current }) => {
       </div>
 
       {/* <button className={styles.Button2}>Remove</button> */}
-
       {/* {JSON.stringify(isAddedPaper(val.id))} */}
     </div>
   );

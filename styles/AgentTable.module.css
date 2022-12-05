@@ -16,7 +16,7 @@
   /* background-size:; */
   background-size: 103% 500px;
   image-rendering: pixelated;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   color: rgb(31, 31, 31);
   box-shadow: 7px 7px 7px #00000024;
 }

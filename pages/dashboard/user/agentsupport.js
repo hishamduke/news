@@ -3,13 +3,15 @@ import styles from "../../../styles/Support.module.css";
 import Image from "next/image";
 import Router from "next/router";
 import Link from "next/link";
-import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import axios from "axios";
 import BackButton from "../../../components/buttons/backButton";
 import { useQuery } from "@tanstack/react-query";
-
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
 export default function AgentSupport() {
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [animationParent] = useAutoAnimate();
 
   let date = new Date();
   const { isLoading, error, data } = useQuery(["currentagent"], () =>
@@ -17,10 +19,14 @@ export default function AgentSupport() {
   );
   const handlesubmit = (e) => {
     e.preventDefault();
+
     axios.post("/api/user/feedagent", { content });
+    setLoading(true);
+
     setTimeout(() => {
+      setLoading(false);
       Router.back();
-    }, 1000);
+    }, 1200);
   };
   if (data)
     return (
@@ -33,6 +39,7 @@ export default function AgentSupport() {
             onSubmit={(e) => {
               handlesubmit(e);
             }}
+            ref={animationParent}
           >
             <h2 className={"formhead"}>
               Writing to your Agent{" "}
@@ -56,6 +63,7 @@ export default function AgentSupport() {
             ></textarea>
             <p></p>
             <button>submit</button>
+            {loading ? <LoadingSpinner /> : ""}
           </form>
           <div className={styles.imge}>
             <Image

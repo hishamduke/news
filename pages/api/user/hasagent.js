@@ -15,29 +15,13 @@ export default async function handler(req, res) {
     // console.log(decoded.id);
     var decoded = verify(JWT, secret);
 
-    const agents = await prisma.agent.findMany({});
-
-    const accounts = await prisma.accounts.findMany({
-      where: {
-        role: "AGENT",
-      },
-    });
     const userAgent = await prisma.user.findFirst({
       where: {
         accountid: decoded.id,
       },
     });
-
-    const news = await prisma.newspaper.findMany({
-      where: {
-        agentId: userAgent.agentId,
-      },
-    });
-
-    // console.log(news);
-    console.log(news);
-
-    res.status(200).json(news);
+    console.log(userAgent);
+    res.status(200).json(!!userAgent.agentId);
   } catch (e) {
     res.status(404).json(news);
 
