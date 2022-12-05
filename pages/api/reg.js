@@ -28,12 +28,12 @@ export default async function handler(req, res) {
         .number()
         .gt(999999999, { message: "Must be 10 digits" })
         .lt(10000000000, { message: "Must be 10 digits" }),
-      house: z.string(),
-      street: z.string(),
-      pin: z
-        .number()
-        .gt(99999, { message: "Must be 6 digits" })
-        .lt(1000000, { message: "Must be 6 digits" }),
+      // house: z.string(),
+      // street: z.string(),
+      // pin: z
+      //   .number()
+      //   .gt(99999, { message: "Must be 6 digits" })
+      //   .lt(1000000, { message: "Must be 6 digits" }),
     })
     .refine((data) => data.password === data.password2, {
       message: "password confirmation error",
@@ -44,6 +44,8 @@ export default async function handler(req, res) {
     console.log(req.body);
     let accountdata = Account.parse(req.body.inp);
     let userdata = User.parse(req.body.inp);
+    userdata.loc = JSON.stringify(req.body.inp.loc);
+
     delete accountdata.password2;
     // console.log(userdata.num);
 

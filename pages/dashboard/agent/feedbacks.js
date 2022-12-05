@@ -42,7 +42,6 @@ export default function FeedbackTable() {
       )}
       <div className={styles.Base}>
         <div className={styles.In}>
-          {/* {JSON.stringify(data)} */}
           {data.length ? (
             <table className={styles.Table}>
               <thead className={styles.TableHead}>
@@ -53,7 +52,7 @@ export default function FeedbackTable() {
                 </tr>
 
                 <tr className={styles.Tr} key="head">
-                  <th className={styles.Td}>Id</th>
+                  {/* <th className={styles.Td}>Id</th> */}
                   <th className={styles.Td}>Name</th>
 
                   <th className={styles.Td}>Email</th>
@@ -65,11 +64,16 @@ export default function FeedbackTable() {
                 {data.map((val) => (
                   <tr className={styles.Tr} key={val.id}>
                     {console.log(val)}
-                    <td className={styles.Td}>{val.id}</td>
+                    {/* <td className={styles.Td}>{val.id}</td> */}
                     <td className={styles.Td}>{val.name}</td>
 
                     <td className={styles.Td}>{val.email}</td>
-                    <td className={styles.Td}>{val.content}</td>
+                    <td
+                      className={styles.Td}
+                      style={{ minWidth: "1rem", maxWidth: "10vw" }}
+                    >
+                      {val.content}
+                    </td>
                     <td className={styles.Td}>
                       <>
                         <button

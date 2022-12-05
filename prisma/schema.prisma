@@ -20,10 +20,8 @@ model Accounts {
 model User {
   id            Int             @id @default(autoincrement())
   accountid     Int             @unique
-  num           BigInt          @unique
-  house         String          @db.VarChar(255)
-  street        String          @db.VarChar(255)
-  pin           BigInt
+  loc           String          @db.VarChar(255)
+  num           BigInt          @default(1231233212)
   banned        Boolean         @default(false)
   agent         Agent?          @relation(fields: [agentId], references: [id])
   employee      Employee?       @relation(fields: [employeeId], references: [id])

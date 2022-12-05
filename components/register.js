@@ -4,6 +4,8 @@ import axios from "axios";
 import valida from "../lib/validate";
 import Image from "next/image";
 import Router from "next/router";
+import RegMap from "./reg/RegMap";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function Register() {
   const [msg, setmsg] = useState("");
@@ -15,13 +17,16 @@ export default function Register() {
     password: "",
     password2: "",
     num: 0,
-    house: "",
-    street: "",
-    pin: 0,
+    loc: {
+      lat: 11.257059218149296,
+      lng: 75.77515962416318,
+    },
   });
   const after = () => {
     setmsg();
   };
+  const [animationParent] = useAutoAnimate();
+
   function message(message) {
     setmsg(message);
     setTimeout(() => {
@@ -92,6 +97,7 @@ export default function Register() {
           onSubmit={(e) => {
             handleSubmit(e);
           }}
+          ref={animationParent}
         >
           <h2 className="formhead headline hl1">Create a new user account</h2>
 
@@ -159,42 +165,39 @@ export default function Register() {
           {/* <div>
               <h4>Address</h4>
             </div> */}
-          <div>Housename </div>
-          <div>
+
+          <div>location</div>
+          <div
+            style={{
+              display: "flex ",
+              alignItems: "center",
+              gap: "1%",
+              alignContent: "center",
+            }}
+          >
             <input
               required
               className="forminp"
+              readOnly
+              // value={inp.loc}
+              placeholder={`Lat ${inp.loc.lat}   Lng ${inp.loc.lng}`}
+              style={{
+                width: "50%",
+              }}
               type="text"
               onChange={(e) => {
-                setInp({ ...inp, house: e.target.value });
+                setInp({ ...inp, loc: e.target.value });
               }}
             ></input>
+            <div className="Link" onClick={() => setvis(!vis)}>
+              click here to set
+            </div>
           </div>
-          <div>Streetname </div>
-          <div>
-            <input
-              required
-              className="forminp"
-              type="text"
-              onChange={(e) => {
-                setInp({ ...inp, street: e.target.value });
-              }}
-            ></input>
-          </div>
-          <div>Pin </div>
-          <div>
-            <input
-              required
-              className="forminp"
-              title="Please enter 6 digit numbers"
-              pattern="\d*"
-              minLength="6"
-              maxLength="6"
-              onChange={(e) => {
-                setInp({ ...inp, pin: parseInt(e.target.value) });
-              }}
-            ></input>
-          </div>
+          {vis && (
+            <>
+              <RegMap setvis={setvis} inp={inp} setInp={setInp} />
+            </>
+          )}
 
           <button>
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -206,9 +209,11 @@ export default function Register() {
           </button>
 
           <br />
-          <Link href={"/agentRegister"}>
-            <a className="Link">Create an Agent account</a>
-          </Link>
+          <div style={{ marginTop: "1rem" }}>
+            <Link href={"/agentRegister"}>
+              <a className="Link">Create an Agent account</a>
+            </Link>
+          </div>
         </form>
       </div>
     </>
