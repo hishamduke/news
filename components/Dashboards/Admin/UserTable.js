@@ -66,7 +66,7 @@ export default function AgentTable() {
                   <th className={styles.Td}>Name</th>
                   <th className={styles.Td}>Email</th>
                   <th className={styles.Td}>Number</th>
-                  <th className={styles.Td}>House ,Street</th>
+
                   <th className={styles.Td}>Status</th>
                   <th className={styles.Td}>Banned?</th>
                 </tr>
@@ -77,9 +77,7 @@ export default function AgentTable() {
                     <td className={styles.Td}>{val.name}</td>
                     <td className={styles.Td}>{val.email}</td>
                     <td className={styles.Td}>{val.num}</td>
-                    <td className={styles.Td}>
-                      {val.house} , {val.street}
-                    </td>
+
                     <td className={styles.Td}>
                       {!val.banned ? "Not banned" : "banned"}
                     </td>

@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login/", "/register", "/logout"],
+  matcher: [
+    "/dashboard/:path*",
+    "/login/",
+    "/register",
+    "/logout",
+    "/employees/:path*",
+  ],
 };
 
 export async function middleware(request) {
@@ -10,6 +16,40 @@ export async function middleware(request) {
   let cookiename = "OurSiteJWT";
   let cookie = cookiename + "=" + request.cookies.get(cookiename);
   let url = request.nextUrl.origin + "/api/userrole";
+
+  if (request.nextUrl.pathname.includes("/employees/dashboard")) {
+    let url = request.nextUrl.origin + "/api/employees/validcookie";
+    console.log(url);
+    const userRole = await fetch(url, {
+      headers: {
+        cookie: cookie,
+      },
+    }).then((response) => response.json());
+    const valid = userRole.success ? true : false;
+
+    console.log(userRole);
+    if (!valid) return NextResponse.redirect(new URL("/logout", request.url));
+    return NextResponse.next();
+  }
+
+  if (request.nextUrl.pathname.includes("/employees/login")) {
+    let url = request.nextUrl.origin + "/api/employees/validcookie";
+    console.log(url);
+    const userRole = await fetch(url, {
+      headers: {
+        cookie: cookie,
+      },
+    }).then((response) => response.json());
+    const valid = userRole.success ? true : false;
+
+    console.log(userRole);
+    if (valid)
+      return NextResponse.redirect(
+        new URL("/employees/dashboard", request.url)
+      );
+    return NextResponse.next();
+  }
+
   const userRole = await fetch(url, {
     headers: {
       cookie: cookie,

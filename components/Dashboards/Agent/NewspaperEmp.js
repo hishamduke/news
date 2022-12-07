@@ -143,6 +143,7 @@ const AddNew = (id) => {
               justifyContent: "center",
               textAlign: "center",
               marginTop: "15px",
+              gap: "2rem",
             }}
           >
             {data.newspapers.map((val) => (
@@ -190,6 +191,7 @@ const ShowAv = ({ id }) => {
               justifyContent: "center",
               textAlign: "center",
               marginTop: "15px",
+              gap: "2rem",
             }}
           >
             {data.newspapers.map((val) => (

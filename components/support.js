@@ -23,11 +23,14 @@ export default function Support() {
       .then(function (response) {
         console.log(response.status);
         setResp(response.status);
-        setButload(false);
-        const myTimeout = setTimeout(() => {
-          Router.push("/dashboard");
-          setTimeout(setResp(""), 3000);
-        }, 3000);
+        setTimeout(() => {
+          setTimeout(setResp(""), 800);
+        }, 1100);
+        setTimeout(() => {
+          // setTimeout(setResp(""), 800);
+          Router.back();
+          setButload(false);
+        }, 900);
       });
   }
   return (

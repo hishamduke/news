@@ -24,8 +24,8 @@ export default function Index() {
             <Link href={"/register"}>
               <h3 className={"formhead Link"}>Create a new user account?</h3>
             </Link>
-            <Link href={"/test"}>
-              <h3 className={"formhead Link"}>Go to test field</h3>
+            <Link href={"/employees/dashboard"}>
+              <h3 className={"formhead Link"}>Employee</h3>
             </Link>
             <h3 className={"formhead "}>
               <Logout />
