@@ -13,7 +13,7 @@ export default function Dashboard(yea) {
 
   const [userflag, setUserflag] = useState(1);
 
-  const { isLoading, error, data } = useQuery(["repoData"], () =>
+  const { isLoading, error, data } = useQuery(["empdetails"], () =>
     fetch("/api/employees/empdetails").then((res) => res.json())
   );
 
@@ -33,28 +33,7 @@ export default function Dashboard(yea) {
           <br />
           <form>
             <h1 className={"formhead test"}>Hey {data.name} !</h1>
-            <h4>Users</h4>
-            <p
-              className={" Link"}
-              onClick={() => Router.push("/employees/users")}
-            >
-              View currently assigned Users
-            </p>
-
-            <h4>Agents</h4>
-
-            <p
-              className={" Link"}
-              onClick={() => Router.push("/dashboard/user/ratenews")}
-            >
-              Write to Agents
-            </p>
-            <h4>Admin</h4>
-
-            <p className={" Link"} onClick={() => Router.push("/support")}>
-              Write to Admin for Support
-            </p>
-
+            <UsersTable />
             <Logout />
           </form>
           <div style={{ margin: "auto" }}>
@@ -74,3 +53,9 @@ export default function Dashboard(yea) {
     </>
   );
 }
+const UsersTable = () => {
+  const { isLoading, error, data } = useQuery(["empUsers"], () =>
+    fetch("/api/employees/empUsers").then((res) => res.json())
+  );
+  return <>{JSON.stringify(data)}</>;
+};

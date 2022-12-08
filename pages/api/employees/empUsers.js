@@ -8,18 +8,13 @@ export default async function handler(req, res) {
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
   let result = {};
-  // console.log("here");
   try {
     var decoded = verify(JWT, secret);
+    console.log("here biooio");
+    console.log(decoded.id);
+    let a = req.body;
 
-    // console.log("inside userrole api for emp");
-    const userac = await prisma.employee.findUnique({
-      where: {
-        email: decoded.email,
-      },
-    });
-    // console.log(userac);
-    res.status(200).json(userac);
+    res.status(200).json(a);
   } catch (e) {
     console.log(e);
     res.status(200).json({ success: false });

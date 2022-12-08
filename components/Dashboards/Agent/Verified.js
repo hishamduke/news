@@ -23,7 +23,6 @@ export default function Verified() {
             >
               Manage Employees
             </p>
-
             <p
               className={" Link"}
               onClick={() => Router.push("/dashboard/agent/newspapers")}
@@ -36,6 +35,12 @@ export default function Verified() {
               onClick={() => Router.push("/dashboard/agent/feedbacks")}
             >
               Show user feedbacks
+            </p>
+            <p
+              className={" Link"}
+              onClick={() => Router.push("/dashboard/agent/assignemp")}
+            >
+              Assign users to Employees
             </p>
             <h4>Admin</h4>
             <p className={" Link"} onClick={() => Router.push("/support")}>

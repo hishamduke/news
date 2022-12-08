@@ -17,24 +17,9 @@ export async function middleware(request) {
   let cookie = cookiename + "=" + request.cookies.get(cookiename);
   let url = request.nextUrl.origin + "/api/userrole";
 
-  if (request.nextUrl.pathname.includes("/employees/dashboard")) {
-    let url = request.nextUrl.origin + "/api/employees/validcookie";
-    console.log(url);
-    const userRole = await fetch(url, {
-      headers: {
-        cookie: cookie,
-      },
-    }).then((response) => response.json());
-    const valid = userRole.success ? true : false;
-
-    console.log(userRole);
-    if (!valid) return NextResponse.redirect(new URL("/logout", request.url));
-    return NextResponse.next();
-  }
-
   if (request.nextUrl.pathname.includes("/employees/login")) {
     let url = request.nextUrl.origin + "/api/employees/validcookie";
-    console.log(url);
+    // console.log(url);
     const userRole = await fetch(url, {
       headers: {
         cookie: cookie,
@@ -47,6 +32,21 @@ export async function middleware(request) {
       return NextResponse.redirect(
         new URL("/employees/dashboard", request.url)
       );
+    return NextResponse.next();
+  }
+
+  if (request.nextUrl.pathname.includes("/employees/")) {
+    let url = request.nextUrl.origin + "/api/employees/validcookie";
+    console.log(url);
+    const userRole = await fetch(url, {
+      headers: {
+        cookie: cookie,
+      },
+    }).then((response) => response.json());
+    const valid = userRole.success ? true : false;
+
+    console.log(userRole);
+    if (!valid) return NextResponse.redirect(new URL("/logout", request.url));
     return NextResponse.next();
   }
 
