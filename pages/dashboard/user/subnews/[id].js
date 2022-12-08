@@ -29,6 +29,10 @@ function NewsMain({ id }) {
   );
 
   const router = useRouter();
+  const [months, setMonths] = useState(0);
+  const [zero, setZero] = useState(false);
+  const [expireDate, setExpireDate] = useState(updateDate(0));
+
   if (loading2) return <></>;
   let d = isSub || new Date();
   const updateDate = (val) => {
@@ -40,10 +44,6 @@ function NewsMain({ id }) {
     exp2 = exp2[1];
     return exp2;
   };
-
-  const [months, setMonths] = useState(0);
-  const [zero, setZero] = useState(false);
-  const [expireDate, setExpireDate] = useState(updateDate(0));
 
   function addDays(date, days) {
     var result = new Date(date);
