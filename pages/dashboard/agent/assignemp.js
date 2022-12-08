@@ -92,15 +92,36 @@ function ShowPapers({ emp }) {
     }
 
     return (
-      <div ref={animationParent}>
+      //   <div ref={animationParent}>
+      <div
+        ref={animationParent}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          textAlign: "center",
+          marginTop: "15px",
+          gap: "2rem",
+        }}
+      >
         {data.map((item) =>
           !!item.employeeId == emp ? (
-            <div key={item.id}>{JSON.stringify(item)}</div>
+            <div key={item.id}>
+              {/* {JSON.stringify(item)} */}
+              <div className={styles.NewsBox} key={item.id}>
+                {/* {console.log(val)} */}
+                <h1 className={styles.NewsName}>{item.name.toUpperCase()}</h1>
+                <img className={styles.NewsImg} src={item.img} />
+                <p style={{ textAlign: "center" }}>{item.description}</p>
+
+                {/* {JSON.stringify(isAddedPaper(val.id))} */}
+              </div>
+            </div>
           ) : (
             " "
           )
         )}
       </div>
+      //   </div>
     );
   }
 }
