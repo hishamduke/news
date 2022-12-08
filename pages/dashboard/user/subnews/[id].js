@@ -27,9 +27,10 @@ function NewsMain({ id }) {
   const { loading: loading2, data: isSub } = useQuery([`isSub${id}`], () =>
     fetch(`/api/user/isSub/${id}`).then((res) => res.json())
   );
+
+  const router = useRouter();
   if (loading2) return <></>;
   let d = isSub || new Date();
-  const router = useRouter();
   const updateDate = (val) => {
     if (val < 1 || val > 36) val = 0;
 
