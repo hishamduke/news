@@ -31,9 +31,6 @@ function NewsMain({ id }) {
   const router = useRouter();
   const [months, setMonths] = useState(0);
   const [zero, setZero] = useState(false);
-  const [expireDate, setExpireDate] = useState(updateDate(0));
-
-  if (loading2) return <></>;
   let d = isSub || new Date();
   const updateDate = (val) => {
     if (val < 1 || val > 36) val = 0;
@@ -50,6 +47,9 @@ function NewsMain({ id }) {
     result.setDate(result.getDate() + days);
     return result;
   }
+  const [expireDate, setExpireDate] = useState(updateDate(0));
+
+  if (loading2) return <></>;
 
   if (months < 0 || months > 36) {
     setMonths(0);
