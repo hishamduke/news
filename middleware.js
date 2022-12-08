@@ -46,7 +46,8 @@ export async function middleware(request) {
     const valid = userRole.success ? true : false;
 
     console.log(userRole);
-    if (!valid) return NextResponse.redirect(new URL("/logout", request.url));
+    if (!valid)
+      return NextResponse.redirect(new URL("/employees/login", request.url));
     return NextResponse.next();
   }
 
