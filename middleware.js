@@ -19,7 +19,6 @@ export async function middleware(request) {
 
   if (request.nextUrl.pathname.includes("/employees/login")) {
     let url = request.nextUrl.origin + "/api/employees/validcookie";
-    // console.log(url);
     const userRole = await fetch(url, {
       headers: {
         cookie: cookie,

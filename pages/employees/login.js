@@ -6,6 +6,7 @@ import { queryClient } from "../../pages/_app";
 import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Breaking from "../../components/breaking";
+import { logout } from "../../lib/logout";
 export default function Main() {
   return (
     <>
@@ -25,20 +26,11 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [items, setItems] = useState([]);
-
   const [butload, setButload] = useState(false);
 
-  //   useEffect(() => {
-  //     queryClient.invalidateQueries("account");
-  //     axios
-  //       .get("/api/auth/cook")
-  //       .then(function (response) {
-  //         if (response.data.Message !== true) {
-  //           axios.get("/api/auth/logout");
-  //         }
-  //       })
-  //       .catch(function (error) {});
-  //   }, []);
+  useEffect(() => {
+    fetch("/api/auth/logout");
+  }, []);
 
   function handlelogin(e) {
     setTimeout(() => setItems([]), 4000);

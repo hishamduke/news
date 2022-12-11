@@ -78,7 +78,6 @@
   /* border-radius: 50%; */
 }
 .NewsBox {
-  background-color: #f0eee7c7;
   width: 300px;
   min-height: 10rem;
   display: flex;
@@ -89,11 +88,13 @@
   align-items: center;
   padding: 15px;
   transition: all 0.5s;
-
+  background-color: #f0ede5c7;
+  box-shadow: 0px 0px 25px 0px #cccccc63;
   /* height: 40vh; */
 }
 
 .NewsBox:hover {
+  box-shadow: 0px 0px 25px 0px #cccccc;
   background-color: #e6e4ddc7;
 }
 .ContBox {

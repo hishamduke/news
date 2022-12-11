@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         password,
       },
     });
-    console.log(user);
+    // console.log(user);
     if (!!user.length) {
       const token = sign(
         {

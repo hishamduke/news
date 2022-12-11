@@ -75,7 +75,7 @@ export default function RegMap(val) {
               id="marker-example"
               mapContainerStyle={mapContainerStyle}
               center={begin}
-              zoom={10}
+              zoom={val.zoomInp | 10}
               onLoad={(map) => {
                 setMap(map);
                 console.log(map.getZoom());

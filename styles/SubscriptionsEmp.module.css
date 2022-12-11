@@ -21,6 +21,27 @@
   margin: 3px;
 }
 
+.Table {
+  border: 5px solid rgb(0, 0, 0);
+  /* box-shadow: 1px 1px 10px 2px #888888; */
+  /* background-color: #f6b7ad; */
+  background-image: url("/bg.jpg");
+  /* background-size:; */
+  background-size: 103% 500px;
+  image-rendering: pixelated;
+  background-repeat: repeat-y;
+  color: rgb(31, 31, 31);
+  box-shadow: 7px 7px 7px #00000024;
+}
+.Tr,
+.Td {
+  border: 5px solid rgb(0, 0, 0, 0);
+}
+.TableHead {
+  font-size: larger;
+  border: 0px solid #ddd;
+  /* background-color: blue; */
+}
 .Select {
   font-family: monospace;
   font-size: 15px;
@@ -28,25 +49,6 @@
   padding: 3px;
 }
 
-.Table {
-  border: 5px solid rgb(255, 255, 255, 0);
-  /* box-shadow: 1px 1px 10px 2px #888888; */
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(180, 255, 220, 0.5),
-    rgb(112, 255, 219, 0.5)
-  );
-  box-shadow: 10px 10px 8px #88888888;
-}
-.Tr,
-.Td {
-  border: 5px solid rgb(255, 255, 255, 0);
-}
-.TableHead {
-  font-size: larger;
-  border: 0px solid #ddd;
-  /* background-color: blue; */
-}
 .MainHead {
   font-size: 2rem;
 }
@@ -118,6 +120,14 @@
   backdrop-filter: blur(5px);
   /* background: white; */
   z-index: 1;
+}
+.Map {
+  margin-left: 30vw;
+  margin-top: 30vh;
+
+  text-align: center;
+  display: flex;
+  /* background-color: #8e34fc; */
 }
 
 .LoadingText {

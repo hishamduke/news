@@ -37,17 +37,6 @@ export default async function handler(req, res) {
       out[i].name = temp.name;
       out[i].email = temp.email;
     }
-    // if (guardnum.length > 0) {
-    //   return res.status(404).json({ code: "P2002" });
-    // } else {
-    //   const account = await prisma.accounts.create({
-    //     data: accountdata,
-    //   });
-    //   userdata.accountid = account.id;
-    //   const user = await prisma.user.create({
-    //     data: userdata,
-    //   });
-    // }
     res.status(200).json(out);
   } catch (e) {
     console.log(e);

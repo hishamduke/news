@@ -17,7 +17,7 @@ export default function Logout() {
         <div style={{ display: "flex", alignItems: "center" }}>
           {butload && (
             <Image src={"/spinner.svg"} height={"30px"} width={"30px"} />
-          )}{" "}
+          )}
           Logout
         </div>
       </button>
