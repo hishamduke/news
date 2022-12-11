@@ -14,13 +14,17 @@ export default async function handler(req, res) {
     var decoded = verify(JWT, secret);
 
     console.log("inside userrole api for emp");
-
+    const d = new Date();
+    const day = d.getDate();
+    const year = d.getFullYear();
+    const month = d.getMonth();
+    const dayString = day + "/" + month + "/" + year;
     if (!req.body.state) {
-      const mut = await prisma.delivery.delete({
+      const mut = await prisma.delivery.deleteMany({
         where: {
           userId: req.body.userId,
           newspaperId: req.body.news,
-          deliveredDate: d,
+          deliveredDate: dayString,
         },
       });
     } else {
@@ -42,7 +46,7 @@ export default async function handler(req, res) {
               id: decoded.id,
             },
           },
-          deliveredDate: d,
+          deliveredDate: dayString,
         },
       });
     }

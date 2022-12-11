@@ -39,7 +39,7 @@ export default function Dashboard(yea) {
               onClick={() => Router.push("/employees/users")}
             >
               View currently assigned Users
-            </p>{" "}
+            </p>
             <p
               className={" Link"}
               onClick={() => Router.push("/employees/subscriptions")}
@@ -49,7 +49,7 @@ export default function Dashboard(yea) {
             <h4>Agents</h4>
             <p
               className={" Link"}
-              onClick={() => Router.push("/dashboard/user/ratenews")}
+              onClick={() => Router.push("/employees/writeagents")}
             >
               Write to Agents
             </p>

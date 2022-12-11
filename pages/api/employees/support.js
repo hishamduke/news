@@ -1,5 +1,5 @@
 import prisma from "../../../lib/prisma";
-import { decode, verify } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import { serialize } from "cookie";
 
 const secret = process.env.SECRET;
@@ -21,31 +21,33 @@ export default async function handler(req, res) {
 
   try {
     var decoded = verify(JWT, secret);
-    const isEmp = await prisma.employee.findFirst({
+    const emp = await prisma.employee.findFirst({
       where: {
         id: decoded.id,
-        email: decode.email,
       },
     });
-    console.log(isEmp);
-    if (!!isEmp) {
-      const insert = await prisma.Feedback.create({
-        data: {
-          account: decoded.id,
-          content: req.body.content,
-          isEmp: 1,
-        },
-      });
-      // console.log(req.body.content);
-      return res.status(200).json({ insert });
-    }
-    const insert = await prisma.Feedback.create({
+    const agent = await prisma.agent.findFirst({
+      where: {
+        accountid: emp.agentid,
+      },
+    });
+    console.log(emp);
+    console.log("CHECKCHECK");
+    const insert = await prisma.FeedAgentEmp.create({
       data: {
-        account: decoded.id,
         content: req.body.content,
+        Employee: {
+          connect: {
+            id: decoded.id,
+          },
+        },
+        Agent: {
+          connect: {
+            id: agent.id,
+          },
+        },
       },
     });
-    // console.log(req.body.content);
     res.status(200).json({ insert });
   } catch (e) {
     console.log(e);

@@ -8,21 +8,38 @@ export async function whois(id) {
       id: id,
     },
   });
-  console.log(user);
+  // console.log(user);
   return exclude(user, "password");
 }
+export async function whoisEmp(id) {
+  const user = await prisma.employee.findFirst({
+    where: {
+      id: id,
+    },
+  });
+  // console.log(user);
+  return exclude(user, "password");
+}
+
 async function whoall(array) {
   let res = [];
+  // console.log(array);
   for (let i = 0; i < array.length; i++) {
-    // console.log(array);
-    res[i] = await whois(array[i].account);
+    // console.log("isEMp? " + !!array[i].isEmp + "id" + array[i].account);
+    if (!!array[i].isEmp) {
+      res[i] = await whoisEmp(array[i].account);
+      res[i].role = "EMPLOYEE";
+    } else {
+      res[i] = await whois(array[i].account);
+    }
   }
-  console.log(res);
+  // console.log(res);
   return res;
 }
 export default async function handler(req, res) {
   try {
     const result = await prisma.feedback.findMany({});
+
     const out = await whoall(result);
     for (let i = 0; i < result.length; i++) {
       result[i].email = out[i].email;

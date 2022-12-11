@@ -29,10 +29,16 @@ export default function Verified() {
             >
               Manage Newspapers
             </p>
+            <p
+              className={" Link"}
+              onClick={() => Router.push("/dashboard/agent/emp/feedbacks")}
+            >
+              Show Employees feedbacks
+            </p>
             <h4>Users</h4>
             <p
               className={" Link"}
-              onClick={() => Router.push("/dashboard/agent/feedbacks")}
+              onClick={() => Router.push("/dashboard/agent/users/feedbacks")}
             >
               Show user feedbacks
             </p>

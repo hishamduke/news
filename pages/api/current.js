@@ -10,6 +10,8 @@ BigInt.prototype.toJSON = function () {
 
 export function exclude(user, ...keys) {
   for (let key of keys) {
+    // console.log(key);
+    // console.log(user);
     delete user[key];
   }
   return user;

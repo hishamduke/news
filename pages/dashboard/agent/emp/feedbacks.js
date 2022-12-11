@@ -1,10 +1,10 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { queryClient } from "../../_app";
-import styles from "../../../styles/AgentTable.module.css";
+import { queryClient } from "../../../_app.js";
+import styles from "../../../../styles/AgentTable.module.css";
 import Image from "next/image";
-import BackButton from "../../../components/buttons/backButton";
+import BackButton from "../../../../components/buttons/backButton";
 
 export default function FeedbackTable() {
   console.log("tabless");
@@ -12,19 +12,19 @@ export default function FeedbackTable() {
   const [status, setStatus] = useState();
 
   const [butload, setButload] = useState(false);
-  const { isLoading, error, data } = useQuery(["FeedbacksUser"], () =>
-    fetch("/api/agent/feedbacks/view").then((res) => res.json())
+  const { isLoading, error, data } = useQuery(["FeedbacksEmp"], () =>
+    fetch("/api/agent/feedbacks/viewEmp").then((res) => res.json())
   );
 
-  const feedbackdel = (id) => axios.post("/api/agent/feedbacks/delete", id);
+  const feedbackdel = (id) => axios.post("/api/agent/feedbacks/deleteEmp", id);
   const mutate = useMutation(feedbackdel, {
     onSuccess: async () => {
       setTimeout(() => {
         setButload(false);
       }, 800);
       setTimeout(() => {
-        queryClient.invalidateQueries(["FeedbacksUser"]);
-      }, 700);
+        queryClient.invalidateQueries(["FeedbacksEmp"]);
+      }, 100);
     },
   });
 

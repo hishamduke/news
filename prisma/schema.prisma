@@ -38,6 +38,7 @@ model Feedback {
   id      Int    @id @default(autoincrement())
   account Int
   content String @db.VarChar(255)
+  isEmp   Int?
 }
 
 model Agent {
@@ -51,6 +52,7 @@ model Agent {
   RatingAgent   RatingAgent[]
   FeedAgent     FeedAgent[]
   Subscriptions Subscriptions[]
+  FeedAgentEmp  FeedAgentEmp[]
 }
 
 model Newspaper {
@@ -75,16 +77,17 @@ enum Role {
 }
 
 model Employee {
-  id         Int         @id @default(autoincrement())
-  email      String      @unique @db.VarChar(255)
-  name       String      @db.VarChar(255)
-  password   String      @db.VarChar(255)
-  agentid    Int         @default(0)
-  loc        String      @default("") @db.VarChar(255)
-  num        BigInt      @unique
-  newspapers Newspaper[]
-  User       User[]
-  Delivery   Delivery[]
+  id           Int            @id @default(autoincrement())
+  email        String         @unique @db.VarChar(255)
+  name         String         @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  agentid      Int            @default(0)
+  loc          String         @default("") @db.VarChar(255)
+  num          BigInt         @unique
+  newspapers   Newspaper[]
+  User         User[]
+  Delivery     Delivery[]
+  FeedAgentEmp FeedAgentEmp[]
 }
 
 enum Language {
@@ -123,7 +126,7 @@ model RatingNews {
 
 model Delivery {
   id            Int       @id @default(autoincrement())
-  deliveredDate DateTime  @db.Date
+  deliveredDate String
   employee      Employee  @relation(fields: [employeeId], references: [id])
   employeeId    Int
   user          User      @relation(fields: [userId], references: [id])
@@ -142,4 +145,13 @@ model Subscriptions {
   agentId     Int
   Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
   newspaperId Int?
+}
+
+model FeedAgentEmp {
+  id         Int      @id @default(autoincrement())
+  Employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
+  Agent      Agent    @relation(fields: [agentId], references: [id])
+  agentId    Int
+  content    String
 }

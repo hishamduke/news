@@ -7,32 +7,27 @@ const secret = process.env.SECRET;
 export default async function handler(req, res) {
   const { cookies } = req;
   const JWT = cookies.OurSiteJWT;
-  let result = {};
+
   const d = new Date();
+  const day = d.getDate();
+  const year = d.getFullYear();
+  const month = d.getMonth();
+  const dayString = day + "/" + month + "/" + year;
   try {
     var decoded = verify(JWT, secret);
 
     console.log(req.body.news);
-    const mut = await prisma.delivery.findMany({
+    const mut = await prisma.delivery.findFirst({
       where: {
         userId: req.body.userId,
         newspaperId: req.body.news,
-        // deliveredDate: d,
+        deliveredDate: dayString,
       },
     });
+    console.log("mut");
+    console.log(!!mut);
 
-    for (let i = 0; i < mut.length; i++) {
-      if (mut[i].deliveredDate.getUTCFullYear() == d.getUTCFullYear()) {
-        if (mut[i].deliveredDate.getUTCMonth() == d.getUTCMonth()) {
-          if (mut[i].deliveredDate.getUTCDate() == d.getUTCDate()) {
-            console.log("TODAYYYY " + req.body.news);
-          }
-        }
-      }
-    }
-
-    console.log(mut);
-    res.status(200).json("yup");
+    res.status(200).json({ isDelivered: !!mut });
   } catch (e) {
     console.log(e);
     res.status(200).json({ success: false });

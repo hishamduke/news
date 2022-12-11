@@ -23,6 +23,7 @@
 
 .Table {
   border: 5px solid rgb(0, 0, 0);
+  border-spacing: 300px;
   /* box-shadow: 1px 1px 10px 2px #888888; */
   /* background-color: #f6b7ad; */
   background-image: url("/bg.jpg");
@@ -30,6 +31,8 @@
   background-size: 103% 500px;
   image-rendering: pixelated;
   background-repeat: repeat-y;
+  font-family: "Playfair Display", serif;
+  font-size: medium;
   color: rgb(31, 31, 31);
   box-shadow: 7px 7px 7px #00000024;
 }
