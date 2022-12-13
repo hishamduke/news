@@ -25,12 +25,14 @@ export default async function handler(req, res) {
       },
     });
     let out = feeds;
+    // console.log(out);
     for (let i = 0; i < out.length; i++) {
       const user = await prisma.user.findFirst({
         where: {
-          id: out.userId,
+          id: out[i].userId,
         },
       });
+      // console.log(user);
       const account = await prisma.accounts.findFirst({
         where: {
           id: user.accountid,

@@ -77,13 +77,13 @@ function NewsOf({ lang }) {
   if (data)
     return (
       <>
+        {/* {JSON.stringify(data)} */}
         <div className="dashboard">
           {data.map((val) => (
             <div key={val.id}>
               {val.language == lang && (
                 <>
                   <Box val={val} />
-
                   {flip()}
                   {/* seting to nonEmpty for given language */}
                 </>

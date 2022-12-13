@@ -25,7 +25,7 @@ function AddedNews() {
   if (data)
     return (
       <>
-        {JSON.stringify(data)}
+        {/* {JSON.stringify(data)} */}
         <div className="dashboard" ref={animationParent}>
           <div
             className="collumn"

@@ -44,11 +44,12 @@ export default async function handler(req, res) {
         agentId: Agent.id,
       },
     });
+    console.log(isSub);
     let out = [];
     for (let i = 0; i < isSub.length; i++) {
       out[i] = await prisma.newspaper.findFirst({
         where: {
-          id: isSub.newspaperId,
+          id: isSub[i].newspaperId,
         },
       });
     }

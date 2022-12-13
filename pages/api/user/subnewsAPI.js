@@ -58,28 +58,29 @@ export default async function handler(req, res) {
       });
       res.status(200).json("Success");
       return;
+    } else {
+      const test = await prisma.Subscriptions.create({
+        data: {
+          subAt: time,
+          expireAt: addDays(time, req.body.months * 28),
+          User: {
+            connect: {
+              id: userAgent.id,
+            },
+          },
+          Agent: {
+            connect: {
+              id: Agent.id,
+            },
+          },
+          Newspaper: {
+            connect: {
+              id: parseInt(req.body.id),
+            },
+          },
+        },
+      });
     }
-    const test = await prisma.Subscriptions.create({
-      data: {
-        subAt: time,
-        expireAt: addDays(time, req.body.months * 28),
-        User: {
-          connect: {
-            id: userAgent.id,
-          },
-        },
-        Agent: {
-          connect: {
-            id: Agent.id,
-          },
-        },
-        Newspaper: {
-          connect: {
-            id: parseInt(req.body.id),
-          },
-        },
-      },
-    });
     let isDone = false;
 
     res.status(200).json("Success");
