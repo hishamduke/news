@@ -93,7 +93,7 @@ function NewsTable2(val) {
   if (view) return <NewPaper a={setView} lang={lang} />;
 
   if (data) {
-    if (!data.length)
+    if (data.length == 0)
       return (
         <>
           {lang && (
