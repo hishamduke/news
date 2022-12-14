@@ -9,14 +9,30 @@ import { BiArrowBack } from "react-icons/bi";
 
 export default function ManagePapers() {
   console.log("tabless");
-  // const [animationParent] = useAutoAnimate();
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
   const [lang, setLang] = useState("English");
-
   const [butload, setButload] = useState(false);
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
   );
-
+  const {} = useQuery([`AdminPapersEnglish`], () =>
+    fetch("/api/admin/newspapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify("English"),
+    }).then((res) => res.json())
+  );
+  const {} = useQuery([`AdminPapersMalayalam`], () =>
+    fetch("/api/admin/newspapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify("Malayalam"),
+    }).then((res) => res.json())
+  );
   if (data)
     return (
       <>
@@ -30,7 +46,7 @@ export default function ManagePapers() {
 
         <div className={styles.Base}>
           {/* {JSON.stringify(lang)} */}
-          <div className={styles.In}>
+          <div className={styles.In} ref={parent}>
             <div className={styles.DivSelect}>
               <div> Select language</div>
               <select
@@ -41,7 +57,7 @@ export default function ManagePapers() {
                 onChange={(e) => {
                   console.log(e.target.value);
                   setLang(e.target.value);
-                  queryClient.invalidateQueries(["Newspapers"]);
+                  // queryClient.invalidateQueries(["Newspapers"]);
                 }}
               >
                 {data.map((val) => (
@@ -52,83 +68,85 @@ export default function ManagePapers() {
               </select>
             </div>
 
-            <NewsTable language={lang} />
+            <NewsTable2 language={lang} />
           </div>
         </div>
       </>
     );
 }
-function NewsTable(val) {
+function NewsTable2(val) {
   const lang = val.language;
   const [butload, setButload] = useState(false);
-  const [animationParent] = useAutoAnimate();
+  const [parent] = useAutoAnimate();
   const [view, setView] = useState(false);
 
-  const { isLoading, error, data } = useQuery(["Newspapers"], () =>
-    fetch(`/api/admin/newspapers`).then((res) => res.json())
+  const { isLoading, error, data } = useQuery([`AdminPapers${lang}`], () =>
+    fetch("/api/admin/newspapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(lang),
+    }).then((res) => res.json())
   );
-  let newdata = [];
-  if (data)
-    for (let i = 0; i < data.length; i++) {
-      // console.log(data[i]);
-      if (data[i].language == lang) newdata.push(data[i]);
-      // console.log("loop");
-    }
-  for (let i = 0; i < newdata.length; i++) {
-    // newdata[0].img.replace(/ /g, "%20");
-    newdata[i].img = newdata[i].img.replace(/ /g, "%20");
-  }
 
-  if (isLoading) {
-    return (
-      <div style={{ textAlign: "center" }}>
-        <div
-          className={styles.Nofeed}
-          style={{
-            textAlign: "center",
-            marginBottom: "40px",
-            fontSize: 30,
-          }}
-          // ref={animationParent}
-        >
-          Please wait....
-        </div>
-      </div>
-    );
-  }
-  return (
-    <>
-      {/* {JSON.stringify(newdata.length)} */}
+  if (view) return <NewPaper a={setView} lang={lang} />;
 
-      {view && <NewPaper a={setView} lang={lang} />}
-      {newdata.length ? (
-        <div className={styles.NewsCont} ref={animationParent}>
-          {newdata.map((val) => (
-            <div
-              className={styles.NewsBox}
-              // ref={animationParent}
-              key={val.name}
-            >
-              {console.log(val)}
-              <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
-              <img className={styles.NewsImg} src={val.img} />
-              <p
+  if (data) {
+    if (!data.length)
+      return (
+        <>
+          {lang && (
+            <div style={{ textAlign: "center" }} ref={parent}>
+              <div
+                className={styles.Nofeed}
                 style={{
                   textAlign: "center",
-                  height: "3rem",
-                  overflow: "hidden",
+                  marginBottom: "40px",
+                  fontSize: 30,
                 }}
+                key={lang}
+                // ref={animationParent}
               >
-                {val.description}
-              </p>
+                There are no {lang} newspapers yet!
+              </div>
+              <div onClick={() => setView(!view)} key={"add"}>
+                <button className={(styles.NewsName, "Link")}>
+                  Add a new One
+                </button>
+              </div>
             </div>
-          ))}
+          )}
+        </>
+      );
+    return (
+      <div>
+        <div className={styles.NewsCont} key={"newscont"} ref={parent}>
+          {data.map(
+            (val) =>
+              val.language == lang && (
+                <div className={styles.NewsBox} id={val.id}>
+                  <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
+                  <img className={styles.NewsImg} src={val.img} />
+                  <p
+                    style={{
+                      textAlign: "center",
+                      height: "3rem",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {val.description}
+                  </p>
+                </div>
+              )
+          )}
+
           <div
             className={styles.NewsBox}
             // ref={animationParent}
             style={{ cursor: "pointer" }}
             onClick={() => setView(!view)}
-            key={"addnew"}
+            key={99}
           >
             <h1 className={styles.NewsName}></h1>
             <img
@@ -148,31 +166,130 @@ function NewsTable(val) {
             </p>
           </div>
         </div>
-      ) : (
-        <>
-          {lang && (
-            <div style={{ textAlign: "center" }}>
-              <div
-                className={styles.Nofeed}
-                style={{
-                  textAlign: "center",
-                  marginBottom: "40px",
-                  fontSize: 30,
-                }}
-                ref={animationParent}
-              >
-                There are no {lang} newspapers yet!
-              </div>
-              <div onClick={() => setView(!view)}>
-                <button className={(styles.NewsName, "Link")}>
-                  Add a new One
-                </button>
-              </div>
+      </div>
+    );
+  }
+}
+function NewsTable(val) {
+  const lang = val.language;
+  const [butload, setButload] = useState(false);
+  const [parent] = useAutoAnimate();
+  const [view, setView] = useState(false);
+
+  const { isLoading, error, data } = useQuery(["Newspapers"], () =>
+    fetch(`/api/admin/newspapers`).then((res) => res.json())
+  );
+  let newdata = [];
+
+  if (data)
+    for (let i = 0; i < data.length; i++) {
+      // console.log(data[i]);
+      if (data[i].language == lang) {
+        newdata.push(data[i]);
+        // setItems([...items, data[i]]);
+      }
+
+      // console.log("loop");
+    }
+  for (let i = 0; i < newdata.length; i++) {
+    // newdata[0].img.replace(/ /g, "%20");
+    // setItems([...items, (items[i].img = items[i].img.replace(/ /g, "%20"))]);
+    newdata[i].img = newdata[i].img.replace(/ /g, "%20");
+  }
+
+  // if (isLoading) {
+  //   return (
+  //     <div style={{ textAlign: "center" }}>
+  //       <div
+  //         className={styles.Nofeed}
+  //         style={{
+  //           textAlign: "center",
+  //           marginBottom: "40px",
+  //           fontSize: 30,
+  //         }}
+  //       >
+  //         Please wait....
+  //       </div>
+  //     </div>
+  //   );
+  // }
+  if (view) return <NewPaper a={setView} lang={lang} />;
+  if (!newdata.length)
+    return (
+      <>
+        {lang && (
+          <div style={{ textAlign: "center" }} ref={parent}>
+            <div
+              className={styles.Nofeed}
+              style={{
+                textAlign: "center",
+                marginBottom: "40px",
+                fontSize: 30,
+              }}
+              key={lang}
+              // ref={animationParent}
+            >
+              There are no {lang} newspapers yet!
             </div>
-          )}
-        </>
-      )}
-    </>
+            <div onClick={() => setView(!view)} key={"add"}>
+              <button className={(styles.NewsName, "Link")}>
+                Add a new One
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  return (
+    <div>
+      <div className={styles.NewsCont} key={"newscont"} ref={parent}>
+        {newdata.map((val) => (
+          <div
+            className={styles.NewsBox}
+            // ref={animationParent}
+            key={val.id}
+          >
+            {/* {console.log(val)} */}
+            <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
+            <img className={styles.NewsImg} src={val.img} />
+            <p
+              style={{
+                textAlign: "center",
+                height: "3rem",
+                overflow: "hidden",
+              }}
+            >
+              {val.description}
+            </p>
+          </div>
+        ))}
+
+        <div
+          className={styles.NewsBox}
+          // ref={animationParent}
+          style={{ cursor: "pointer" }}
+          onClick={() => setView(!view)}
+          key={99}
+        >
+          <h1 className={styles.NewsName}></h1>
+          <img
+            // ref={animationParent}
+            className={styles.NewsImg}
+            src={"/newspapers/add.png"}
+          />
+          <p
+            // className={styles.NewsName}
+            style={{
+              textAlign: "center",
+              height: "3rem",
+              overflow: "hidden",
+            }}
+          >
+            Add a new newspaper
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 function NewPaper(val) {

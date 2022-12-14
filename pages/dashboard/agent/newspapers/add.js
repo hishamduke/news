@@ -14,6 +14,25 @@ export default function Show() {
   const { isLoading, error, data } = useQuery(["Langs"], () =>
     fetch("/api/admin/newslang").then((res) => res.json())
   );
+  const {} = useQuery([`AgentPapersEnglish`], () =>
+    fetch("/api/agent/viewpapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify("English"),
+    }).then((res) => res.json())
+  );
+  const {} = useQuery([`AgentPapersMalayalam`], () =>
+    fetch("/api/agent/viewpapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify("Malayalam"),
+    }).then((res) => res.json())
+  );
+  // console.log(resData2);
   if (data)
     return (
       <>
@@ -121,12 +140,10 @@ function ShowPapers({ lang }) {
     console.log(false);
     return false;
   };
-
-  if (data)
-    return (
-      <>
-        {!data.length && <NoNewspapers />}
-
+  if (data) {
+    if (!data.length) return <NoNewspapers />;
+    else
+      return (
         <div
           ref={animationParent}
           style={{
@@ -139,7 +156,6 @@ function ShowPapers({ lang }) {
         >
           {data.map((val) => (
             <div className={styles.NewsBox} key={val}>
-              {/* {console.log(val)} */}
               <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
               <img className={styles.NewsImg} src={val.img} />
               <p style={{ textAlign: "center" }}>{val.description}</p>
@@ -148,7 +164,6 @@ function ShowPapers({ lang }) {
                   style={{ textAlign: "center" }}
                   onClick={() => {
                     removeMutation.mutate({ id: val.id });
-                    // console.log(val.id);
                   }}
                 >
                   Remove
@@ -158,18 +173,14 @@ function ShowPapers({ lang }) {
                   style={{ textAlign: "center" }}
                   onClick={() => {
                     addMutation.mutate({ id: val.id });
-                    // console.log(val.id);
                   }}
                 >
                   Add
                 </button>
               )}
-              {/* {JSON.stringify(isAddedPaper(val.id))} */}
             </div>
           ))}
         </div>
-
-        {/* {data} */}
-      </>
-    );
+      );
+  }
 }

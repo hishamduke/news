@@ -1,11 +1,16 @@
+import { Language } from "@prisma/client";
 import prisma from "../../../lib/prisma";
 
 export default async function handler(req, res) {
   try {
-    const { id } = req.query;
+    const hi = req.body;
+    let isEnglish = hi == "English";
+    console.log(isEnglish);
     const val = await prisma.newspaper.findMany({
       where: {
-        language: id,
+        language: {
+          in: isEnglish ? ["English"] : ["Malayalam"],
+        },
       },
     });
     res.status(200).json(val);
