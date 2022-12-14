@@ -9,7 +9,7 @@ import { BiArrowBack } from "react-icons/bi";
 
 export default function ManagePapers() {
   console.log("tabless");
-  const [animationParent] = useAutoAnimate();
+  // const [animationParent] = useAutoAnimate();
   const [lang, setLang] = useState("English");
 
   const [butload, setButload] = useState(false);
@@ -89,7 +89,7 @@ function NewsTable(val) {
             marginBottom: "40px",
             fontSize: 30,
           }}
-          ref={animationParent}
+          // ref={animationParent}
         >
           Please wait....
         </div>
@@ -100,62 +100,78 @@ function NewsTable(val) {
     <>
       {/* {JSON.stringify(newdata.length)} */}
 
-      <div className={styles.NewsCont} ref={animationParent}>
-        {view && <NewPaper a={setView} lang={lang} />}
-        {newdata.length ? (
-          <>
-            {newdata.map((val) => (
-              <div
-                className={styles.NewsBox}
-                ref={animationParent}
-                key={val.id}
-              >
-                {console.log(val)}
-                <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
-                <img className={styles.NewsImg} src={val.img} />
-                <p style={{ textAlign: "center" }}>{val.description}</p>
-              </div>
-            ))}
-
+      {view && <NewPaper a={setView} lang={lang} />}
+      {newdata.length ? (
+        <div className={styles.NewsCont} ref={animationParent}>
+          {newdata.map((val) => (
             <div
               className={styles.NewsBox}
-              ref={animationParent}
-              style={{ cursor: "pointer" }}
-              onClick={() => setView(!view)}
+              // ref={animationParent}
+              key={val.name}
             >
-              <img
-                ref={animationParent}
-                className={styles.NewsImg}
-                src={"/newspapers/add.png"}
-              />
-              <p className={styles.NewsName}>Add a new newspaper</p>
+              {console.log(val)}
+              <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
+              <img className={styles.NewsImg} src={val.img} />
+              <p
+                style={{
+                  textAlign: "center",
+                  height: "3rem",
+                  overflow: "hidden",
+                }}
+              >
+                {val.description}
+              </p>
             </div>
-          </>
-        ) : (
-          <>
-            {lang && (
-              <div style={{ textAlign: "center" }}>
-                <div
-                  className={styles.Nofeed}
-                  style={{
-                    textAlign: "center",
-                    marginBottom: "40px",
-                    fontSize: 30,
-                  }}
-                  ref={animationParent}
-                >
-                  There are no {lang} newspapers yet!
-                </div>
-                <div onClick={() => setView(!view)}>
-                  <button className={(styles.NewsName, "Link")}>
-                    Add a new One
-                  </button>
-                </div>
+          ))}
+          <div
+            className={styles.NewsBox}
+            // ref={animationParent}
+            style={{ cursor: "pointer" }}
+            onClick={() => setView(!view)}
+            key={"addnew"}
+          >
+            <h1 className={styles.NewsName}></h1>
+            <img
+              // ref={animationParent}
+              className={styles.NewsImg}
+              src={"/newspapers/add.png"}
+            />
+            <p
+              // className={styles.NewsName}
+              style={{
+                textAlign: "center",
+                height: "3rem",
+                overflow: "hidden",
+              }}
+            >
+              Add a new newspaper
+            </p>
+          </div>
+        </div>
+      ) : (
+        <>
+          {lang && (
+            <div style={{ textAlign: "center" }}>
+              <div
+                className={styles.Nofeed}
+                style={{
+                  textAlign: "center",
+                  marginBottom: "40px",
+                  fontSize: 30,
+                }}
+                ref={animationParent}
+              >
+                There are no {lang} newspapers yet!
               </div>
-            )}
-          </>
-        )}
-      </div>
+              <div onClick={() => setView(!view)}>
+                <button className={(styles.NewsName, "Link")}>
+                  Add a new One
+                </button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </>
   );
 }

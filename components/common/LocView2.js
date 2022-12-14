@@ -1,0 +1,112 @@
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { cordToStreet } from "../../lib/cordToStreet";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
+const mapContainerStyle = {
+  height: "400px",
+  width: "100%",
+};
+
+export default function RegMap(val) {
+  console.log(val.loc.lat);
+  console.log("ABOVE IS VAL");
+  let begin;
+
+  if (!!val.loc) {
+    begin = {
+      lat: JSON.parse(val.loc).lat,
+      lng: JSON.parse(val.loc).lng,
+    };
+  }
+  const [map, setMap] = useState(null);
+  const [location, setLocation] = useState(begin);
+  const [showMap, setShowMap] = useState(false);
+  const [Loc, setLoc] = useState("Not set");
+  async function getLoc(lat, lng) {
+    setLoc("Loading");
+    console.log(map.zoom);
+    const res = await cordToStreet(lat, lng);
+    setLoc(res);
+    setLocation(begin);
+    // console.log(begin);
+  }
+
+  console.log("loc");
+  console.log(val);
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAPSKEY, // ,
+    // ...otherOptions
+  });
+  if (isLoaded)
+    return (
+      <div style={{ width: "500px", minHeight: "300px" }}>
+        <>
+          <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                //   backgroundColor: "red",
+                alignContent: "center",
+              }}
+            >
+              <p
+                style={{
+                  // marginLeft: "10%",
+                  fontSize: "medium",
+                  // backgroundColor: "red",
+                  width: "fit-content",
+                  alignSelf: "center",
+                  // backgroundColor: "red",
+                }}
+                className="zoom"
+                onClick={() => {
+                  val.setViewmap(false);
+                }}
+              >
+                {<BiArrowBack />} back
+              </p>
+            </div>
+          </>
+
+          {/* {!showMap && (
+          // <button onClick={() => setShowMap(!showMap)}>change</button>
+        )} */}
+          <div style={{ border: "1px solid black" }}>
+            <GoogleMap
+              id="marker-example"
+              mapContainerStyle={mapContainerStyle}
+              center={begin}
+              zoom={val.zoomInp | 12}
+              // onZoomChanged={() => {
+              //   console.log(map.getZoom());
+              // }}
+              onLoad={(map) => {
+                setMap(map);
+                console.log(map.getZoom());
+              }}
+            >
+              <Marker
+                // onLoad={onLoad}
+                position={begin}
+                draggable={false}
+
+                // onDragEnd={(e) => {
+                //   setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+                //   getLoc(e.latLng.lat(), e.latLng.lng());
+                //   val.setInp({
+                //     ...val.inp,
+                //     loc: { lat: e.latLng.lat(), lng: e.latLng.lng() },
+                //   });
+                // }}
+              />
+            </GoogleMap>
+          </div>
+          <br />
+        </>
+      </div>
+    );
+  return <div style={{ minWidth: "500px", height: "300px" }}></div>;
+}

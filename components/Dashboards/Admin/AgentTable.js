@@ -5,7 +5,7 @@ import { queryClient } from "../../../pages/_app";
 import styles from "../../../styles/AgentTable.module.css";
 import Image from "next/image";
 import BackButton from "../../buttons/backButton";
-import LocView from "../../common/LocView";
+import LocView from "../../common/LocView2";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function AgentTable() {
@@ -98,7 +98,7 @@ export default function AgentTable() {
                       {/* lat:{JSON.parse(val.loc).lat}
                       <br />
                       lng:{JSON.parse(val.loc).lng} */}
-                      <a className="Link" onClick={() => setViewmap(!viewMap)}>
+                      <a className="Link" onClick={() => setViewmap(val.loc)}>
                         click here to view
                         {console.log(JSON.parse(val.loc))}
                       </a>
@@ -107,10 +107,7 @@ export default function AgentTable() {
                         {viewMap && (
                           <div className={styles.Loading}>
                             <div className={styles.Map}>
-                              <LocView
-                                setViewmap={setViewmap}
-                                loc={JSON.parse(val.loc)}
-                              />
+                              <LocView setViewmap={setViewmap} loc={viewMap} />
                             </div>
                           </div>
                         )}

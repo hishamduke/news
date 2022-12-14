@@ -66,6 +66,7 @@ function SubTable() {
             <tbody>
               {data.map((item) => (
                 <tr key={item.id}>
+                  {/* console.log(item) */}
                   <td className={styles.Td}>
                     <Username id={item.userId} />
                   </td>
@@ -99,7 +100,7 @@ function Username(id) {
 }
 
 function Newspaper(id) {
-  const { isLoading, error, data } = useQuery([`news${id.id}`], () =>
+  const { isLoading, error, data } = useQuery([`newsname${id.id}`], () =>
     axios
       .post("/api/employees/newspaperId", { id: id.id })
       .then((res) => res.data.name)

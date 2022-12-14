@@ -52,7 +52,7 @@ export default function FeedbackTable() {
                 </tr>
 
                 <tr className={styles.Tr} key="head">
-                  <th className={styles.Td}>Id</th>
+                  {/* <th className={styles.Td}>Id</th> */}
                   <th className={styles.Td}>Name</th>
                   <th className={styles.Td}>Role</th>
                   <th className={styles.Td}>Email</th>
@@ -63,8 +63,8 @@ export default function FeedbackTable() {
               <tbody>
                 {data.map((val) => (
                   <tr className={styles.Tr} key={val.id}>
-                    {console.log(val)}
-                    <td className={styles.Td}>{val.id}</td>
+                    {/* {console.log(val)} */}
+                    {/* <td className={styles.Td}>{val.id}</td> */}
                     <td className={styles.Td}>{val.name}</td>
                     <td className={styles.Td}>{val.role}</td>
                     <td className={styles.Td}>{val.email}</td>

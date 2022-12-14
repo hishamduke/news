@@ -81,6 +81,7 @@ function ShowPapers({ emp }) {
   console.log(emp);
   const [animationParent] = useAutoAnimate();
   const [isModal, setIsModal] = useState(false);
+  const [count, setCount] = useState(0);
   const [modalId, setModalId] = useState(null);
 
   if (data) {
@@ -92,6 +93,12 @@ function ShowPapers({ emp }) {
         console.log(data[i]);
       }
     }
+    let flag = false;
+    data.map((item) => {
+      if (!!item.employeeId == emp) {
+        flag = true;
+      }
+    });
 
     const handleRevoke = (id) => {
       axios.post("/api/user/emp/revoke", { id }).then({});
@@ -107,6 +114,7 @@ function ShowPapers({ emp }) {
     };
     return (
       //   <div ref={animationParent}>
+
       <div
         ref={animationParent}
         style={{
@@ -153,7 +161,9 @@ function ShowPapers({ emp }) {
           )
         )}
         {!!modalId && <ChooseModal show={setModalId} id={modalId} />}
+        {!flag && <h1 className="formhead">There are no users</h1>}
       </div>
+
       //   </div>
     );
   }
