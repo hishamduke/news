@@ -120,51 +120,51 @@ function NewsTable2(val) {
         </>
       );
     return (
-      <div>
-        <div className={styles.NewsCont} key={"newscont"} ref={parent}>
-          {data.map(
-            (val) =>
-              val.language == lang && (
-                <div className={styles.NewsBox} id={val.id}>
-                  <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
-                  <img className={styles.NewsImg} src={val.img} />
-                  <p
-                    style={{
-                      textAlign: "center",
-                      height: "3rem",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {val.description}
-                  </p>
-                </div>
-              )
-          )}
-
-          <div
-            className={styles.NewsBox}
-            // ref={animationParent}
-            style={{ cursor: "pointer" }}
-            onClick={() => setView(!view)}
-            key={99}
-          >
-            <h1 className={styles.NewsName}></h1>
-            <img
-              // ref={animationParent}
-              className={styles.NewsImg}
-              src={"/newspapers/add.png"}
-            />
-            <p
-              // className={styles.NewsName}
-              style={{
-                textAlign: "center",
-                height: "3rem",
-                overflow: "hidden",
-              }}
-            >
-              Add a new newspaper
-            </p>
+      <div className={styles.NewsCont} key={"newscont"} ref={parent}>
+        {data.map((val) => (
+          <div key={val.id}>
+            {val.language == lang && (
+              <div className={styles.NewsBox} id={val.id}>
+                {console.log(val)}
+                <h1 className={styles.NewsName}>{val.name.toUpperCase()}</h1>
+                <img className={styles.NewsImg} src={val.img} />
+                <p
+                  style={{
+                    textAlign: "center",
+                    height: "3rem",
+                    overflow: "hidden",
+                  }}
+                >
+                  {val.description}
+                </p>
+              </div>
+            )}
           </div>
+        ))}
+
+        <div
+          className={styles.NewsBox}
+          // ref={animationParent}
+          style={{ cursor: "pointer" }}
+          onClick={() => setView(!view)}
+          // key={`${lang}Emp`}
+        >
+          <h1 className={styles.NewsName}></h1>
+          <img
+            // ref={animationParent}
+            className={styles.NewsImg}
+            src={"/newspapers/add.png"}
+          />
+          <p
+            // className={styles.NewsName}
+            style={{
+              textAlign: "center",
+              height: "3rem",
+              overflow: "hidden",
+            }}
+          >
+            Add a new newspaper
+          </p>
         </div>
       </div>
     );

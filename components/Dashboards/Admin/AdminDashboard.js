@@ -13,7 +13,7 @@ export default function Index() {
   const { isLoading, error, data } = useQuery(["name"], () =>
     fetch("/api/account").then((res) => res.json())
   );
-  if (data) queryClient.invalidateQueries("account");
+  // if (data) queryClient.invalidateQueries("account");
 
   //caching newspapers in eng in advance
   const {} = useQuery([`AdminPapersEnglish`], () =>
