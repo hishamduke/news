@@ -613,12 +613,19 @@ th {
     width: 95%;
   }
   .body {
-    margin-top: 19vh;
+    margin: 2rem;
+    margin-top: 13vh;
+    /* background-color: yellowgreen; */
   }
 }
 @media only all and (max-width: 600px) {
   .body {
-    margin-top: 19vh;
+    margin-top: 14vh;
+  }
+  .collumn {
+    /* background-color: yellowgreen; */
+    margin: 2rem;
+    margin-top: 0rem;
   }
   .collumn + .collumn {
     border-left: none;
