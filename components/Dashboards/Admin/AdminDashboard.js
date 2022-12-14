@@ -14,6 +14,18 @@ export default function Index() {
     fetch("/api/account").then((res) => res.json())
   );
   if (data) queryClient.invalidateQueries("account");
+
+  //caching newspapers in eng in advance
+  const {} = useQuery([`AdminPapersEnglish`], () =>
+    fetch("/api/admin/newspapers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify("English"),
+    }).then((res) => res.json())
+  );
+
   console.log("here");
   if (isLoading) {
     return (
