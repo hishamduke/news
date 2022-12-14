@@ -624,7 +624,7 @@ th {
   }
   .collumn {
     /* background-color: yellowgreen; */
-    margin: 2rem;
+    margin: 1.2rem;
     margin-top: 0rem;
   }
   .collumn + .collumn {

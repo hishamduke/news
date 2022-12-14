@@ -2,6 +2,8 @@ import Link from "next/link";
 import Breaking from "./breaking";
 import Image from "next/image";
 import Logout from "./buttons/logoutbutton";
+import styles from "../styles/Index.module.css";
+// import styles from "./styles/Index.module.css";
 export default function Index() {
   return (
     <>
@@ -32,21 +34,25 @@ export default function Index() {
               >
                 Welcome to Newspaper subscription system.
                 <br />
-                &nbsp;&nbsp; Our goal is to enable internet connectivity to the
-                traditional newspaper subscription and delivery system. Click
-                Login below to start.
+                <br />
+                <i>
+                  &nbsp;&nbsp; Our goal is to enable internet connectivity to
+                  the traditional newspaper subscription and delivery system.
+                  Click Login below to start.
+                </i>
               </p>
               <Link href={"/login"}>
-                <h3
-                  className={"formhead Link"}
-                  style={{
-                    margin: "0px",
-                    padding: "0px",
-                    fontSize: "25px",
-                  }}
-                >
+                <button className={styles.button}>
+                  {/* <h3
+                    className={"formhead Link"}
+                    style={{
+                      margin: "0px",
+                      padding: "0px",
+                      fontSize: "25px",
+                    }}
+                  > */}
                   Login
-                </h3>
+                </button>
               </Link>{" "}
             </div>
             <div
@@ -69,16 +75,7 @@ export default function Index() {
                 Or you want to create an account?
               </p>
               <Link href={"/register"}>
-                <h3
-                  className={"formhead Link"}
-                  style={{
-                    margin: "0px",
-                    fontSize: "25px",
-                    padding: "0px",
-                  }}
-                >
-                  Register
-                </h3>
+                <button className={styles.button}>Register</button>
               </Link>
             </div>
 
@@ -102,16 +99,7 @@ export default function Index() {
                 Are you an delivery employee?
               </p>
               <Link href={"/employees/dashboard"}>
-                <h3
-                  className={"formhead Link"}
-                  style={{
-                    margin: "0px",
-                    padding: "0px",
-                    fontSize: "25px",
-                  }}
-                >
-                  Employee
-                </h3>
+                <button className={styles.button}>Employee</button>
               </Link>
             </div>
             {/* <h3 className={"formhead "}>
