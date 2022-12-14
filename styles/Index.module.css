@@ -3,3 +3,16 @@
   width: 6rem;
   /* background-color: yellow; */
 }
+
+.box {
+  /* background-color: red; */
+  margin-bottom: "2rem";
+}
+
+.para {
+  font-size: 20px;
+  line-height: 22px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 0rem;
+}

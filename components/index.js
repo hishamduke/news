@@ -15,32 +15,21 @@ export default function Index() {
             className="collumn"
           >
             <h1 className={"formhead test"}>Hey there !!</h1>
-            <div
-              style={{
-                // backgroundColor: "red",
-                marginBottom: "2rem",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "20px",
-                  // maxWidth: "20vw",
-                  lineHeight: "22px",
-                  textAlign: "justify",
-                  padding: "0px",
-                  margin: "0px",
-                  marginBottom: "1rem",
-                }}
-              >
-                Welcome to Newspaper subscription system.
+            <div className={styles.box}>
+              <div>
+                <p className={styles.para}>
+                  Welcome to Newspaper subscription system.
+                </p>
                 <br />
                 <br />
-                <i>
-                  &nbsp;&nbsp; Our goal is to enable internet connectivity to
-                  the traditional newspaper subscription and delivery system.
-                  Click Login below to start.
-                </i>
-              </p>
+                <p className={styles.para} style={{ textAlign: "justify" }}>
+                  <i>
+                    &nbsp;&nbsp; Our goal is to enable internet connectivity to
+                    the traditional newspaper subscription and delivery system.
+                    Click Login below to start.
+                  </i>
+                </p>
+              </div>
               <Link href={"/login"}>
                 <button className={styles.button}>
                   {/* <h3
@@ -61,19 +50,7 @@ export default function Index() {
                 marginBottom: "2rem",
               }}
             >
-              <p
-                style={{
-                  fontSize: "20px",
-                  // maxWidth: "20vw",
-                  lineHeight: "22px",
-                  textAlign: "justify",
-                  padding: "0px",
-                  margin: "0px",
-                  marginBottom: "1rem",
-                }}
-              >
-                Or you want to create an account?
-              </p>
+              <p className={styles.para}>Or you want to create an account?</p>
               <Link href={"/register"}>
                 <button className={styles.button}>Register</button>
               </Link>
@@ -85,19 +62,7 @@ export default function Index() {
                 marginBottom: "2rem",
               }}
             >
-              <p
-                style={{
-                  fontSize: "20px",
-                  // maxWidth: "20vw",
-                  lineHeight: "22px",
-                  textAlign: "justify",
-                  padding: "0px",
-                  margin: "0px",
-                  marginBottom: "1rem",
-                }}
-              >
-                Are you an delivery employee?
-              </p>
+              <p className={styles.para}>Are you an delivery employee?</p>
               <Link href={"/employees/dashboard"}>
                 <button className={styles.button}>Employee</button>
               </Link>
