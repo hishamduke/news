@@ -9,7 +9,7 @@ export default function Index() {
     <>
       <div className="collumns">
         <div className="dashboard">
-          <br />
+          {/* <br /> */}
           <form
             // style={{ backgroundColor: "blue" }}
             className="collumn"
@@ -44,12 +44,8 @@ export default function Index() {
                 </button>
               </Link>{" "}
             </div>
-            <div
-              style={{
-                // backgroundColor: "red",
-                marginBottom: "2rem",
-              }}
-            >
+
+            <div className={styles.box}>
               <p className={styles.para}>Or you want to create an account?</p>
               <Link href={"/register"}>
                 <button className={styles.button}>Register</button>

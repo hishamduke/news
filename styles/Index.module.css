@@ -6,7 +6,7 @@
 
 .box {
   /* background-color: red; */
-  margin-bottom: "2rem";
+  margin-bottom: 2rem;
 }
 
 .para {
@@ -14,5 +14,5 @@
   line-height: 22px;
   padding: 0px;
   margin: 0px;
-  margin-bottom: 0rem;
+  margin-bottom: 0.6rem;
 }

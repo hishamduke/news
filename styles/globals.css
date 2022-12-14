@@ -604,13 +604,20 @@ th {
     margin: 1%;
     /* background-color: blue; */
   }
+  .dashboard,
+  .collumns {
+    padding: 0rem;
+    margin: 0rem;
+    margin-top: 1.2rem;
+  }
   .body {
     margin-top: 17vh;
   }
 }
 @media only all and (max-width: 900px) {
   .collumn {
-    width: 95%;
+    width: 85%;
+    margin: 0px;
   }
   .body {
     margin: 2rem;
@@ -626,6 +633,7 @@ th {
     /* background-color: yellowgreen; */
     margin: 1.2rem;
     margin-top: 0rem;
+    width: 95%;
   }
   .collumn + .collumn {
     border-left: none;
