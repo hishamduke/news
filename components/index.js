@@ -8,7 +8,10 @@ export default function Index() {
       <div className="collumns">
         <div className="dashboard">
           <br />
-          <form style={{ backgroundColor: "blue" }} className="collumn">
+          <form
+            // style={{ backgroundColor: "blue" }}
+            className="collumn"
+          >
             <h1 className={"formhead test"}>Hey there !!</h1>
             <div
               style={{
@@ -39,6 +42,7 @@ export default function Index() {
                   style={{
                     margin: "0px",
                     padding: "0px",
+                    fontSize: "25px",
                   }}
                 >
                   Login
@@ -69,6 +73,7 @@ export default function Index() {
                   className={"formhead Link"}
                   style={{
                     margin: "0px",
+                    fontSize: "25px",
                     padding: "0px",
                   }}
                 >
@@ -102,6 +107,7 @@ export default function Index() {
                   style={{
                     margin: "0px",
                     padding: "0px",
+                    fontSize: "25px",
                   }}
                 >
                   Employee
