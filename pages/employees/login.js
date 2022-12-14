@@ -59,7 +59,7 @@ export function Login() {
         onSubmit={(e) => handlelogin(e)}
         style={{ display: "flex", flexDirection: "column", gap: ".6rem" }}
       >
-        <h2 className="headline hl4">Login to account</h2>
+        <h2 className="headline hl4">Login to Employee account</h2>
         <div>
           <div>E-mail </div>
           <div>

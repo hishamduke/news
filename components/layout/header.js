@@ -23,6 +23,11 @@ export default function Header() {
   const month = monthlist[d.getMonth()];
   console.log(" header mounted");
 
+  const place = "Calicut University";
+  const state = "Kerala";
+
+  // TODO
+  // Make title show something other than 7 pages
   return (
     <>
       <link
@@ -42,7 +47,7 @@ export default function Header() {
         </div>
         <div className="subhead">
           <div style={{ flexGrow: 1 }}>
-            Calicut,Kerala - {day} {month} {year}- Seven Pages
+            {place},{state} - {day} {month} {year}- Seven Pages
           </div>
           <Profile />
         </div>
