@@ -388,6 +388,7 @@ input::-webkit-inner-spin-button {
 }
 .collumns,
 .dashboard {
+  background-color: yellow;
   /* font-size: 1rem; */
   line-height: 15px;
   width: auto;

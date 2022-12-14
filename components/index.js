@@ -8,9 +8,7 @@ export default function Index() {
       <div className="collumns">
         <div className="dashboard">
           <br />
-          <form
-          // style={{ backgroundColor: "blue" }}
-          >
+          <form style={{ backgroundColor: "blue" }} className="collumn">
             <h1 className={"formhead test"}>Hey there !!</h1>
             <div
               style={{
@@ -21,7 +19,7 @@ export default function Index() {
               <p
                 style={{
                   fontSize: "20px",
-                  maxWidth: "20vw",
+                  // maxWidth: "20vw",
                   lineHeight: "22px",
                   textAlign: "justify",
                   padding: "0px",
@@ -56,7 +54,7 @@ export default function Index() {
               <p
                 style={{
                   fontSize: "20px",
-                  maxWidth: "20vw",
+                  // maxWidth: "20vw",
                   lineHeight: "22px",
                   textAlign: "justify",
                   padding: "0px",
@@ -88,7 +86,7 @@ export default function Index() {
               <p
                 style={{
                   fontSize: "20px",
-                  maxWidth: "20vw",
+                  // maxWidth: "20vw",
                   lineHeight: "22px",
                   textAlign: "justify",
                   padding: "0px",
@@ -117,7 +115,7 @@ export default function Index() {
           <div
             style={{
               height: "500px",
-              width: "500px",
+              maxWidth: "500px",
               // backgroundColor: "red",
               overflow: "none",
             }}
