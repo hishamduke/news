@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: center;
   /* background-color: yellowgreen; */
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -95,14 +96,14 @@
   align-items: center;
   padding: 15px;
   transition: all 0.5s;
-  background-color: #f1efe9c7;
+  background-color: #f3efe8c7;
   box-shadow: 0px 0px 25px 0px #cccccc50;
   /* height: 40vh; */
 }
 
 .NewsBox:hover {
   box-shadow: 0px 0px 25px 0px #cccccc;
-  background-color: #e6e4ddc7;
+  /* background-color: #e6e4ddc7; */
 }
 .ContBox {
   display: flex;

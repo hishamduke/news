@@ -8,7 +8,7 @@ export default function Loading(props) {
   console.log("Logout mounted");
   let a = async () => {
     setTimeout(() => {
-      Router.push("/login");
+      Router.push("/");
     }, 700);
   };
   a();
