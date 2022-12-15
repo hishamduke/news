@@ -89,10 +89,9 @@ function NewsOf({ lang }) {
           {data.map((val) => (
             <div ref={animationParent}>
               {val.language == lang && (
-                <>
-                  <Box val={val} key={val.id} />
+                <Box val={val} key={val.id}>
                   {flip()}
-                </>
+                </Box>
               )}
             </div>
           ))}
