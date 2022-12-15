@@ -44,7 +44,7 @@ export default function Breaking() {
           <p>"An news of today is loading, Please hold on"</p>
           <>
             <figure className="figure">
-              <img className="media" src={"/daily.webp"}></img>
+              <img className="media" src={`/daily.webp`}></img>
               {/* <Image src={news.urlToImage} height={900} width={1600} /> */}
 
               <figcaption className="figcaption">"Loading......"</figcaption>
