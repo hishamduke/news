@@ -11,9 +11,7 @@ import { useEffect } from "react";
 export default function Index() {
   //caching
   const {} = useQuery(["News"], () =>
-    axios.get("/api/news").then((res) => {
-      return res.data;
-    })
+    fetch("/api/news").then((res) => res.json())
   );
   //end of caching
 

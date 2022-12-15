@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -20,9 +19,7 @@ export default function Breaking() {
   const num = genrandom();
   const num2 = genrandom2(num);
   const { isLoading, error, data } = useQuery(["News"], () =>
-    axios.get("/api/news").then((res) => {
-      return res.data;
-    })
+    fetch("/api/news").then((res) => res.json())
   );
   // const { isLoading, error, data } = useQuery(["News"], () =>
   //   axios
