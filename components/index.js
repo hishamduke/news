@@ -17,10 +17,7 @@ export default function Index() {
       <div className="collumns">
         <div className="dashboard">
           {/* <br /> */}
-          <form
-            style={{ backgroundColor: "blue", marginTop: "2rem" }}
-            className="collumn"
-          >
+          <form style={{ marginTop: "2rem" }} className="collumn">
             <h1 className={"formhead test"}>Hey there !!</h1>
             <div className={styles.box}>
               <div>
