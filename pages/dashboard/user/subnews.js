@@ -23,7 +23,6 @@ export default function SubNews() {
   );
 }
 function NewsMain() {
-  const [animationParent] = useAutoAnimate();
   const [visible, setVisible] = useState(false);
   // const [lang, setLang] = useState("English");
   const [lang, setLang] = useState("English");
@@ -56,7 +55,7 @@ function NewsMain() {
                 onChange={(e) => {
                   console.log(e.target.value);
                   setLang(e.target.value);
-                  queryClient.invalidateQueries(["Newspapers"]);
+                  // queryClient.invalidateQueries(["Newspapers"]);
                 }}
               >
                 {data.map((val) => (
@@ -74,6 +73,8 @@ function NewsMain() {
     );
 }
 function NewsOf({ lang }) {
+  const [animationParent] = useAutoAnimate();
+
   const { isLoading, error, data } = useQuery(["allnews"], () =>
     fetch("/api/user/listnews").then((res) => res.json())
   );
@@ -84,13 +85,12 @@ function NewsOf({ lang }) {
   if (data)
     return (
       <>
-        <div className="dashboard">
+        <div className={styles.dashboard}>
           {data.map((val) => (
-            <div key={val.id}>
+            <div ref={animationParent}>
               {val.language == lang && (
                 <>
-                  <Box val={val} />
-
+                  <Box val={val} key={val.id} />
                   {flip()}
                 </>
               )}
@@ -116,16 +116,13 @@ const Box = ({ val }) => {
   );
 
   return (
-    <div className={styles.NewsBox} style={{ height: "40vh" }}>
+    <div className={styles.NewsBox} style={{}}>
       {/* <h1 className={styles.Heading}>Newspaper Details</h1> */}
 
       <div className={styles.ContBox}>
         <img className={styles.NewsImg} src={val.img} />
         <p className={styles.Info}>{val.name}</p>
-        <p style={{ maxHeight: "4vh", overflow: "hidden" }}>
-          {" "}
-          {val.description}
-        </p>
+        <p style={{ height: "4vh", overflow: "hidden" }}>{val.description}</p>
         {/* <StarIcon rating={data} /> */}
         <Star val={data} />
         <div className={styles.Info}>

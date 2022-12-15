@@ -9,7 +9,7 @@ export default function Verified() {
     fetch("/api/account").then((res) => res.json())
   );
 
-  //CACHING
+  //PRECACHING
   const {} = useQuery(["employees"], () =>
     fetch("/api/agent/viewemployees").then((res) => res.json())
   );

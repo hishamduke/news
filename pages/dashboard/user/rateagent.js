@@ -36,7 +36,7 @@ function Rate() {
   const { isLoading, error, data } = useQuery(["currentagent"], () =>
     fetch("/api/user/currentagent").then((res) => res.json())
   );
-  queryClient.invalidateQueries(["currentrating"]);
+  // queryClient.invalidateQueries(["currentrating"]);
 
   const { loading: loading2, data: data2 } = useQuery([`currentrating`], () =>
     fetch(`/api/user/currentRating`).then((res) => res.json())

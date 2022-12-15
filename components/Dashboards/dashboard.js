@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Logout from "../buttons/logoutbutton";
+
 export default function Dashboard(yea) {
   const logout = async () => {
     let val = await axios.get("/api/auth/logout");
@@ -12,9 +13,31 @@ export default function Dashboard(yea) {
 
   const [userflag, setUserflag] = useState(1);
   //CACHING
-  const {} = useQuery(["allagents"], () =>
+  const { data: agents } = useQuery(["allagents"], () =>
     fetch("/api/user/viewagents").then((res) => res.json())
   );
+  const {} = useQuery(["anyagents"], () =>
+    fetch("/api/user/anyagents").then((res) => res.json())
+  );
+  const {} = useQuery(["currentagent"], () =>
+    fetch("/api/user/currentagent").then((res) => res.json())
+  );
+  const {} = useQuery([`currentrating`], () =>
+    fetch(`/api/user/currentRating`).then((res) => res.json())
+  );
+  const {} = useQuery(["Langs"], () =>
+    fetch("/api/admin/newslang").then((res) => res.json())
+  );
+  const {} = useQuery(["hasAgent"], () =>
+    fetch("/api/user/hasagent").then((res) => res.json())
+  );
+  const {} = useQuery(["allnews"], () =>
+    fetch("/api/user/listnews").then((res) => res.json())
+  );
+  const {} = useQuery(["allSubbed"], () =>
+    fetch("/api/user/listsubbed").then((res) => res.json())
+  );
+
   // const {} = useQuery([`agentrating${id}`], () =>
   //   fetch(`/api/user/rating/agentaverage/${id}`).then((res) => res.json())
   // );
