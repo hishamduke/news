@@ -41,7 +41,7 @@ export default function Breaking() {
           <div className="head">
             <span className="headline hl4">News is loading...</span>
           </div>
-          <p>"An news of today is loading, Please hold on"</p>
+          <p>An news of today is loading, Please hold on</p>
           <>
             <figure className="figure">
               <img className="media" src={`/daily.webp`}></img>
