@@ -47,7 +47,7 @@ export default function Breaking() {
               <img className="media" src={`/daily.webp`}></img>
               {/* <Image src={news.urlToImage} height={900} width={1600} /> */}
 
-              <figcaption className="figcaption">"Loading......"</figcaption>
+              <figcaption className="figcaption">Loading......</figcaption>
             </figure>
 
             {/* {!!news.content && <p>{news.content.split("[")[0]}</p>} */}
