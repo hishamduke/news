@@ -19,20 +19,20 @@ function genrandom2(val) {
 export default function Breaking() {
   const num = genrandom();
   const num2 = genrandom2(num);
-  // const { isLoading, error, data } = useQuery(["News"], () =>
-  //   axios.get("/api/news").then((res) => {
-  //     return res.data;
-  //   })
-  // );
   const { isLoading, error, data } = useQuery(["News"], () =>
-    axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=242d50d9b8a94aa3b1775a44aa82d5a1"
-      )
-      .then((res) => {
-        return res.data;
-      })
+    axios.get("/api/news").then((res) => {
+      return res.data;
+    })
   );
+  // const { isLoading, error, data } = useQuery(["News"], () =>
+  //   axios
+  //     .get(
+  //       "https://newsapi.org/v2/top-headlines?country=in&apiKey=242d50d9b8a94aa3b1775a44aa82d5a1"
+  //     )
+  //     .then((res) => {
+  //       return res.data;
+  //     })
+  // );
 
   if (isLoading)
     return (
