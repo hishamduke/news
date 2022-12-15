@@ -17,10 +17,21 @@ function genrandom2(val) {
 }
 
 export default function Breaking() {
+  const num = genrandom();
+  const num2 = genrandom2(num);
+  // const { isLoading, error, data } = useQuery(["News"], () =>
+  //   axios.get("/api/news").then((res) => {
+  //     return res.data;
+  //   })
+  // );
   const { isLoading, error, data } = useQuery(["News"], () =>
-    axios.get("/api/news").then((res) => {
-      return res.data;
-    })
+    axios
+      .get(
+        "https://newsapi.org/v2/top-headlines?country=in&apiKey=242d50d9b8a94aa3b1775a44aa82d5a1"
+      )
+      .then((res) => {
+        return res.data;
+      })
   );
 
   if (isLoading)
@@ -28,25 +39,36 @@ export default function Breaking() {
       <>
         <div className="collumn">
           <div className="head">
-            <span className="headline hl2">Loading........</span>
+            <span className="headline hl4">News is loading...</span>
           </div>
+          <p>"An news of today is loading, Please hold on"</p>
+          <>
+            <figure className="figure">
+              <img className="media" src={"/daily.webp"}></img>
+              {/* <Image src={news.urlToImage} height={900} width={1600} /> */}
+
+              <figcaption className="figcaption">"Loading......"</figcaption>
+            </figure>
+
+            {/* {!!news.content && <p>{news.content.split("[")[0]}</p>} */}
+            <p>{/* <Link >more....</Link> */}</p>
+          </>
         </div>
       </>
     );
 
   if (error) return "An error has occurred: " + error.message;
 
-  const num = genrandom();
-  const num2 = genrandom2(num);
-  const news = data.articles[num];
   // const news2 = data.articles[num2];
 
-  if (data)
+  if (data) {
+    const news = data.articles[num];
     return (
       <>
         <News>{news}</News>
       </>
     );
+  }
 }
 function News(props) {
   const news = props.children;

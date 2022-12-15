@@ -17,7 +17,7 @@ export default function Login() {
 
   useEffect(() => {
     // queryClient.invalidateQueries("account");
-    queryClient.clear();
+    // queryClient.clear();
     axios
       .get("/api/auth/cook")
       .then(function (response) {
@@ -39,6 +39,7 @@ export default function Login() {
       })
       .then(function (response) {
         setAxres(1);
+        queryClient.clear();
         queryClient.invalidateQueries("account");
         Router.push("/dashboard");
       })

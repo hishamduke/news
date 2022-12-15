@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Breaking from "./breaking";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 import Logout from "./buttons/logoutbutton";
 import styles from "../styles/Index.module.css";
 import { queryClient } from "../pages/_app";
@@ -8,6 +9,13 @@ import { useEffect } from "react";
 // import styles from "./styles/Index.module.css";
 
 export default function Index() {
+  //caching
+  const {} = useQuery(["News"], () =>
+    axios.get("/api/news").then((res) => {
+      return res.data;
+    })
+  );
+  //end of caching
   useEffect(() => {
     // queryClient.invalidateQueries("account");
     queryClient.clear();
