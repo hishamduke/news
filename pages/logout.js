@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/ManagePapers.module.css";
 import Image from "next/image";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { queryClient } from "./_app";
 import { getCookies, deleteCookie, setCookie } from "cookies-next";
 import Router from "next/router";
 export default function Loading(props) {
@@ -12,6 +13,7 @@ export default function Loading(props) {
     }, 700);
   };
   a();
+  queryClient.clear();
   return (
     <div>
       <div

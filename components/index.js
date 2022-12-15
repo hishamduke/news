@@ -16,10 +16,7 @@ export default function Index() {
     })
   );
   //end of caching
-  useEffect(() => {
-    // queryClient.invalidateQueries("account");
-    // queryClient.clear();
-  }, []);
+
   return (
     <>
       <div className="collumns">
