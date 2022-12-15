@@ -3,7 +3,12 @@ import Breaking from "./breaking";
 import Image from "next/image";
 import Logout from "./buttons/logoutbutton";
 import styles from "../styles/Index.module.css";
+import { queryClient } from "../pages/_app";
 // import styles from "./styles/Index.module.css";
+useEffect(() => {
+  // queryClient.invalidateQueries("account");
+  queryClient.clear();
+}, []);
 export default function Index() {
   return (
     <>
@@ -20,7 +25,7 @@ export default function Index() {
                 <p className={styles.para}>
                   Welcome to Newspaper subscription system.
                 </p>
-                <br />
+                {/* <br /> */}
                 <br />
                 <p className={styles.para} style={{ textAlign: "justify" }}>
                   <i>
@@ -78,10 +83,13 @@ export default function Index() {
             <Image
               className="dashboard"
               src="/news3.png"
-              height={"1000"}
-              width={"950"}
+              height={"10000"}
+              width={"10000"}
               // layout="fill"
-              style={{ transform: "translateY(-40px)" }}
+              style={{
+                transform: "translateY(-40px)",
+                imageRendering: "auto",
+              }}
             ></Image>
           </div>
         </div>

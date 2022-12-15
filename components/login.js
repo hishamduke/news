@@ -16,7 +16,8 @@ export default function Login() {
   const [butload, setButload] = useState(false);
 
   useEffect(() => {
-    queryClient.invalidateQueries("account");
+    // queryClient.invalidateQueries("account");
+    queryClient.clear();
     axios
       .get("/api/auth/cook")
       .then(function (response) {

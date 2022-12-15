@@ -14,7 +14,7 @@ export default function Index() {
     fetch("/api/account").then((res) => res.json())
   );
   // if (data) queryClient.invalidateQueries("account");
-
+  //CACHINNNNG
   //caching newspapers in eng in advance
   const {} = useQuery([`AdminPapersEnglish`], () =>
     fetch("/api/admin/newspapers", {
@@ -25,7 +25,17 @@ export default function Index() {
       body: JSON.stringify("English"),
     }).then((res) => res.json())
   );
+  const {} = useQuery(["agentsDetails"], () =>
+    fetch("/api/admin/agentstatus").then((res) => res.json())
+  );
+  const {} = useQuery(["Feedbacks"], () =>
+    fetch("/api/admin/feedbacks").then((res) => res.json())
+  );
+  const {} = useQuery(["usersDetails"], () =>
+    fetch("/api/admin/users").then((res) => res.json())
+  );
 
+  //end of caching
   console.log("here");
   if (isLoading) {
     return (
@@ -114,9 +124,9 @@ export default function Index() {
                 Manage Newspapers
               </h3>
 
-              <Link href={"/test"}>
+              {/* <Link href={"/test"}>
                 <h3 className={"formhead Link"}>Go to test field</h3>
-              </Link>
+              </Link> */}
               <Logout />
             </form>
             <div

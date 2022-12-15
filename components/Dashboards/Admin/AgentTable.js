@@ -68,7 +68,7 @@ export default function AgentTable() {
           </div>
         </>
       ) : (
-        <div className={styles.Base} ref={animationParent}>
+        <div className={styles.Base}>
           <div className={styles.In}>
             {/* {JSON.stringify(data)} */}
             <table className={styles.Table} cellSpacing={0} cellPadding={0}>
@@ -102,16 +102,6 @@ export default function AgentTable() {
                         click here to view
                         {console.log(JSON.parse(val.loc))}
                       </a>
-
-                      <div ref={animationParent}>
-                        {viewMap && (
-                          <div className={styles.Loading}>
-                            <div className={styles.Map}>
-                              <LocView setViewmap={setViewmap} loc={viewMap} />
-                            </div>
-                          </div>
-                        )}
-                      </div>
                     </td>
                     <td className={styles.Td}>
                       {!val.app ? "Not approved" : "Approved"}
@@ -171,6 +161,15 @@ export default function AgentTable() {
           </div>
         </div>
       )}
+      <div ref={animationParent}>
+        {viewMap && (
+          <div className={styles.Loading} key={viewMap}>
+            <div className={styles.Map}>
+              <LocView setViewmap={setViewmap} loc={viewMap} />
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

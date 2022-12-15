@@ -11,6 +11,14 @@ export default function Dashboard(yea) {
   };
 
   const [userflag, setUserflag] = useState(1);
+  //CACHING
+  const {} = useQuery(["allagents"], () =>
+    fetch("/api/user/viewagents").then((res) => res.json())
+  );
+  // const {} = useQuery([`agentrating${id}`], () =>
+  //   fetch(`/api/user/rating/agentaverage/${id}`).then((res) => res.json())
+  // );
+  //END CACHING
   axios
     .get("/api/auth/cook")
     .then(function (response) {
@@ -36,7 +44,7 @@ export default function Dashboard(yea) {
 
   if (error) return "An error has occurred: " + error.message;
 
-  if (data)
+  if (data) {
     return (
       <>
         {/* <div className="collumns">
@@ -112,4 +120,5 @@ export default function Dashboard(yea) {
         </div>
       </>
     );
+  }
 }
