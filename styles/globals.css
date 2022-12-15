@@ -627,7 +627,7 @@ th {
 }
 @media only all and (max-width: 600px) {
   .body {
-    margin-top: 14vh;
+    margin-top: 15.5vh;
   }
   .collumn {
     /* background-color: yellowgreen; */

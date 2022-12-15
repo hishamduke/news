@@ -4,12 +4,14 @@ import Image from "next/image";
 import Logout from "./buttons/logoutbutton";
 import styles from "../styles/Index.module.css";
 import { queryClient } from "../pages/_app";
+import { useEffect } from "react";
 // import styles from "./styles/Index.module.css";
-useEffect(() => {
-  // queryClient.invalidateQueries("account");
-  queryClient.clear();
-}, []);
+
 export default function Index() {
+  useEffect(() => {
+    // queryClient.invalidateQueries("account");
+    queryClient.clear();
+  }, []);
   return (
     <>
       <div className="collumns">
