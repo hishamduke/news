@@ -31,16 +31,16 @@ export default function Profile() {
   if (data) {
     if (data.role == "AGENT" || data.role == "USER")
       return (
-        <>
-          <div ref={animationParent}>
-            <div
-              className={styles.head}
-              style={{ marginRight: 10 }}
-              onClick={() => handleclick()}
-            >
-              <Image src={"/user.png"} height={"16%"} width={"16%"}></Image>
-            </div>
-
+        <div ref={animationParent}>
+          <div
+            className={styles.head}
+            style={{ marginRight: 10 }}
+            onClick={() => handleclick()}
+            key={"butt"}
+          >
+            <Image src={"/user.png"} height={"16%"} width={"16%"}></Image>
+          </div>
+          <div key={"butt2"}>
             {show && (
               <div className={styles.profileCont}>
                 <div
@@ -62,7 +62,7 @@ export default function Profile() {
                     >
                       🏠 Home
                     </div>
-                    <div className={styles.row}>👤 Profile</div>
+                    {/* <div className={styles.row}>👤 Profile</div> */}
 
                     <div
                       className={styles.row}
@@ -87,7 +87,7 @@ export default function Profile() {
               </div>
             )}
           </div>
-        </>
+        </div>
       );
   }
 }

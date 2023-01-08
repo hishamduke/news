@@ -72,7 +72,7 @@ function News(props) {
   if (news.title)
     return (
       <>
-        <div className="collumn">
+        <div className="collumn" style={{ marginTop: "10px" }}>
           <div className="head">
             <span className="headline hl4">{news.title}</span>
           </div>

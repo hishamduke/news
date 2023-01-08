@@ -379,6 +379,8 @@ input::-webkit-inner-spin-button {
   line-height: 20px;
   width: 30%;
   display: flex;
+  /* background-color: red; */
+
   flex-direction: column;
   /* padding: 0 1% 0 1%; */
   /* justify-content: center; */
@@ -618,6 +620,7 @@ th {
   .collumn {
     width: 85%;
     margin: 0px;
+    /* background-color: yellow; */
   }
   .body {
     margin: 2rem;
