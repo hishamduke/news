@@ -47,7 +47,7 @@ export default function Header() {
         </div>
         <div className="subhead">
           <div style={{ flexGrow: 1 }}>
-            {place},{state} - {day} {month} {year}- Seven Pages
+            {place},{state} - {day} {month} {year}
           </div>
           <Profile />
         </div>
